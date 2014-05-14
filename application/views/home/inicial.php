@@ -3,6 +3,23 @@
     <head>
         <meta charset='utf-8'>
         <script type="text/javascript" src="<?=base_url('static/bootstrap/js/jquery-1.10.2.min.js');?>"></script>
+        <script type="text/javascript">
+        	$(document).ready(function(){
+        		var sair = 0;
+        		$('.minha-conta').click(function(){
+        			if(sair)
+        			{
+        				sair = 0;
+        				$('.sair-link').fadeOut();
+        			}
+        			else
+        			{
+        				sair = 1;
+	        			$('.sair-link').fadeIn();
+	        		}
+        		});
+        	});
+        </script>
         <link rel="stylesheet" type="text/css" href="<?=base_url('static/bootstrap/css/style_izabela.css');?>" />
         <title>Izabela Hendrix</title>
     </head>
@@ -84,7 +101,7 @@
 		    		<img src='<?=base_url("static/img/home-blue.png")?>' />
 		    	</div></a>
 		    	<div class='minha-conta'>
-		    		<img src='<?=base_url("static/img/arrow-down.png")?>' />
+		    		<img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
 		    		<p>Tiago Magalhães</p>
 		    	</div><!--minha-conta-->
 		    	<a class='sair-link' href='<?=base_url("home/sair")?>'>Sair</a>
