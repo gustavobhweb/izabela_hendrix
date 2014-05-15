@@ -46,13 +46,12 @@
 
 		    <div class='main-content'>
 
-		    	<a href='<?=base_url("home/acompanhar")?>'><div class='solics'>
-		    		<div class='num' style='float:right;margin:16px 15px 0 10px'>0</div>
-		    		<h1>Acompanhar minhas solicitações</h1>
+		    	<a href='<?=base_url("home/acompanhar")?>'><div class='solics' style='width:150px;background-position:-60px 0'>
+		    		<div class='num' style='float:right;margin:16px 15px 0 10px;'>0</div>
+		    		<h1>Avisos</h1>
 		    	</div></a><!--solics-->
 
-		    	<div style='float:left;margin:20px 0 0 20px'>
-			    	<h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
+		    	<div style='float:left;margin:20px 0 0 20px;width:890px'>
 
 			    	<a href='#'><div class='item-aviso'>
 	    				<div class='item-line-aviso'>
@@ -72,23 +71,24 @@
 	    				<div class='clearG'></div>
 	    			</div></a>
 
-			    	<h2 style='margin:40px 0 0 0;font:26px Arial;color:black'>Solicitação da carteira de identidade acadêmica</h2>
-			    	<a href='#'><div class='item-solics'>
+	    			<a href='#'><div class='item-aviso'>
 	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;width:180px'>Carteira de identidade acadêmica</p>
+	    					<p style='font:14px arial;color:#0060B2;font-weight:bold;margin:8px 0 0 0'>Lido</p>
+	    					<img src='<?=base_url("static/img/msg.png")?>' />
 	    				</div>
 	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0'>Aluno</p>
+	    					<p style='font:14px Arial;color:black;font-weight:bold;width:180px;margin:30px 0 0 0'>Seus creditos estão acabando</p>
 	    				</div>
 	    				<div class='item-line-aviso'>
-	    					<img src='<?=base_url("static/img/carteira.png")?>' style='margin:-6px 0 0 0' />
+	    					<p style='font:14px Arial;color:black;font-weight:bold;max-width:180px;margin:30px 0 0 0'>Grupo TMT</p>
 	    				</div>
 	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>Liberado</p>
+	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;;width:180px;font-style:italic'>Seus creditos estão acabando...</p>
 	    				</div>
-	    				<div class='item-line-aviso' style='border:none'><button style='margin:24px 0 0 0' class='btn-conf-iza'>CONTINUAR ></button></div>
+	    				<div class='item-line-aviso' style='border:none'><button style='margin:24px 0 0 6px' class='btn-conf-iza'>CONTINUAR ></button></div>
 	    				<div class='clearG'></div>
 	    			</div></a>
+
 		    	</div>
 
 		    </div><!--main-content-->

@@ -25,6 +25,8 @@
 .solics:hover{background: url(../../img/solics.png)}
 .solics:hover h1{color:#fff;}
 .solics h1{float:right;margin:10px 0 0 0;font:26px arial;color:#005FB2;font-weight: bolf}
+.solicsHovered{width:429px;height:73px;border-right:1px dotted #aaaaaa;padding:10px 0 0 0;float:left;margin:20px 0 0 20px;background: url(../../img/solics.png)}
+.solicsHovered h1{float:right;margin:10px 0 0 0;font:26px arial;color:#ffffff;font-weight: bolf}
 
 .main-content{float:left;min-height:620px;width:1050px;border-left:1px solid #aaa}
 .num{background:#f00;padding:2px 4px;float:left;border-radius:.2em;font:15px arial;color:#ffffff;}

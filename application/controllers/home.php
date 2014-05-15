@@ -11,5 +11,15 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('home/inicial');
 	}
+
+	public function avisos()
+	{
+		$this->load->view('home/avisos');
+	}
+
+	public function acompanhar()
+	{
+		$this->load->view('home/acomp');
+	}
 	
 }
