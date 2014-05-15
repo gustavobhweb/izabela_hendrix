@@ -21,5 +21,15 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('home/acomp');
 	}
+
+	public function enviar_foto()
+	{
+		$this->load->view('home/enviar_foto');
+	}
+
+	public function sair()
+	{
+		redirect('home/login');
+	}
 	
 }

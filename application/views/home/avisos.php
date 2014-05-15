@@ -46,7 +46,7 @@
 
 		    <div class='main-content'>
 
-		    	<a href='<?=base_url("home/acompanhar")?>'><div class='solics' style='width:150px;background-position:-60px 0'>
+		    	<a href='<?=base_url("home/avisos")?>'><div class='solicsHovered' style='width:135px;background-position:-60px 0'>
 		    		<div class='num' style='float:right;margin:16px 15px 0 10px;'>0</div>
 		    		<h1>Avisos</h1>
 		    	</div></a><!--solics-->
