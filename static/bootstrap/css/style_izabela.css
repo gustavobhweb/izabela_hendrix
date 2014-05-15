@@ -58,6 +58,14 @@
 .item-aviso:hover{box-shadow: 0 0 10px #999999}
 .item-line-aviso{float:left;text-align:center;height:81px;border-right:1px solid #aaa;margin:12.5px 0 0 0;padding: 0 20px;}
 
+.box-img-pessoa{float:left;position:relative;margin:35px 0 0 20px;background:#EFEFEF;border:1px solid #B5B5B5;padding:15px 20px}
+.box-img-pessoa p{font:12px arial;font-weight:bold;color:#005FB2;margin: 0 0 10px 5px;font-style:italic;}
+.btn-img-pessoa{background:linear-gradient(to top, #CBCBDA, #FDFDFD);border:1px solid #959595;font:11px arial;color:#333333;position:absolute;height:19px;width:83px;top:175px;left:60px;border-top-left-radius:.6em;border-top-right-radius:.6em;cursor:pointer;outline:none;}
+.btn-img-pessoa:hover{opacity:.8;}
+
+.alert-send-image{width:50%;background:#0061B2;float:left;}
+.alert-send-image p{font:12px Arial;color:white;}
+
 .menu-usuario{position:absolute;top:15px;right:0;width:175px}
 .menu-usuario .pagina-inicial{float:right;width:170px;padding:7px 0;border-bottom:1px solid #aaaaaa;}
 .menu-usuario .pagina-inicial:hover{background:#eeeeee;}

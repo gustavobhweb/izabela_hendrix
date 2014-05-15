@@ -51,10 +51,24 @@
 		    	</div></a><!--solics-->
 
 		    	<div style='width:100%;float:left'>
-			    	<div class='box-img-pessoa'>
+
+			    	<div class='box-img-pessoa' style='float:left'>
 			    		<p>Nenhuma foto cadastrada</p>
 			    		<img src='<?=base_url("static/img/user.png")?>' />
+			    		<button class='btn-img-pessoa'>Enviar foto</button>
 			    	</div><!--box-img-pessoa-->
+
+			    	<div style='float:left;background:#ff0;width:75%'>
+			    		<div class='alert-send-image'>
+			    			<img src='<?=base_url("static/img/alert.png")?>' />
+			    			<p>Faça abaixo o upload da foto para confecção do 
+			    			documento. A carteirinha de identificação acadêmica te 
+			    			acompanhará durante todo o curso, por isso é importante 
+			    			o upload de uma foto recente e que essa siga as 
+			    			especificações abaixo.</p>
+			    		</div><!--alert-send-image-->
+			    	</div>
+
 			    </div>
 
 		    </div><!--main-content-->
