@@ -20,7 +20,6 @@ class Home extends CI_Controller {
 			if($this->Usuario_Model->verify($user))
 			{
 				$user = $this->Usuario_Model->select($user);
-				print_r($user);
 				$this->session->set_userdata($user);
 				redirect('home/inicial');
 			}
