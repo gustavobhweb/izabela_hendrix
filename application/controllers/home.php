@@ -2,6 +2,11 @@
 
 class Home extends CI_Controller {
 
+	public function index()
+	{
+		redirect('home/inicial');
+	}
+
 	public function login()
 	{
 		$this->load->model('Usuario_Model');
