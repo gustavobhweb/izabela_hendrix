@@ -19,12 +19,25 @@ titulo VARCHAR(100) NOT NULL,
 PRIMARY KEY(cod_modelo)
 );
 
+INSERT INTO tbl_modelos VALUES(NULL, 'Aluno');
+
+CREATE TABLE tbl_niveis(
+cod_nivel INT UNSIGNED AUTO_INCREMENT NOT NULL,
+titulo VARCHAR(100) NOT NULL,
+PRIMARY KEY(cod_nivel)
+);
+
+INSERT INTO tbl_niveis VALUES(NULL, 'Aluno');
+INSERT INTO tbl_niveis VALUES(NULL, 'Administrador TMT');
+
 CREATE TABLE tbl_usuarios(
 cod_usuario INT UNSIGNED AUTO_INCREMENT NOT NULL,
 matricula VARCHAR(14) NOT NULL,
 cpf VARCHAR(14) NOT NULL,
 nome VARCHAR(100) NOT NULL,
-PRIMARY KEY(cod_usuario)
+tbl_niveis_cod_nivel INT UNSIGNED NOT NULL,
+PRIMARY KEY(cod_usuario),
+FOREIGN KEY(tbl_niveis_cod_nivel) REFERENCES tbl_niveis(cod_nivel)
 );
 
 CREATE TABLE tbl_solicitacoes(
