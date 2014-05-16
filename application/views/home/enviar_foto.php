@@ -25,12 +25,33 @@
     </head>
     <body>
 
+    	<div class='modal-photo'>
+    		<div class='box-photo'>
+    			<div class='btn-close-box'></div>
+    			<div class='header-modal-photo'>
+    				Envio da foto	
+    			</div><!--header-modal-photo-->
+    			<div class='content-modal-photo'>
+    				<div style='float:left;padding:20px 40px;border-right:1px solid #aaa;margin:30px 0 0 0'>
+    					<p style='font:12px arial;font-weight:bold;font-style:italic;color:#005FB2;margin:0 0 10px 4px'>Nenhuma foto cadastrada</p>
+    					<img class='userPhoto' width='155' height='155' src='<?=base_url("static/img/user.png")?>' />
+    				</div>
+    				<div style='float:left;width:430px;margin:50px 0 0 50px'>
+    					<p style='font:13px arial;margin:0 0 10px 0'>Selecione o tipo de envio da foto de sua preferência:</p>
+    					<button type='button' id='btn-take-photo' class='btn-take-photo'></button>
+    					<button type='button' onclick='$("#userfile").click();' class='btn-file-photo'></button>
+    				</div>
+    				<div class='clear'></div>
+    			</div><!--content-modal-photo-->
+    		</div><!--box-photo-->
+	    </div><!--modal-photo-->
+
     	<div class='content-box'>
 
 	    	<div class='left-menu-box'>
 			    <img class='logo-tmt-box' src='<?=base_url("static/img/logo-tmt.png")?>' width='200' />
 			    <div style='width:220px;float:left;margin:30px 0 0 40px'>
-				    <h1 style='font:22px Arial;color:#0865AE'>Olá, Tiago!</h1>
+				    <h1 style='font:22px Arial;color:#0865AE'>Olá, <?=$user->nome?></h1>
 			    	<p style='font:13px Arial;color:#777777'>Nivel Aluno</p>
 			    	<div class='line' style='margin:10px 0 0 0'></div>
 			    	<div class='menu'>
@@ -54,11 +75,11 @@
 
 			    	<div class='box-img-pessoa' style='float:left'>
 			    		<p>Nenhuma foto cadastrada</p>
-			    		<img src='<?=base_url("static/img/user.png")?>' />
+			    		<img class='userPhoto' width='155' height='155' src='<?=base_url("static/img/user.png")?>' />
 			    		<button class='btn-img-pessoa'>Enviar foto</button>
 			    	</div><!--box-img-pessoa-->
 
-			    	<div style='float:left;background:#ff0;width:75%'>
+			    	<div style='float:left;width:75%;margin:35px 0 0 10px'>
 			    		<div class='alert-send-image'>
 			    			<img src='<?=base_url("static/img/alert.png")?>' />
 			    			<p>Faça abaixo o upload da foto para confecção do 
@@ -67,6 +88,17 @@
 			    			o upload de uma foto recente e que essa siga as 
 			    			especificações abaixo.</p>
 			    		</div><!--alert-send-image-->
+			    		<img src='<?=base_url("static/img/especifica.png")?>' />
+			    		<form method='post' enctype='multipart/form-data' style='width:780px;margin:5px 0 0 0;float:left'>
+			    			<input type='file' onchange='refreshImg(this)' name='userfile' id='userfile' style='display:none' />
+			    			<div style='float:left;width:300px'>
+			    				<input type='checkbox' name='ckb' id='ckb' />
+			    				<label for='ckb' style='font:13px Arial'>Eu me <b>responsabilizo</b> pela 
+			    				<b>veracidade</b> desta foto e concordo com os <b><u>termo de uso</u></b> do sistema</label>
+			    			</div>
+			    			<button type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
+			    			<button type='button' onclick='document.location.href="<?=base_url('home/inicial')?>"' class='btn-cancel-iza'>CANCELAR</button>
+			    		</form>
 			    	</div>
 
 			    </div>
@@ -82,7 +114,7 @@
 		    	</div></a>
 		    	<div class='minha-conta'>
 		    		<img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
-		    		<p>Tiago Magalhães</p>
+		    		<p><?=$user->nome?></p>
 		    	</div><!--minha-conta-->
 		    	<a class='sair-link' href='<?=base_url("home/sair")?>'>Sair</a>
 		    </div><!--menu-usuario-->
@@ -102,3 +134,21 @@
 
     </body>
 </html>
+<script type='text/javascript'>
+function refreshImg(_this)
+{
+    var imageFile = _this.files[0];
+    var url = window.URL.createObjectURL(imageFile);
+   	$('.userPhoto').attr('src', url);
+   	$('.modal-photo').fadeOut();
+}
+$('.btn-img-pessoa').click(function(){
+	$('.modal-photo').fadeIn();
+});
+$('.btn-close-box').click(function(){
+	$('.modal-photo').fadeOut();
+});
+</script>
+<?php if(isset($message)){
+	echo '<script type="text/javascript">alert("'.$message.'")</script>';
+}?>

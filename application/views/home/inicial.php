@@ -30,7 +30,7 @@
 	    	<div class='left-menu-box'>
 			    <img class='logo-tmt-box' src='<?=base_url("static/img/logo-tmt.png")?>' width='200' />
 			    <div style='width:220px;float:left;margin:30px 0 0 40px'>
-				    <h1 style='font:22px Arial;color:#0865AE'>Olá, Tiago!</h1>
+				    <h1 style='font:22px Arial;color:#0865AE'>Olá, <?=$user->nome?>!</h1>
 			    	<p style='font:13px Arial;color:#777777'>Nivel Aluno</p>
 			    	<div class='line' style='margin:10px 0 0 0'></div>
 			    	<div class='menu'>
@@ -54,41 +54,80 @@
 		    	<div style='float:left;margin:20px 0 0 20px'>
 			    	<h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
 
-			    	<a href='#'><div class='item-aviso'>
-	    				<div class='item-line-aviso'>
-	    					<p style='font:14px arial;color:#0060B2;font-weight:bold;margin:8px 0 0 0'>Não lido</p>
+			    	<?php if($avisosNum<=0){?>
+			    	<div class='j-alert-error'>Nenhum aviso foi encontrado.</div>
+			    	<?php }else{?>
+			    	<div style='margin:10px 0 0 0'>
+	    				<div class='head-item' style='width:100px'>Status</div>
+	    				<div class='head-item' style='width:180px'>Assunto</div>
+	    				<div class='head-item' style='width:90px'>Remetente</div>
+	    				<div class='head-item' style='width:180px'>Mensagem</div>
+	    				<div class='head-item' style='width:150px'>Selecionar</div>
+	    				<div class='clearG'></div>
+	    			</div><br>
+
+	    			<?php foreach($avisos as $aviso){?>
+			    	<a href='<?=base_url("aviso/".$aviso->cod_aviso)?>'><div class='item-aviso'>
+	    				<div class='item-line-aviso' style='width:100px'>
+	    					<?php if($aviso->lido):?>
+		    					<p style='font:14px arial;color:#0060B2;font-weight:bold;margin:8px 0 0 0'>Lido</p>
+		    				<?php else:?>
+		    					<p style='font:14px arial;color:#0060B2;font-weight:bold;margin:8px 0 0 0'>Não lido</p>
+		    				<?php endif;?>
 	    					<img src='<?=base_url("static/img/msg.png")?>' />
 	    				</div>
-	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:black;font-weight:bold;width:180px;margin:30px 0 0 0'>Seus creditos estão acabando</p>
+	    				<div class='item-line-aviso' style='width:180px'>
+	    					<p style='font:14px Arial;color:black;font-weight:bold;width:180px;margin:30px 0 0 0'><?=$aviso->assunto?></p>
 	    				</div>
-	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:black;font-weight:bold;max-width:180px;margin:30px 0 0 0'>Grupo TMT</p>
+	    				<div class='item-line-aviso' style='width:90px'>
+	    					<p style='font:14px Arial;color:black;font-weight:bold;max-width:180px;margin:30px 0 0 0'><?=$aviso->remetente?></p>
 	    				</div>
-	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;;width:180px;font-style:italic'>Seus creditos estão acabando...</p>
+	    				<div class='item-line-aviso' style='width:180px'>
+	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;width:180px;font-style:italic'><?php
+	    						if(strlen($aviso->mensagem) > 30)
+	    						{
+									$aviso->mensagem = substr($aviso->mensagem, 0, 30).'...';
+	    						}
+	    						echo $aviso->mensagem;
+	    					?></p>
 	    				</div>
-	    				<div class='item-line-aviso' style='border:none'><button style='margin:24px 0 0 6px' class='btn-conf-iza'>CONTINUAR ></button></div>
+	    				<div class='item-line-aviso' style='border:none;width:150px'><button style='margin:24px 0 0 6px' class='btn-conf-iza'>CONTINUAR ></button></div>
 	    				<div class='clearG'></div>
 	    			</div></a>
+	    			<?php }}?>
 
 			    	<h2 style='margin:40px 0 0 0;font:26px Arial;color:black'>Solicitação da carteira de identidade acadêmica</h2>
-			    	<a href='#'><div class='item-solics'>
-	    				<div class='item-line-aviso'>
+
+			    	<?php if($solicitacoesNum<=0){?>
+			    	<div class='j-alert-error'>Nenhuma solicitação. <a style='color:#fff;background:#0061B2;padding:3px 5px;border-radius:.3em;text-decoration:none' href='<?=base_url("home/enviar_foto")?>'>Solicite agora!</a></div>
+			    	<?php }else{?>
+			    	<div style='margin:10px 0 0 0'>
+	    				<div class='head-item' style='width:180px'>Produto</div>
+	    				<div class='head-item' style='width:80px'>Modelo</div>
+	    				<div class='head-item' style='width:240px'>Imagem</div>
+	    				<div class='head-item' style='width:100px'>Status do modelo</div>
+	    				<div class='head-item' style='width:100px'>Selecionar</div>
+	    				<div class='clearG'></div>
+	    			</div><br>
+
+	    			<?php foreach($solicitacoes as $solicitacao){?>
+			    	<a href='<?=base_url("home/acompanhar")?>'><div class='item-solics'>
+	    				<div class='item-line-aviso' style='width:180px'>
 	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;width:180px'>Carteira de identidade acadêmica</p>
 	    				</div>
-	    				<div class='item-line-aviso'>
+	    				<div class='item-line-aviso' style='width:80px'>
 	    					<p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0'>Aluno</p>
 	    				</div>
-	    				<div class='item-line-aviso'>
+	    				<div class='item-line-aviso' style='width:240px'>
 	    					<img src='<?=base_url("static/img/carteira.png")?>' style='margin:-6px 0 0 0' />
 	    				</div>
-	    				<div class='item-line-aviso'>
-	    					<p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>Liberado</p>
+	    				<div class='item-line-aviso' style='width:100px'>
+	    					<p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'><?=$solicitacao->status?></p>
 	    				</div>
-	    				<div class='item-line-aviso' style='border:none'><button style='margin:24px 0 0 0' class='btn-conf-iza' onclick='document.location.href="<?=base_url('home/acompanhar')?>"'>CONTINUAR ></button></div>
+	    				<div class='item-line-aviso' style='border:none' style='width:100px'><button style='margin:24px 0 0 0' class='btn-conf-iza' onclick='document.location.href="<?=base_url('home/acompanhar')?>"'>CONTINUAR ></button></div>
 	    				<div class='clearG'></div>
 	    			</div></a>
+	    			<?php }}?>
 		    	</div>
 
 		    </div><!--main-content-->
@@ -102,7 +141,7 @@
 		    	</div></a>
 		    	<div class='minha-conta'>
 		    		<img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
-		    		<p>Tiago Magalhães</p>
+		    		<p><?=$user->nome?></p>
 		    	</div><!--minha-conta-->
 		    	<a class='sair-link' href='<?=base_url("home/sair")?>'>Sair</a>
 		    </div><!--menu-usuario-->

@@ -31,13 +31,13 @@
 			    <img class='logo-tmt-box' src='<?=base_url("static/img/logo-tmt.png")?>' width='200' />
 			    <div style='width:220px;float:left;margin:30px 0 0 40px'>
 				    <h1 style='font:22px Arial;color:#0865AE'>Olá, <?=$user->nome?>!</h1>
-			    	<p style='font:13px Arial;color:#777777'>Nivel Aluno</p>
+			    	<p style='font:13px Arial;color:#777777'>Nivel Administrador TMT</p>
 			    	<div class='line' style='margin:10px 0 0 0'></div>
 			    	<div class='menu'>
 			    		<ul>
-			    			<li><a href='<?=base_url("home/inicial")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
+			    			<!-- <li><a href='<?=base_url("home/inicial")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
 			    			<li><a href='<?=base_url("home/avisos")?>'><img src='<?=base_url("static/img/icon-avisos.png")?>' /> Avisos</a></li>
-			    			<li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar minhas solicitações</a></li>
+			    			<li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar minhas solicitações</a></li> -->
 			    		</ul>
 			    	</div><!--menu-->
 		    	</div>
@@ -46,49 +46,18 @@
 
 		    <div class='main-content'>
 
-		    	<a href='<?=base_url("home/acompanhar")?>'><div class='solicsHovered'>
-		    		<div class='num' style='float:right;margin:16px 15px 0 10px'>0</div>
-		    		<h1>Acompanhar minhas solicitações</h1>
-		    	</div></a><!--solics-->
+		    <div style='margin:100px 0 0 0'>
 
-		    	<div class='situacao-box'>
+		    	<?php foreach($fotos as $foto){?>	
+		    	<div class='item-aviso' style='background:url(<?=base_url("static/img/linear-table-3.png")?>);height:125px'>
+		    		<div class='item-line-aviso' style='border:none;width:100px'><img src='<?=base_url("static/imagens/".$foto->foto)?>' width='76' height='100' /></div>
+    				<div class='item-line-aviso' style='border:none;width:100px'><button style='margin:24px 0 0 6px' class='btn-cancel-iza bt-n' data-id='<?=$foto->cod_solicitacao?>' data-pessoa='<?=$foto->tbl_usuarios_cod_usuario?>'>REPROVAR</button></div>
+    				<div class='item-line-aviso' style='border:none;width:100px'><button style='margin:24px 0 0 6px' class='btn-conf-iza bt-y' data-id='<?=$foto->cod_solicitacao?>' data-pessoa='<?=$foto->tbl_usuarios_cod_usuario?>'>APROVAR</button></div>
+    				<div class='clearG'></div>
+	    		</div>
+	    		<?php }?>
 
-	    			<h1>Situação</h1>
-
-	    			<?php foreach ($solicitacoes as $solicitacao) {?>
-	    			<div class='situacao-inset-box'>
-
-	    				<div style='float:left'>
-		    				<div style='float:left;margin:30px 0 0 30px'>
-			    				<div style='width:300px;height:189px;background:url(<?=base_url("static/img/frente-carteira.png")?>) no-repeat;float:left'>
-
-			    					<img src='<?=base_url("static/imagens/".$solicitacao->foto)?>' width='78' height='102' style='float:right;margin:8px 10px 0 0;border-radius:.3em' />
-
-			    				</div>
-			    				<img src='<?=base_url("static/img/verso-carteira.png")?>' style='float:left;margin:0 0 0 15px' />
-
-			    				<div style='border-left:1px solid #aaaaaa;background:#0061B2;margin:0px 0 0 0;float:left;margin:0 0 0 30px;padding:20px 8px'>
-			    					<img src='<?=base_url("static/img/alert.png")?>' style='float:left' />
-
-			    					<div style='float:left;margin:0 0 0 12px;width:180px'>
-			    						<p style='font:12px arial;color:#ffffff'>e-mail cadastrado:</p>
-			    						<p style='font:12px arial;color:#ffffff;font-weight:bold'>tiago@grupotmt.com.br</p>
-
-			    						<p style='font:12px arial;color:#ffffff;margin:15px 0 0 0'>Todas as notificações serão enviadas para este endereço</p>
-			    						<p style='font:20px arial;cursor:pointer;color:#ffffff;font-weight:bold;margin:11px 0 0 0'>Editar</p>
-			    					</div>
-
-			    				</div>
-		    				</div>
-		    				<img src='<?=base_url("static/img/linha-tempo-".$solicitacao->tbl_status_cod_status.".png")?>' style='float:left;margin:30px 0 30px 39px' />
-	    				</div>
-
-	    				<div class='clear'></div>
-
-	    			</div><!--situacao-inset-box-->
-	    			<?php }?>
-
-	    		</div><!--situacao-box-->
+	    	</div>
 
 		    </div><!--main-content-->
 
@@ -121,3 +90,28 @@
 
     </body>
 </html>
+<script type='text/javascript'>
+$('.bt-y').click(function(){
+	var _this = $(this);
+	$.ajax({
+		url: '<?=base_url("adm/aprovar")?>',
+		type: 'POST',
+		data: {cod: _this.attr('data-id'), pessoa: _this.attr('data-pessoa')},
+		success: function(){ document.location.reload() },
+		error: function(){ alert('Problemas na conexão!') }
+	});
+});
+
+$('.bt-n').click(function(){
+	var _this = $(this);
+	$.ajax({
+		url: '<?=base_url("adm/reprovar")?>',
+		type: 'POST',
+		data: {cod: _this.attr('data-id'), pessoa: _this.attr('data-pessoa')},
+		success: function(){ 
+			document.location.reload() 
+		},
+		error: function(){ alert('Problemas na conexão!') }
+	});
+});
+</script>
