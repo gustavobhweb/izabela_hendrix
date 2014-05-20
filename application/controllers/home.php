@@ -9,6 +9,8 @@ class Home extends CI_Controller {
 
 	public function login()
 	{
+        $this->layout = 'login';
+        
 		$this->load->model('Usuario_Model');
 
 		if($this->input->post('txt_cpf'))
@@ -24,7 +26,11 @@ class Home extends CI_Controller {
 				redirect('home/inicial');
 			}
 		}
-		$this->load->view('home/login');
+        
+        
+		$this->output->render('home/login');
+        
+        
 	}
 
 	public function inicial()
