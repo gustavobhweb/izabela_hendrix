@@ -4,11 +4,11 @@ class Adm extends CI_Controller{
 	
 	public function inicial()
 	{
-		if($this->session->userdata('tbl_niveis_cod_nivel')==1)
-		{
+		if ($this->session->userdata('tbl_niveis_cod_nivel') == 1) {
 			redirect('home/inicial');
 			exit;
 		}
+		
 		$this->load->model('Solicitacao_Model');
 
 		$viewData = array();

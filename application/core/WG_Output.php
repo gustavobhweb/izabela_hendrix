@@ -1,6 +1,11 @@
 <?php
     
-
+    /** 
+        * Output alterado para o Codeigniter
+        * @author Wallacemaxters
+        * @version 1.0
+        * @copyright Wallace de Souza Vizerra
+    */
 
     class WG_Output extends CI_Output {
     
@@ -9,20 +14,28 @@
         private $_layoutView;
         private $_isCalledLayout = false;
 
+        /**
+            * Renderiza a view juntamente com o layout
+            * @param (string) $view = o endereço da view dentro da pasta "views"
+            * @param (array|object) $vars = a variável que vai ser extraída para a view
+        */
+
 
         public function render($view, $vars = array())
         {
+            $CI =& get_instance();
 
-        	extract((array) $vars);
+            if (isset($CI->viewVars))
+                $vars = array_merge((array) $vars, (array) $CI->viewVars);
+
+
+        	extract($vars);
 
             ob_start();
             
             include $this->_view($view);
 
             $this->final_output = ob_get_clean();
-
-
-            $CI =& get_instance();
 
             $layout = isset($CI->layout) ? $CI->layout : 'layout';
 
@@ -50,17 +63,34 @@
         		return $this->_layoutStyles;
         	} elseif ($option == 'content') {
         		return $this->final_output;
-        	}
+        	} else {
+                throw new Exception('Opção deve ser "styles", "content" ou "scripts"');
+            }
         }
         
         private function _layoutFile($layout)
         {
-            return FCPATH . APPPATH . "/views/layouts/{$layout}.php";
+
+            $DS = DIRECTORY_SEPARATOR;
+            $filename = FCPATH . APPPATH . "{$DS}views{$DS}layouts{$DS}{$layout}.php";
+
+            if (file_exists($filename)) {
+                return $filename;
+            } else {
+                throw new Exception("O layout '{$filename}' não existe");
+            }
         }
         
         private function _view($view)
         {
-            return FCPATH . APPPATH . "/views/$view.php";
+            $DS = DIRECTORY_SEPARATOR;
+            $filename = FCPATH . APPPATH . "{$DS}views{$DS}$view.php";
+
+            if (file_exists($filename)) {
+                return $filename;
+            } else {
+                throw new Exception("O layout '{$filename}' não existe");
+            }
         }
         
         public function script(array $scripts, $inline = true)
@@ -85,7 +115,7 @@
             $base = base_url();
 
             foreach($styles as &$css) {
-                $css = "<link rel='stylesheet' href='{$base}static/css/{$css}.css' />\n";
+                $css = "<link rel='stylesheet' type='text/css' href='{$base}static/css/{$css}.css' />\n";
             }
             
             if (!$inline) {
@@ -94,7 +124,29 @@
                 return implode('', $styles);
             }
         }
-            
+
+
+        public function element($element, $vars = array())
+        {
+            ob_start();
+
+            if(is_array($vars) || is_object($vars)) {
+                extract((array) $vars);
+            } else {
+                throw new Exception('O segundo argumento deve ser um objeto stdClass ou um array.');
+            }
+
+
+            $DS = DIRECTORY_SEPARATOR;
+            $filename = FCPATH . APPPATH . "{$DS}element{$DS}{$element}.php";
+
+            if(file_exists($filename)) {
+                include_once $filename;
+                return ob_get_clean();
+            } else {
+                throw new Exception("Não existe o arquivo {$filename} .");
+            }
+        }   
     
     }
-    
+         
