@@ -1,3 +1,4 @@
+
 *{margin:0;padding:0}
 .login{width:620px;margin:0 auto}
 .logo-izabela{float:left;margin:10px 0 0 50px}
@@ -26,10 +27,10 @@
 .left-menu-box .logo-izabela-box{margin:60px 0 0 40px;float:left;}
 
 .solics{width:429px;height:73px;border-right:1px dotted #aaaaaa;padding:10px 0 0 0;float:left;margin:20px 0 0 20px}
-.solics:hover{background: url(../../img/solics.png)}
+.solics:hover{background: url(../img/solics.png)}
 .solics:hover h1{color:#fff;}
 .solics h1{float:right;margin:10px 0 0 0;font:26px arial;color:#005FB2;font-weight: bolf}
-.solicsHovered{width:429px;height:73px;border-right:1px dotted #aaaaaa;padding:10px 0 0 0;float:left;margin:20px 0 0 20px;background: url(../../img/solics.png)}
+.solicsHovered{width:429px;height:73px;border-right:1px dotted #aaaaaa;padding:10px 0 0 0;float:left;margin:20px 0 0 20px;background: url(../img/solics.png)}
 .solicsHovered h1{float:right;margin:10px 0 0 0;font:26px arial;color:#ffffff;font-weight: bolf}
 
 .main-content{float:left;min-height:620px;width:1050px;border-left:1px solid #aaa}
@@ -47,8 +48,8 @@
 .left-box ul{list-style:none;float:left;margin:0;width:100%;margin:10px 0 0 0}
 .left-box ul li a{float:left;width:96%;padding:5px 2%;color:#ffffff;font:13px arial;color:black;text-decoration:none;border-bottom:1px dotted #aaaaaa}
 .left-box ul li a:hover, .on{font-weight:bold !important;color:white !important;background:#0965AF}
-.line{width:100%;height:15px;background:url(../../img/line.png) repeat-x}
-.especifica{float:left;width:780px;height:362px;background:#333333;margin:15px 0 0 20px;background:url(../../img/especifica.png) no-repeat}
+.line{width:100%;height:15px;background:url(../img/line.png) repeat-x}
+.especifica{float:left;width:780px;height:362px;background:#333333;margin:15px 0 0 20px;background:url(../img/especifica.png) no-repeat}
 .footer{height:90px;width:100%;background:#0061B2;border-bottom:9px solid #0A3D9B}
 .footer img{float:right;margin:25px 20px 0 0}
 .right-next{float:left;width:780px;margin:0 0 0 220px;font:13px Arial;color:black}
@@ -56,7 +57,7 @@
 .btn-send-photo:hover{opacity:.8;cursor:pointer}
 .right-next p{width:315px}
 
-.item-aviso{background:url(../../img/linear-table-1.png);height:106px;border:1px solid #aaaaaa;border-left:9px solid #0965AF;cursor:pointer;margin:0 0 10px 0;}
+.item-aviso{background:url(../img/linear-table-1.png);height:106px;border:1px solid #aaaaaa;border-left:9px solid #0965AF;cursor:pointer;margin:0 0 10px 0;}
 .item-aviso:hover{box-shadow: 0 0 10px #999999}
 .item-line-aviso{float:left;text-align:center;height:81px;border-right:1px solid #aaa;margin:12.5px 0 0 0;padding: 0 20px;}
 
@@ -79,10 +80,28 @@
 .menu-usuario .minha-conta:hover{background:#eeeeee;}
 .menu-usuario .minha-conta img{float:right;margin:5px 10px 0 0;}
 .menu-usuario .minha-conta p{font:13px Arial;font-weight:bold;color:black;text-decoration:none;float:right;margin:0 5px 0 0}
-.menu-usuario .sair-link{margin:0 0 0 0;font:13px Arial;text-decoration:none;color:black;float:right;width:160px;cursor:pointer;text-align:right;padding:7px 10px 7px 0;display:none}
-.menu-usuario .sair-link:hover{background:#eeeeee;}
+.menu-usuario .sair-link{
+	background: #eeeeee;
+	text-align: left;
+	font-style:italic;
+	font-weight: bold;
+	margin:0 0 0 0;
+	font-family:Arial;
+	font-size: 14px;
+	text-decoration:none;color:black;float:right;width:160px;cursor:pointer;padding:7px 10px 7px 0;display:none}
+.menu-usuario .sair-link:hover{
+	background:#dddddd;
+}
+.menu-usuario .sair-icone{
+	background: url('../img/source.png') no-repeat -38px -6px;
+	width: 22px;
+	height: 22px;
+	display: inline-block;
+	float: left;
+	margin: -5px 0;
+}
 
-.item-solics{background:url(../../img/linear-table-2.png);height:106px;border:1px solid #aaaaaa;border-left:9px solid #0965AF;cursor:pointer;margin:0 0 10px 0;}
+.item-solics{background:url(../img/linear-table-2.png);height:106px;border:1px solid #aaaaaa;border-left:9px solid #0965AF;cursor:pointer;margin:0 0 10px 0;}
 .item-solics:hover{box-shadow: 0 0 10px #999999}
 
 .j-alert-error{padding:10px;width:700px;background:#eee;font:12px arial;color:#333333;margin:10px 0 0 0;}
@@ -92,13 +111,21 @@
 .btn-conf-iza:hover{opacity:.8}
 .btn-cancel-iza:hover{opacity:.8}
 
-.modal-photo{width:100%;height:100%;position:fixed;z-index:2;background:rgba(0,0,0,.7);display:none}
+.modal-photo{width:100%;height:100%;position:fixed;z-index:2;background:rgba(0,0,0,.7);display:none;left:0;top:0;right:0;bottom: 0;}
 .box-photo{width:764px;height:422px;background:white;border-radius:.8em;margin:10% auto;padding:10px 0 0 0;}
-.btn-close-box{width:25px;height:25px;border:none;background:url(../../img/btn-close-box.png) no-repeat;cursor:pointer;outline:none;float:right;margin:5px}
+.btn-close-box{width:25px;height:25px;border:none;background:url(../img/btn-close-box.png) no-repeat;cursor:pointer;outline:none;float:right;margin:5px}
 .btn-close-box:hover{opacity:.8}
 .header-modal-photo{width:724px;margin:30px auto;padding:10px 0;text-align:center;color:white;font:22px Arial;font-weight:lighter;background:#0965AF}
 .content-modal-photo{width:724px;border:1px solid #b5b5b5;margin:20px auto 0 auto;background:#EEEEEF;padding:0 0 30px 0}
-.btn-take-photo{height:76px;width:406px;background:url(../../img/btn-photo.png) no-repeat;border:none;margin:0;cursor:pointer;outline:none}
-.btn-file-photo{height:76px;width:406px;background:url(../../img/btn-photo.png) no-repeat;background-position:0 -76px;border:none;margin:0;cursor:pointer;outline:none}
+.btn-take-photo{height:76px;width:406px;background:url(../img/btn-photo.png) no-repeat;border:none;margin:0;cursor:pointer;outline:none}
+.btn-file-photo{height:76px;width:406px;background:url(../img/btn-photo.png) no-repeat;background-position:0 -76px;border:none;margin:0;cursor:pointer;outline:none}
 .btn-take-photo:hover{opacity:.8}
 .btn-file-photo:hover{opacity:.8}
+#descricao-nome-curso{
+	width:240px;
+	color:#0865AE;
+	font-size:20px;font-weight:bold;
+	text-align:right;
+	float:left;
+	font-family: Arial, sans-serif;
+}

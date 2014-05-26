@@ -2,6 +2,15 @@
 
 class Home extends CI_Controller {
 
+	public $viewVars = array();
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->viewVars['user'] = (object) $this->session->all_userdata();
+	}
+
 	public function index()
 	{
 		redirect('home/inicial');
@@ -41,21 +50,20 @@ class Home extends CI_Controller {
 
 		$this->Usuario_Model->authenticate();
 
-		$viewData = array();
-		$viewData['avisos'] = $this->Aviso_Model->select($this->session->userdata('cod_usuario'));
-		$viewData['avisosNum'] = $this->Aviso_Model->select($this->session->userdata('cod_usuario'), true);
-		$viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
+		$cod_usuario = $this->session->userdata('cod_usuario');
 
-		foreach($viewData['solicitacoes'] as $k => $v)
-		{
+		$viewData = array();
+		$viewData['avisos'] = $this->Aviso_Model->select($cod_usuario);
+		$viewData['avisosNum'] = count($viewData['avisos']);
+		$viewData['solicitacoes'] = $this->Solicitacao_Model->select($cod_usuario);
+
+		foreach ($viewData['solicitacoes'] as $k => $v) {
 			$viewData['solicitacoes'][$k]->status = $this->Solicitacao_Model->selectNameStatus($viewData['solicitacoes'][$k]->tbl_status_cod_status);
 		}
 
-
-		$viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);
-		$viewData['user'] = (object)$this->session->all_userdata();
-
-		$this->load->view('home/inicial', $viewData);
+		$viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);		
+		
+		$this->output->render('home/inicial', $viewData);
 	}
 
 	public function avisos()
@@ -65,12 +73,13 @@ class Home extends CI_Controller {
 
 		$this->Usuario_Model->authenticate();
 
-		$viewData = array();
-		$viewData['avisos'] = $this->Aviso_Model->select($this->session->userdata('cod_usuario'));
-		$viewData['avisosNum'] = $this->Aviso_Model->select($this->session->userdata('cod_usuario'), true);
-		$viewData['user'] = (object)$this->session->all_userdata();
+		$cod_usuario = $this->session->userdata('cod_usuario');
 
-		$this->load->view('home/avisos', $viewData);
+		$viewData = array();
+		$viewData['avisos'] = $this->Aviso_Model->select($cod_usuario);
+		$viewData['avisosNum'] = $this->Aviso_Model->notReadCount($cod_usuario);
+
+		$this->output->render('home/avisos', $viewData);
 	}
 
 	public function acompanhar()
@@ -122,7 +131,7 @@ class Home extends CI_Controller {
 		{
 			$viewData['message'] = 'Aceite os termos de uso!';
 		}
-		else if(isset($_FILES['userfile']))
+		elseif(isset($_FILES['userfile']))
 		{
 			$_FILES['userfile']['name'] = strtolower($_FILES['userfile']['name']);
 			if(!$this->upload->do_upload('userfile'))
@@ -147,7 +156,7 @@ class Home extends CI_Controller {
 			}
 		}
 
-		$this->load->view('home/enviar_foto', $viewData);
+		$this->output->render('home/enviar_foto', $viewData);
 	}
 
 	public function sair()
