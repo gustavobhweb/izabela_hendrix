@@ -1,6 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
     
     /** 
         * Output alterado para o Codeigniter
@@ -9,8 +7,8 @@
         * @copyright Wallace de Souza Vizerra
     */
 
-class WG_Output extends CI_Output
-{
+    class WG_Output extends CI_Output {
+    
         private $_layoutScripts;
         private $_layoutStyles;
         private $_layoutView;
@@ -31,7 +29,7 @@ class WG_Output extends CI_Output
                 $vars = array_merge((array) $vars, (array) $CI->viewVars);
 
 
-        	extract($vars);
+            extract($vars);
 
             ob_start();
             
@@ -59,50 +57,28 @@ class WG_Output extends CI_Output
 
         public function fetch($option = '')
         {
-        	if ($option == 'scripts') {
-        		return $this->_layoutScripts;
-        	} elseif ($option == 'styles') {
-        		return $this->_layoutStyles;
-        	} elseif ($option == 'content') {
-        		return $this->final_output;
-        	} else {
+            if ($option == 'scripts') {
+                return $this->_layoutScripts;
+            } elseif ($option == 'styles') {
+                return $this->_layoutStyles;
+            } elseif ($option == 'content') {
+                return $this->final_output;
+            } else {
                 throw new Exception('Opção deve ser "styles", "content" ou "scripts"');
             }
->>>>>>> 6f579cc96abaf43812732fe3bbd150f97cea64b9
-        }
-    }
-    
-    private function _layoutFile($layout)
-    {
-
-        $DS = DIRECTORY_SEPARATOR;
-        $filename = FCPATH . APPPATH . "{$DS}views{$DS}layouts{$DS}{$layout}.php";
-
-        if (file_exists($filename)) {
-            return $filename;
-        } else {
-            throw new Exception("O layout '{$filename}' não existe");
-        }
-    }    
-    
-    private function _view($view)
-    {
-        return FCPATH . APPPATH . "/views/$view.php";
-    }
-    
-    public function script(array $scripts, $inline = true)
-    {
-        $base = base_url();
-
-        foreach ($scripts as &$js) {
-            $js = "<script type='text/javascript' src='{$base}static/js/{$js}.js'></script>\n";
         }
         
-        if (!$inline) {
-            $this->_layoutScripts .= implode('', $scripts);
-        } else {
-            return implode('', $scripts);
-            
+        private function _layoutFile($layout)
+        {
+
+            $DS = DIRECTORY_SEPARATOR;
+            $filename = FCPATH . APPPATH . "{$DS}views{$DS}layouts{$DS}{$layout}.php";
+
+            if (file_exists($filename)) {
+                return $filename;
+            } else {
+                throw new Exception("O layout '{$filename}' não existe");
+            }
         }
         
         private function _view($view)
@@ -117,23 +93,23 @@ class WG_Output extends CI_Output
             }
         }
         
-    
-    public function style(array $styles, $inline = true)
-    {
-        $base = base_url();
-        
-        foreach ($styles as &$css) {
-            $css = "<link rel='stylesheet' href='{$base}static/css/{$css}.css' />\n";
+        public function script(array $scripts, $inline = true)
+        { 
+
+            $base = base_url();
+
+            foreach($scripts as &$js) {
+                $js = "<script type='text/javascript' src='{$base}static/js/{$js}.js'></script>\n";
+            }
+
+            if (!$inline) {
+                $this->_layoutScripts .= implode('', $scripts);
+            } else {
+                return implode('', $scripts);
+            }
+            
         }
-        
-        if (!$inline) {
-            $this->_layoutStyles .= implode('', $styles);
-        } else {
-            return implode('', $styles);
-        }
-    }
-    
-    
+
         public function style(array $styles, $inline = true)
         { 
             $base = base_url();
@@ -173,3 +149,4 @@ class WG_Output extends CI_Output
         }   
     
     }
+         
