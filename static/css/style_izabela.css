@@ -129,3 +129,8 @@
 	float:left;
 	font-family: Arial, sans-serif;
 }
+
+.aviso{width:70%;float:left;margin:100px 0 0 0;background:#eee;padding:20px;font:20px Calibri;border-radius:10px;box-shadow:0 0 10px #333333}
+.aviso-assunto{background:#fff;padding:5px;float:left;width:55%}
+.aviso-remetente{background:#fff;padding:5px;float:left;width:37%;margin-left:2%}
+.aviso-msg{background:#fff;padding:5px;float:left;width:95.5%;margin:10px 0 0 0}
