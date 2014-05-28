@@ -14,6 +14,8 @@
         private $_layoutView;
         private $_isCalledLayout = false;
 
+
+
         /**
             * Renderiza a view juntamente com o layout
             * @param (string) $view = o endereço da view dentro da pasta "views"
