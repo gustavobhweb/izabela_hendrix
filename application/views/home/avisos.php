@@ -19,7 +19,7 @@
 	</div><br>
 
 	<?php foreach($avisos as $aviso){?>
-	<a href='<?=base_url("aviso/".$aviso->cod_aviso)?>'><div class='item-aviso'>
+	<a href='<?=base_url("home/aviso/".$aviso->cod_aviso)?>'><div class='item-aviso'>
 		<div class='item-line-aviso' style='width:100px'>
 			<?php if($aviso->lido):?>
 				<p style='font:14px arial;color:#0060B2;font-weight:bold;margin:8px 0 0 0'>Lido</p>

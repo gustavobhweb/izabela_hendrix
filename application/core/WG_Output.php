@@ -31,7 +31,7 @@
                 $vars = array_merge((array) $vars, (array) $CI->viewVars);
 
 
-        	extract($vars);
+            extract($vars);
 
             ob_start();
             
@@ -59,13 +59,13 @@
 
         public function fetch($option = '')
         {
-        	if ($option == 'scripts') {
-        		return $this->_layoutScripts;
-        	} elseif ($option == 'styles') {
-        		return $this->_layoutStyles;
-        	} elseif ($option == 'content') {
-        		return $this->final_output;
-        	} else {
+            if ($option == 'scripts') {
+                return $this->_layoutScripts;
+            } elseif ($option == 'styles') {
+                return $this->_layoutStyles;
+            } elseif ($option == 'content') {
+                return $this->final_output;
+            } else {
                 throw new Exception('Opção deve ser "styles", "content" ou "scripts"');
             }
         }

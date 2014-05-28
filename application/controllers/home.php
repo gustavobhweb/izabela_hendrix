@@ -153,6 +153,19 @@ class Home extends CI_Controller {
 
 		$this->output->render('home/enviar_foto', $viewData);
 	}
+	
+	public function aviso($cod)
+	{
+		$this->load->model('Usuario_Model');
+		$this->load->model('Aviso_Model');
+
+		$this->Usuario_Model->authenticate();
+
+		$viewData = array();
+		$viewData['aviso'] = $this->Aviso_Model->find($cod);
+
+		$this->output->render('home/aviso', $viewData);
+	}
 
 	public function sair()
 	{
