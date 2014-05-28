@@ -31,7 +31,7 @@
                 $vars = array_merge((array) $vars, (array) $CI->viewVars);
 
 
-            extract($vars);
+            if(is_array($vars)) extract($vars);
 
             ob_start();
             

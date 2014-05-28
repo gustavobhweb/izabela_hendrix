@@ -2,6 +2,25 @@
 
 class Usuario_Model extends CI_Model{
 
+
+	public $table = 'tbl_usuarios';
+	public $primaryKey = 'cod_usuario';
+
+	public function search($tipo, $valor)
+	{
+		$where = array($tipo => $valor);
+
+		if($tipo == 'matricula' || $tipo == 'cpf') {
+			$result = $this->db->where($where)->get($this->table);
+		} elseif($tipo == 'nome') {
+			$result = $this->db->like($where)->get($this->table);
+		} else {
+			return false;
+		}
+
+		return !empty($result) ? $result->result_array() : false;
+	}
+
 	public function select($args=null, $num=false)
 	{
 		if(is_null($args))
@@ -78,21 +97,16 @@ class Usuario_Model extends CI_Model{
 
 	public function authenticate()
 	{
-		if(!$this->session->userdata('cpf') || !$this->session->userdata('matricula'))
-		{
+		if(!$this->session->userdata('cpf') || !$this->session->userdata('matricula')) {
 			redirect('home/login');
-		}
-		else
-		{
+		} else {
 			$cpf = $this->session->userdata('cpf');
 			$matricula = $this->session->userdata('matricula');
 			$user = array('cpf' => $cpf, 'matricula' => $matricula);
-			if(!$this->verify($user))
-			{
+
+			if (!$this->verify($user)) {
 				redirect('home/login');
-			}
-			else if($this->session->userdata('tbl_niveis_cod_nivel')==2)
-			{
+			} elseif($this->session->userdata('tbl_niveis_cod_nivel') == 2) {
 				redirect('adm/inicial');
 			}
 		}

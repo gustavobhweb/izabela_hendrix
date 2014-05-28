@@ -1,24 +1,24 @@
 <?php
 
 class Solicitacao_Model extends CI_Model{
+
+	public $table = 'tbl_solicitacoes';
+	public $primaryKey = 'cod_solicitacao';	
 	
-	public function select($args, $num=null)
+	public function select($args, $num = null)
 	{
 		if(is_null($args))
 		{
-			if($num)
-			{
-				return $this->db->query('SELECT * FROM tbl_solicitacoes')->num_rows();
-			}
-			else
-			{
-				return $this->db->query('SELECT * FROM tbl_solicitacoes')->result();
+			if($num) {
+				return $this->db->query("SELECT * FROM {$this->table}")->num_rows();
+			} else {
+				return $this->db->query("SELECT * FROM {$this->table}")->result();
 			}
 		}
 		else
 		{
 			$args = (int)$args;
-			$qr = 'SELECT * FROM tbl_solicitacoes WHERE tbl_usuarios_cod_usuario = ?';
+			$qr = "SELECT * FROM {$this->table} WHERE tbl_usuarios_cod_usuario = ?";
 			$bind = array($args);
 			if($num)
 			{
@@ -35,7 +35,7 @@ class Solicitacao_Model extends CI_Model{
 	{
 		$solicitacao = (object)$solicitacao;
 		
-		$qr = 'INSERT INTO tbl_solicitacoes VALUES(NULL, ?, ?, 1, 1, ?)';
+		$qr = "INSERT INTO {$this->table} VALUES(NULL, ?, ?, 1, 1, ?)";
 		$bind = array($solicitacao->foto, '', (int)$this->session->userdata('cod_usuario'));
 
 		return $this->db->query($qr, $bind);
@@ -55,12 +55,12 @@ class Solicitacao_Model extends CI_Model{
 
 	public function aprovar($cod)
 	{
-		return $this->db->query('UPDATE tbl_solicitacoes SET tbl_status_cod_status = 2 WHERE cod_solicitacao = ?', array($cod));
+		return $this->db->query("UPDATE {$this->table} SET tbl_status_cod_status = 2 WHERE {$this->primaryKey} = ?", array($cod));
 	}
 
 	public function reprovar($cod)
 	{
-		return $this->db->query('DELETE FROM tbl_solicitacoes WHERE cod_solicitacao = ?', array($cod));
+		return $this->db->query("DELETE FROM {$this->table} WHERE {$this->primaryKey} = ?", array($cod));
 	}
 
 }

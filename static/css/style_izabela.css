@@ -1,5 +1,7 @@
-
 *{margin:0;padding:0}
+body{
+	font-family: Arial;
+}
 .login{width:620px;margin:0 auto}
 .logo-izabela{float:left;margin:10px 0 0 50px}
 .logo-tmt{float:right;margin:26px 100px 0 0}
@@ -134,3 +136,29 @@
 .aviso-assunto{background:#fff;padding:5px;float:left;width:55%}
 .aviso-remetente{background:#fff;padding:5px;float:left;width:37%;margin-left:2%}
 .aviso-msg{background:#fff;padding:5px;float:left;width:95.5%;margin:10px 0 0 0}
+
+.wm-table{
+	border-collapse: collapse;
+}
+.wm-table td, .wm-table th{
+	border:thin solid gray;
+}
+.wm-table thead th{
+	background: steelblue;
+	color:#fff;
+	padding:10px;
+}
+.wm-table tbody td{
+	-webkit-transition: background 0.6s linear 0.3s;
+	transition: background 0.6s linear 0.3s;
+	text-align: center;
+	vertical-align: middle;
+	padding: 3px;
+}
+.wm-table tbody tr:hover td{
+	background: lightsteelblue;
+
+}
+.wm-table tbody tr:nth-child(odd) {
+	background: lightgrey;
+}

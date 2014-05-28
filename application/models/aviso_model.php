@@ -10,6 +10,11 @@ class Aviso_Model extends CI_Model{
 	public $table = 'tbl_avisos';
 	public $primaryKey = 'cod_aviso';
 
+	public function update(array $update, array $where)
+	{
+		return $this->db->update($this->table, $update, $where);
+	}
+
 
 	public function find($pk_value)
 	{

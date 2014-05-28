@@ -1,6 +1,18 @@
 <?php
 
 class Adm extends CI_Controller{
+
+
+	public $layout = 'layout_admin';
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->model('Usuario_Model');
+
+		$this->viewVars['user'] = (object) $this->session->all_userdata();
+	}
 	
 	public function inicial()
 	{
@@ -16,8 +28,58 @@ class Adm extends CI_Controller{
 		$viewData['user'] = (object)$this->session->all_userdata();
 		$viewData['fotos'] = $this->Solicitacao_Model->selectFotosAprovar();
 
-		$this->load->view('adm/inicial', $viewData);
+		$this->output->render('adm/inicial', $viewData);
 	}
+
+	public function pesquisar()
+	{
+		$viewData = [];
+
+
+		$filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
+
+
+		// Deixemos assim, porque não sabemos se terá mais opçoes futuramente //
+		if ($filter_name == 'matricula') {
+
+			$filter_options = [
+				'valor' => [
+					'filter' => FILTER_SANITIZE_STRING
+				]
+			];
+
+		} elseif($filter_name == 'cpf') {
+
+			$filter_options = [
+				'valor' => [
+					'filter' => FILTER_SANITIZE_NUMBER_INT
+				]
+			];
+
+		} elseif($filter_name == 'nome') {
+			$filter_options = [
+				'valor' => [
+					'filter' => FILTER_SANITIZE_STRING
+				]
+			];
+
+		}
+
+		// Significa que a pesquisa é válida //
+		if (isset($filter_options)) {
+
+			$filter = filter_input_array(INPUT_GET, $filter_options);
+
+			$viewData['filter_name'] = $filter_name;
+			$viewData['search_results'] = $this->Usuario_Model->search($filter_name, $filter['valor']);
+
+		}
+
+		$this->output->render('adm/pesquisar', $viewData);
+
+		unset($viewData);
+	}
+
 
 	public function aprovar()
 	{

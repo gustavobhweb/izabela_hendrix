@@ -162,7 +162,13 @@ class Home extends CI_Controller {
 		$this->Usuario_Model->authenticate();
 
 		$viewData = array();
+		
 		$viewData['aviso'] = $this->Aviso_Model->find($cod);
+
+		$this->Aviso_Model->update(
+			['lido' => true],
+			[$this->Aviso_Model->primaryKey => $cod]
+		);
 
 		$this->output->render('home/aviso', $viewData);
 	}
