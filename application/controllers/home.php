@@ -8,6 +8,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 
+		// Esse objeto está acessível em todas as views agora :)
 		$this->viewVars['user'] = (object) $this->session->all_userdata();
 	}
 
@@ -22,14 +23,13 @@ class Home extends CI_Controller {
         
 		$this->load->model('Usuario_Model');
 
-		if($this->input->post('txt_cpf'))
-		{
+		if($this->input->post('txt_cpf')) {
 			$user = array();
 			$user['cpf'] = str_replace('.', '', $this->input->post('txt_cpf'));
 			$user['cpf'] = str_replace('-', '', $user['cpf']);
 			$user['matricula'] = $this->input->post('txt_matricula');
-			if($this->Usuario_Model->verify($user))
-			{
+
+			if($this->Usuario_Model->verify($user)) {
 				$user = $this->Usuario_Model->select($user);
 				$this->session->set_userdata($user);
 				redirect('home/inicial');
@@ -99,7 +99,7 @@ class Home extends CI_Controller {
 		$viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
 		$viewData['user'] = (object)$this->session->all_userdata();
 
-		$this->load->view('home/acomp', $viewData);
+		$this->output->render('home/acomp', $viewData);
 	}
 
 	public function enviar_foto()
@@ -127,19 +127,14 @@ class Home extends CI_Controller {
 
 		$this->load->library('upload', $configs);
 
-		if($_POST && !$this->input->post('ckb'))
-		{
+		if($_POST && !$this->input->post('ckb')) {
 			$viewData['message'] = 'Aceite os termos de uso!';
-		}
-		elseif(isset($_FILES['userfile']))
-		{
+		} elseif(isset($_FILES['userfile'])) {
 			$_FILES['userfile']['name'] = strtolower($_FILES['userfile']['name']);
-			if(!$this->upload->do_upload('userfile'))
-			{
+
+			if(!$this->upload->do_upload('userfile')) {
 			   $viewData['message'] = 'Selecione uma imagem válida!';	
-			}
-			else
-			{
+			} else {
 				$nameFile = $this->session->userdata('matricula').'.'.pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);;
 				$solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
 				$this->Solicitacao_Model->save($solicitacao);
