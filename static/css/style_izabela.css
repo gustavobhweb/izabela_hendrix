@@ -132,6 +132,16 @@ body{
 	font-family: Arial, sans-serif;
 }
 
+#box-edit-mail-of-solicitation{
+	display: none;
+}
+#btn-edit-mail-of-solicitation{
+	font:20px arial;cursor:pointer;color:#ffffff;font-weight:bold;margin:11px 0 0 0;
+}
+#change-mail-of-solicitation{
+	width: 135px;
+}
+
 .aviso{width:70%;float:left;margin:100px 0 0 0;background:#eee;padding:20px;font:20px Calibri;border-radius:10px;box-shadow:0 0 10px #333333}
 .aviso-assunto{background:#fff;padding:5px;float:left;width:55%}
 .aviso-remetente{background:#fff;padding:5px;float:left;width:37%;margin-left:2%}
@@ -139,13 +149,15 @@ body{
 
 .wm-table{
 	border-collapse: collapse;
+	box-shadow: 0 0 10px black;
+	font-size: 12px;
 }
 .wm-table td, .wm-table th{
-	border:thin solid gray;
+	border:1px solid #cccccc;
 }
 .wm-table thead th{
-	background: steelblue;
-	color:#fff;
+	background-image: linear-gradient(to bottom, #dddddd, #eeeeee);
+	color:#222222;
 	padding:10px;
 }
 .wm-table tbody td{
@@ -153,12 +165,66 @@ body{
 	transition: background 0.6s linear 0.3s;
 	text-align: center;
 	vertical-align: middle;
-	padding: 3px;
+	padding: 10px;
 }
 .wm-table tbody tr:hover td{
 	background: lightsteelblue;
 
 }
 .wm-table tbody tr:nth-child(odd) {
-	background: lightgrey;
+	background: #E2E4FF;
+}
+
+.wm-input{
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+	border:thin solid #ccc;
+	font-size: 14px;
+	padding:4px 6px;
+}
+.wm-input:hover, .wm-input:focus, .wm-btn:focus, .wm-btn:hover{
+	-webkit-transition: box-shadow .3s linear .2s;
+	transition: box-shadow .3s linear .2s;
+	box-shadow: 0 0 5px steelblue;
+}
+.wm-input.input-large{
+	width: 250px;
+}
+.wm-btn{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	line-height: 20px;
+	cursor: pointer;
+	margin-bottom: 0;
+	padding: 4px 12px;
+	text-align: center;
+	background-color: #f5f5f5;
+	border:thin solid #ccc;
+	color:#555;
+}
+.wm-btn.wm-btn-blue{
+	background-color: #049;
+	background-image: linear-gradient(to bottom,#2C8AFF, #049);
+	color:white;
+	border:thin solid steelblue;
+}
+.wm-btn, .wm-input{
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+	outline: none;
+	height: 34px;
+	border-radius: 4px;
+}
+.wm-title{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	font-weight: normal;
+	font-family: 'Calibri', 'Trebuchet MS';
+}
+.wm-text-warning{
+	color:#c09853;
 }

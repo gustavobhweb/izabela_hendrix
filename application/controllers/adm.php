@@ -1,9 +1,10 @@
 <?php
 
-class Adm extends CI_Controller{
+class Adm extends WG_Controller{
 
 
 	public $layout = 'layout_admin';
+	public $allowedActions = ['login'];
 
 	public function __construct()
 	{
@@ -15,12 +16,7 @@ class Adm extends CI_Controller{
 	}
 	
 	public function inicial()
-	{
-		if ($this->session->userdata('tbl_niveis_cod_nivel') == 1) {
-			redirect('home/inicial');
-			exit;
-		}
-		
+	{	
 		$this->load->model('Solicitacao_Model');
 
 		$viewData = array();
@@ -35,16 +31,14 @@ class Adm extends CI_Controller{
 	{
 		$viewData = [];
 
-
 		$filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
-
 
 		// Deixemos assim, porque não sabemos se terá mais opçoes futuramente //
 		if ($filter_name == 'matricula') {
 
 			$filter_options = [
 				'valor' => [
-					'filter' => FILTER_SANITIZE_STRING
+					'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
 				]
 			];
 
@@ -59,7 +53,7 @@ class Adm extends CI_Controller{
 		} elseif($filter_name == 'nome') {
 			$filter_options = [
 				'valor' => [
-					'filter' => FILTER_SANITIZE_STRING
+					'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
 				]
 			];
 
@@ -71,6 +65,7 @@ class Adm extends CI_Controller{
 			$filter = filter_input_array(INPUT_GET, $filter_options);
 
 			$viewData['filter_name'] = $filter_name;
+			$viewData['search_keyword'] = $filter['valor'];
 			$viewData['search_results'] = $this->Usuario_Model->search($filter_name, $filter['valor']);
 
 		}

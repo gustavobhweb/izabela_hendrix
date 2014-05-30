@@ -1,8 +1,9 @@
 <?php 
 
-class Home extends CI_Controller {
+class Home extends WG_Controller {
 
 	public $viewVars = array();
+	public $allowedActions = ['login'];
 
 	public function __construct()
 	{
@@ -38,8 +39,6 @@ class Home extends CI_Controller {
         
         
 		$this->output->render('home/login');
-        
-        
 	}
 
 	public function inicial()
@@ -92,9 +91,27 @@ class Home extends CI_Controller {
 			redirect('home/enviar_foto');
 		}
 
-		$this->Usuario_Model->authenticate();
 
-		$viewData = array();
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+			$solicitacao = filter_input(INPUT_POST, 'solicitacao', FILTER_VALIDATE_INT);
+
+			if (!$email || !$solicitacao) {
+				$viewData['msgAlteracaoEmail'] = 'Informe um e-mail válido';
+			} else {
+
+				$this->db->update(
+					$this->Solicitacao_Model->table,
+					array('email' => $email),
+					array($this->Solicitacao_Model->primaryKey => $solicitacao)
+				);
+
+				$viewData['msgAlteracaoEmail'] = 'O e-mail foi atualizado com sucesso.';
+			}
+		}
+
+		$this->Usuario_Model->authenticate();
 
 		$viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
 		$viewData['user'] = (object)$this->session->all_userdata();
@@ -118,9 +135,11 @@ class Home extends CI_Controller {
 		$viewData = array();
 		$viewData['user'] = (object)$this->session->all_userdata();
 		
+
+		$DS = DIRECTORY_SEPARATOR;
 		$configs =  array(
-          'upload_path'     => FCPATH . '/static/imagens/',
-          'allowed_types'   => "jpg|png|jpeg",
+          'upload_path'     => FCPATH . "static{$DS}imagens",
+          'allowed_types'   => 'jpg|png|jpeg',
           'overwrite'       => true,
           'file_name'       => $this->session->userdata('matricula')
         );
@@ -134,8 +153,10 @@ class Home extends CI_Controller {
 
 			if(!$this->upload->do_upload('userfile')) {
 			   $viewData['message'] = 'Selecione uma imagem válida!';	
+
+			   var_dump($this->upload->display_errors());
 			} else {
-				$nameFile = $this->session->userdata('matricula').'.'.pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);;
+				$nameFile = $this->session->userdata('matricula').'.'.pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
 				$solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
 				$this->Solicitacao_Model->save($solicitacao);
 

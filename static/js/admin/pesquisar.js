@@ -5,7 +5,10 @@ $(document).ready(function(){
 
 	$pesquisar_admin.submit(function(){
 		var value = $keyword_input.val();
-		if (value == '') return false;
+		if (value == '') {
+			alert('Informe um valor para efetuar a pesquisa.');
+			return false;
+		}
 	});
 
 });

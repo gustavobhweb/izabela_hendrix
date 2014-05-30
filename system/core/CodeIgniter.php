@@ -356,6 +356,10 @@
 
 		// Call the requested method.
 		// Any URI segments present (besides the class/function) will be passed to the method for convenience
+		if(method_exists($CI, 'beforeAction')) {
+			$CI->beforeAction($method);
+		}
+
 		call_user_func_array(array(&$CI, $method), array_slice($URI->rsegments, 2));
 	}
 
