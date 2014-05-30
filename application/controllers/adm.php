@@ -4,7 +4,6 @@ class Adm extends WG_Controller{
 
 
 	public $layout = 'layout_admin';
-	public $allowedActions = ['login'];
 
 	public function __construct()
 	{
@@ -13,6 +12,11 @@ class Adm extends WG_Controller{
 		$this->load->model('Usuario_Model');
 
 		$this->viewVars['user'] = (object) $this->session->all_userdata();
+	}
+
+	public function index()
+	{
+		$this->inicial();
 	}
 	
 	public function inicial()

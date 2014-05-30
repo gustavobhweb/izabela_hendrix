@@ -3,7 +3,7 @@
 class Home extends WG_Controller {
 
 	public $viewVars = array();
-	public $allowedActions = ['login'];
+	public $allowedActions = ['login', 'sair'];
 
 	public function __construct()
 	{
