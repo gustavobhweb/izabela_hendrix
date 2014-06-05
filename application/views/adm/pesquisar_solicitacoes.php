@@ -3,13 +3,14 @@
 	$inputs_filter = [
 		'matricula' => 'Matrícula',
 		'cpf' => 'CPF',
-		'nome' => 'Nome'
+		'nome' => 'Nome',
+		'via' => 'Via'
 	];
 
 ?>
 
 <div style="margin:30px">
-	<h1>Pesquisa</h1>
+	<h1>Pesquisa Solicitações</h1>
 	<form id="admin-formulario-pesquisa-aluno" method="get">
 		<select class="wm-input" name="filtro">
 			<?php foreach($inputs_filter as $fieldname => $name): ?>
@@ -32,6 +33,7 @@
 						<th>Nome</th>
 						<th>Matrícula</th>
 						<th>CPF</th>
+						<th>Via</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,6 +42,7 @@
 							<td><?=$result['nome']?></td>
 							<td><?=$result['matricula']?></td>
 							<td><?=$result['cpf']?></td>
+							<td><?=$result['via']?>ª</td>
 						</tr>
 					<?php endforeach ?>
 				</tbody>
@@ -59,5 +62,5 @@
 
 </div>
 <?php 
-	$this->script(['admin/pesquisar'], false)
+	$this->script(['admin/pesquisar_solicitacoes'], false)
 ?>

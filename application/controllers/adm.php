@@ -31,6 +31,11 @@ class Adm extends WG_Controller{
 		$this->output->render('adm/inicial', $viewData);
 	}
 
+	/**
+		* Segundo o Gustavo, esse método não faz parte dessa classe :(
+		* @author Wallace de Souza Vizerra
+	*/
+
 	public function pesquisar()
 	{
 		$viewData = [];
@@ -78,6 +83,48 @@ class Adm extends WG_Controller{
 
 		unset($viewData);
 	}
+
+	public function pesquisar_solicitacoes()
+	{
+		$viewData = [];
+
+		$this->load->model('Solicitacao_Model');
+
+		$filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
+
+		if (in_array($filter_name, ['matricula', 'nome'] , true)) {
+
+			$filter_options = [
+				'valor' => [
+					'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
+				]
+			];
+
+		} elseif (in_array($filter_name, ['cpf', 'via'], true)) {
+
+			$filter_options = [
+				'valor' => [
+					'filter' => FILTER_SANITIZE_NUMBER_INT
+				]
+			];
+
+		}
+
+		if (isset($filter_options)) {
+
+			$filter = filter_input_array(INPUT_GET, $filter_options);
+			$viewData['filter_name'] = $filter_name;
+			$viewData['search_keyword'] = $filter['valor'];
+
+			$viewData['search_results'] = $this->Solicitacao_Model
+												->likeSearchWithUser($filter_name,$filter['valor']);
+		}
+
+
+		$this->output->render('adm/pesquisar_solicitacoes', $viewData);
+	}
+
+
 
 
 	public function aprovar()
