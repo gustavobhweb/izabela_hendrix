@@ -6,8 +6,8 @@ class WG_Controller extends CI_Controller
 		* Grupo $key tem autorização para acessar os controller [$value1, $value2]
 	*/
 	public $autorized = [
-		1 => ['home'],
-		2 => ['adm']
+		1 => ['home', 'excelparser'],
+		2 => ['adm', 'excelparser']
 	];
 
 	/**
