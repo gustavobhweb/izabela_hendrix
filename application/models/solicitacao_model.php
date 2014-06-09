@@ -3,7 +3,12 @@
 class Solicitacao_Model extends CI_Model{
 
 	public $table = 'tbl_solicitacoes';
-	public $primaryKey = 'cod_solicitacao';	
+	public $primaryKey = 'cod_solicitacao';
+	public $tableUser = [
+		'name' => 'tbl_usuarios',
+		'foreignKey' => 'tbl_usuarios_cod_usuario',
+		'primaryKey' => 'cod_usuario'
+	];
 	
 	public function select($args, $num = null)
 	{
@@ -61,6 +66,36 @@ class Solicitacao_Model extends CI_Model{
 	public function reprovar($cod)
 	{
 		return $this->db->query("DELETE FROM {$this->table} WHERE {$this->primaryKey} = ?", array($cod));
+	}
+
+	private function _whitUser()
+	{
+		$fk = $this->tableUser['foreignKey'];
+		$user = $this->tableUser['name'];		
+		$pk = $this->tableUser['primaryKey'];
+
+		$query = "SELECT * FROM {$this->table} as s
+		JOIN {$user} AS u ON s.{$fk} = u.{$pk} ";
+
+		return $query;
+	}
+
+	public function likeSearchWithUser($fieldname, $value)
+	{
+		$value = "%$value%";
+
+		$query = $this->_whitUser();
+		$query .= "WHERE {$fieldname} LIKE '{$value}'";
+
+		return $this->db->query($query)->result_array();
+	}
+
+	public function searchWithUser($fieldname, $value)
+	{
+		$query = $this->_whitUser();
+		$query .= "WHERE {$fieldname} = '{$value}'";
+
+		return $this->db->query($query)->result_array();	
 	}
 
 }

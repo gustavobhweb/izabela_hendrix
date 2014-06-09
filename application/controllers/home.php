@@ -1,5 +1,6 @@
 <?php 
 
+
 class Home extends WG_Controller {
 
 	public $viewVars = array();
@@ -16,6 +17,16 @@ class Home extends WG_Controller {
 	public function index()
 	{
 		redirect('home/inicial');
+	}
+
+	public function b()
+	{
+		echo <<<EOT
+	<form action="http://localhost/izabela_hendrix/ExcelParser/get_upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="xls" />
+		<button type='submit'>X</button>
+	</form>
+EOT;
 	}
 
 	public function login()

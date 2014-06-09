@@ -9,7 +9,7 @@
 ?>
 
 <div style="margin:30px">
-	<h3 class="wm-title">Pesquisa</h3>
+	<h1>Pesquisa</h1>
 	<form id="admin-formulario-pesquisa-aluno" method="get">
 		<select class="wm-input" name="filtro">
 			<?php foreach($inputs_filter as $fieldname => $name): ?>

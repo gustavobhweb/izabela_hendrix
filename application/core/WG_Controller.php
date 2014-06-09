@@ -6,8 +6,8 @@ class WG_Controller extends CI_Controller
 		* Grupo $key tem autorização para acessar os controller [$value1, $value2]
 	*/
 	public $autorized = [
-		1 => ['home'],
-		2 => ['adm']
+		1 => ['home', 'excelparser'],
+		2 => ['adm', 'excelparser']
 	];
 
 	/**
@@ -97,7 +97,7 @@ class WG_Controller extends CI_Controller
 			redirect("/$location");
 			exit;
 		} else {
-			throw new Exception('Você não definiu um local autorizado para o grupo ' . $role_id);
+			redirect($this->_loginAction());
 		}
 	}
 
@@ -110,7 +110,7 @@ class WG_Controller extends CI_Controller
 		$isAutorized = $this->_isAutorized($role_id);
 
 		// Se não estiver logadd e for a página de login, ou é um método permitido //
-		if (!$role_id && $isLoginPage || $isAllowedMethod) {
+		if(!$role_id && $isLoginPage or $isAllowedMethod) {
 			return true;
 		}
 
