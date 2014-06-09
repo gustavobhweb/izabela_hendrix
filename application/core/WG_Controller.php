@@ -110,7 +110,7 @@ class WG_Controller extends CI_Controller
 		$isAutorized = $this->_isAutorized($role_id);
 
 		// Se não estiver logadd e for a página de login, ou é um método permitido //
-		if(!$role_id && $isLoginPage || $isAllowedMethod) {
+		if (!$role_id && $isLoginPage || $isAllowedMethod) {
 			return true;
 		}
 
