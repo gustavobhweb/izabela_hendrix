@@ -48,7 +48,6 @@ EOT;
 			}
 		}
         
-        
 		$this->output->render('home/login');
 	}
 
