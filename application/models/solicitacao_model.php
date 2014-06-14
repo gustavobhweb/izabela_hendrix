@@ -75,7 +75,7 @@ class Solicitacao_Model extends CI_Model{
 		$pk = $this->tableUser['primaryKey'];
 
 		$query = "SELECT * FROM {$this->table} as s
-		JOIN {$user} AS u ON s.{$fk} = u.{$pk} ";
+		LEFT JOIN {$user} AS u ON s.{$fk} = u.{$pk} ";
 
 		return $query;
 	}

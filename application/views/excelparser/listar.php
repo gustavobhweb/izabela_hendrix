@@ -38,8 +38,7 @@
  					<th>Nome</th>
  					<th>Matrícula</th>
  					<th>CPF</th>
- 					<th>Foto</th>
- 					<th>E-mail</th>
+ 					<th>Curso</th>
  				</tr>
  				<?php foreach($upload_data as $data): ?>
  					<tr>
@@ -53,10 +52,7 @@
  							<?=$data['cpf']?>
  						</td>
  						<td>
- 							<?=$data['foto']?>
- 						</td>
- 						<td>
- 							<?=$data['email']?>
+ 							<?=$data['curso']?>
  						</td>
  					</tr>
  				<?php endforeach ?>

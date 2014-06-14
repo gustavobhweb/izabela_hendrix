@@ -48,16 +48,32 @@
                     <p style='font:13px Arial;color:#777777'>Nivel Administrador</p>
                     <div class='line' style='margin:10px 0 0 0'></div>
 
-                    <div class='menu'></div><!--menu-->
+                    <div class='menu'>
+                        <ul>
+                            <li>
+                                <a href='<?=base_url("/adm")?>'>
+                                    <img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial
+                                </a>
+                            </li>
+                            <li>
+                                <a href='<?=base_url("adm/pesquisar")?>'>
+                                    <img src='<?=base_url("static/img/icon-avisos.png")?>' /> Pesquisa
+                                </a>
+                            </li>
+                            <li>
+                                <a href='<?=base_url("adm/pesquisar_solicitacoes")?>'>
+                                    <img src='<?=base_url("static/img/icon-acomp.png")?>' />
+                                    Pesquisar Solicitacoes
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--menu-->
 
                 </div>
                 <img class='logo-izabela-box' src='<?=base_url("static/img/izabela.png")?>' width='200' />
             </div><!--left-menu-box-->
 
             <div class='main-content'>
-                <div style="height:100px;">
-                    <!-- ? isso é o menu ? -->
-                </div>
                 <?=$this->fetch('content') ?>
             </div><!--main-content-->
 
@@ -73,7 +89,10 @@
                     <img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
                     <p><?=$user->nome?></p>
                 </div><!--minha-conta-->
-                <a class='sair-link' href='<?=base_url("home/sair")?>'>Sair</a>
+                <a class='sair-link' href='<?=base_url("home/sair")?>'>
+                    <span class="sair-icone"></span>
+                    <span style='margin:5px'>Sair</span>
+                </a>
             </div><!--menu-usuario-->
 
         </div><!--content-box-->

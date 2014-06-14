@@ -7,9 +7,13 @@
 	];
 
 ?>
-
+<a href='#'>
+	<div class='solics' style="width:250px;">
+		<h1 style="margin:0 20px">Pesquisar Alunos</h1>
+	</div>
+</a>
+<div class='clear'></div>
 <div style="margin:30px">
-	<h1>Pesquisa</h1>
 	<form id="admin-formulario-pesquisa-aluno" method="get">
 		<select class="wm-input" name="filtro">
 			<?php foreach($inputs_filter as $fieldname => $name): ?>
