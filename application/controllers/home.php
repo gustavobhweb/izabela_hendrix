@@ -32,7 +32,6 @@ class Home extends WG_Controller {
             }
         }
         
-        
         $this->output->render('home/login');
     }
 
