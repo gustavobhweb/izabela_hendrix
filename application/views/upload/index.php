@@ -11,7 +11,7 @@
         O <b>relatório da carga enviada</b> será exibido logo após o envio dos dados.
     </div>
 
-    <form id="xls-upload-form" enctype="multipart/form-data" action="<?=base_url('excelparser/listar')?>" target="response_frame" method="post">
+    <form id="xls-upload-form" enctype="multipart/form-data" action="<?=base_url('excelparser/carga_usuario')?>" target="response_frame" method="post">
         <div style="margin:5px 0">
             <input type="file" name="xls" class='wm-input'>
             <button id="xls-submit" type="submit" class='wm-btn wm-btn-blue'>Enviar Carga</button>

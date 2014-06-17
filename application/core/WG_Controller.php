@@ -7,7 +7,8 @@ class WG_Controller extends CI_Controller
     */
     public $autorized = [
         1 => ['home', 'excelparser', 'upload'],
-        2 => ['adm', 'excelparser', 'upload']
+        2 => ['adm', 'excelparser', 'upload'],
+        3 => ['adm_izabela', 'excelparser']
     ];
 
     /**
@@ -31,7 +32,7 @@ class WG_Controller extends CI_Controller
 
     /**
         * Verifica se é autorizado
-        *@param int $role_id = nível do usuário
+        * @param int $role_id = nível do usuário
     */
     protected function _isAutorized($role_id)
     {   
