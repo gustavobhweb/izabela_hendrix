@@ -103,4 +103,10 @@ class ExcelParser extends WG_Controller
 		$this->load->view('excelparser/listar', $this->viewData);
 	}
 
+
+	public function carga_solicitacao()
+	{
+		// Qual é o sentido disso ?
+	}
+
 }

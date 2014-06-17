@@ -8,7 +8,12 @@
 <section class="right-container">
     <div data-color='gray'>
         Selecione o arquivo e clique em <b>Enviar Carga</b>.<br>
-        O <b>relatório da carga enviada</b> será exibido logo após o envio dos dados.
+        O <b>relatório da carga enviada</b> será exibido logo após o envio dos dados.<br>
+    </div>
+    <br/>
+    <div>
+        Os campos devem conter, respectivamente, as colunas:<br>
+        <b>Nome, Matrícula, CPF e Curso</b>
     </div>
 
     <form id="xls-upload-form" enctype="multipart/form-data" action="<?=base_url('excelparser/carga_usuario')?>" target="response_frame" method="post">
@@ -17,10 +22,9 @@
             <button id="xls-submit" type="submit" class='wm-btn wm-btn-blue'>Enviar Carga</button>
         </div>
     </form>
-    <div>
-        <a href="<?=base_url('static/download/carga_aluno.xls')?>"></a>
-    </div>
+    <br/>
     <iframe name="response_frame" frameborder="0" id="response-frame"></iframe>
+
 </section>
 
 <?php $this->script(['upload/index'], false) ?>
