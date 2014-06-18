@@ -74,13 +74,8 @@ class Solicitacao_Model extends CI_Model{
 		$user = $this->tableUser['name'];		
 		$pk = $this->tableUser['primaryKey'];
 
-<<<<<<< HEAD
-		$query = "SELECT * FROM {$user} as u
-		LEFT JOIN {$this->table} AS s ON s.{$fk} = u.{$pk} ";
-=======
 		$query = "SELECT * FROM {$this->table} as s
 		LEFT JOIN {$user} AS u ON s.{$fk} = u.{$pk} ";
->>>>>>> dce549b6d004824ee3fb9dd391b90f85e27f4ca9
 
 		return $query;
 	}
