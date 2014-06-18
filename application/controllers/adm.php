@@ -3,119 +3,120 @@
 class Adm extends WG_Controller{
 
 
-	public $layout = 'layout_admin';
+    public $layout = 'layout_admin';
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		$this->load->model('Usuario_Model');
+        $this->load->model('Usuario_Model');
 
-		$this->viewVars['user'] = (object) $this->session->all_userdata();
-	}
+        $this->viewVars['user'] = (object) $this->session->all_userdata();
+    }
 
-	public function index()
-	{
-		$this->inicial();
-	}
-	
-	public function inicial()
-	{	
-		$this->load->model('Solicitacao_Model');
+    public function index()
+    {
+        $this->inicial();
+    }
+    
+    public function inicial()
+    {   
+        $this->load->model('Solicitacao_Model');
 
-		$viewData = array();
+        $viewData = array();
 
-		$viewData['user'] = (object)$this->session->all_userdata();
-		$viewData['fotos'] = $this->Solicitacao_Model->selectFotosAprovar();
+        $viewData['user'] = (object)$this->session->all_userdata();
+        $viewData['fotos'] = $this->Solicitacao_Model->selectFotosAprovar();
 
-		$this->output->render('adm/inicial', $viewData);
-	}
+        $this->output->render('adm/inicial', $viewData);
+    }
 
-	/**
-		* Segundo o Gustavo, esse método não faz parte dessa classe :(
-		* @author Wallace de Souza Vizerra
-	*/
+    /**
+        * Segundo o Gustavo, esse método não faz parte dessa classe :(
+        * @author Wallace de Souza Vizerra
+    */
 
-	public function pesquisar()
-	{
-		$viewData = [];
+    public function pesquisar()
+    {
+        $viewData = [];
 
-		$filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
+        $filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
 
-		// Deixemos assim, porque não sabemos se terá mais opçoes futuramente //
-		if ($filter_name == 'matricula') {
+        // Deixemos assim, porque não sabemos se terá mais opçoes futuramente //
+        if ($filter_name == 'matricula') {
 
-			$filter_options = [
-				'valor' => [
-					'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
-				]
-			];
+            $filter_options = [
+                'valor' => [
+                    'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
+                ]
+            ];
 
-		} elseif($filter_name == 'cpf') {
+        } elseif($filter_name == 'cpf') {
 
-			$filter_options = [
-				'valor' => [
-					'filter' => FILTER_SANITIZE_NUMBER_INT
-				]
-			];
+            $filter_options = [
+                'valor' => [
+                    'filter' => FILTER_SANITIZE_NUMBER_INT
+                ]
+            ];
 
-		} elseif($filter_name == 'nome') {
-			$filter_options = [
-				'valor' => [
-					'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
-				]
-			];
+        } elseif($filter_name == 'nome') {
+            $filter_options = [
+                'valor' => [
+                    'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
+                ]
+            ];
 
-		}
+        }
 
-		// Significa que a pesquisa é válida //
-		if (isset($filter_options)) {
+        // Significa que a pesquisa é válida //
+        if (isset($filter_options)) {
 
-			$filter = filter_input_array(INPUT_GET, $filter_options);
+            $filter = filter_input_array(INPUT_GET, $filter_options);
 
-			$viewData['filter_name'] = $filter_name;
-			$viewData['search_keyword'] = $filter['valor'];
-			$viewData['search_results'] = $this->Usuario_Model->search($filter_name, $filter['valor']);
+            $viewData['filter_name'] = $filter_name;
+            $viewData['search_keyword'] = $filter['valor'];
+            $viewData['search_results'] = $this->Usuario_Model->search($filter_name, $filter['valor']);
 
-		}
+        }
 
-		$this->output->render('adm/pesquisar', $viewData);
+        $this->output->render('adm/pesquisar', $viewData);
 
-		unset($viewData);
-	}
+        unset($viewData);
+    }
 
-	public function pesquisar_solicitacoes()
-	{
-		$viewData = [];
+    public function pesquisar_solicitacoes()
+    {
+        $viewData = [];
 
-		$this->load->model('Solicitacao_Model');
+        $this->load->model('Solicitacao_Model');
 
-		$filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
+        $filter_name = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_STRING);
 
-		if (in_array($filter_name, ['matricula', 'nome'] , true)) {
+        if (in_array($filter_name, ['matricula', 'nome'] , true)) {
 
-			$filter_options = [
-				'valor' => [
-					'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
-				]
-			];
+            $filter_options = [
+                'valor' => [
+                    'filter' => FILTER_SANITIZE_STRING | FILTER_SANITIZE_ENCODED
+                ]
+            ];
 
-		} elseif (in_array($filter_name, ['cpf', 'via'], true)) {
+        } elseif (in_array($filter_name, ['cpf', 'via'], true)) {
 
-			$filter_options = [
-				'valor' => [
-					'filter' => FILTER_SANITIZE_NUMBER_INT
-				]
-			];
+            $filter_options = [
+                'valor' => [
+                    'filter' => FILTER_SANITIZE_NUMBER_INT
+                ]
+            ];
 
-		}
+        }
 
-		if (isset($filter_options)) {
+        if (isset($filter_options)) {
 
-			$filter = filter_input_array(INPUT_GET, $filter_options);
-			$viewData['filter_name'] = $filter_name;
-			$viewData['search_keyword'] = $filter['valor'];
+            $filter = filter_input_array(INPUT_GET, $filter_options);
+            $viewData['filter_name'] = $filter_name;
+            $viewData['search_keyword'] = $filter['valor'];
 
+<<<<<<< HEAD
 			$viewData['search_results'] = $this->Solicitacao_Model
 												->likeSearchWithUser($filter_name, $filter['valor']);
 		}
@@ -124,44 +125,53 @@ class Adm extends WG_Controller{
 
 		$this->output->render('adm/pesquisar_solicitacoes', $viewData);
 	}
+=======
+            $viewData['search_results'] = $this->Solicitacao_Model
+                                                ->likeSearchWithUser($filter_name,$filter['valor']);
+        }
+
+
+        $this->output->render('adm/pesquisar_solicitacoes', $viewData);
+    }
+>>>>>>> dce549b6d004824ee3fb9dd391b90f85e27f4ca9
 
 
 
 
-	public function aprovar()
-	{
-		header('Content-Type: application/json');
+    public function aprovar()
+    {
+        header('Content-Type: application/json');
 
-		$this->load->model('Aviso_Model');
-		$this->load->model('Usuario_Model');
-		$this->load->model('Solicitacao_Model');
-		$aviso = array();
-		$aviso['assunto'] = 'Foto aprovada';
-		$aviso['remetente'] = 'Grupo TMT';
-		$aviso['mensagem'] = 'A sua foto de carteira estudantil foi aprovada!';
-		$aviso['usuario'] = $this->Usuario_Model->select($this->input->post('pessoa'))	;
-		$this->Aviso_Model->save($aviso);
-		$this->Solicitacao_Model->aprovar($this->input->post('cod'));
+        $this->load->model('Aviso_Model');
+        $this->load->model('Usuario_Model');
+        $this->load->model('Solicitacao_Model');
+        $aviso = array();
+        $aviso['assunto'] = 'Foto aprovada';
+        $aviso['remetente'] = 'Grupo TMT';
+        $aviso['mensagem'] = 'A sua foto de carteira estudantil foi aprovada!';
+        $aviso['usuario'] = $this->Usuario_Model->select($this->input->post('pessoa'))  ;
+        $this->Aviso_Model->save($aviso);
+        $this->Solicitacao_Model->aprovar($this->input->post('cod'));
 
-		echo json_encode(array('success' => true));
-	}
+        echo json_encode(array('success' => true));
+    }
 
-	public function reprovar()
-	{
-		header('Content-Type: application/json');
+    public function reprovar()
+    {
+        header('Content-Type: application/json');
 
-		$this->load->model('Aviso_Model');
-		$this->load->model('Usuario_Model');
-		$this->load->model('Solicitacao_Model');
-		$aviso = array();
-		$aviso['assunto'] = 'Foto reprovada';
-		$aviso['remetente'] = 'Grupo TMT';
-		$aviso['mensagem'] = 'A sua foto de carteira estudantil foi reprovada! Envie a solicitação novamente.';
-		$aviso['usuario'] = $this->Usuario_Model->select($this->input->post('pessoa'));
-		$this->Aviso_Model->save($aviso);
-		$this->Solicitacao_Model->reprovar($this->input->post('cod'));
+        $this->load->model('Aviso_Model');
+        $this->load->model('Usuario_Model');
+        $this->load->model('Solicitacao_Model');
+        $aviso = array();
+        $aviso['assunto'] = 'Foto reprovada';
+        $aviso['remetente'] = 'Grupo TMT';
+        $aviso['mensagem'] = 'A sua foto de carteira estudantil foi reprovada! Envie a solicitação novamente.';
+        $aviso['usuario'] = $this->Usuario_Model->select($this->input->post('pessoa'));
+        $this->Aviso_Model->save($aviso);
+        $this->Solicitacao_Model->reprovar($this->input->post('cod'));
 
-		echo json_encode(array('success' => true));
-	}
+        echo json_encode(array('success' => true));
+    }
 
 }

@@ -210,6 +210,9 @@ body{
 	color:white;
 	border:thin solid steelblue;
 }
+.wm-btn.wm-btn-blue:disabled{
+	background:#2C8AFF;
+}
 .wm-btn, .wm-input{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -227,4 +230,18 @@ body{
 }
 .wm-text-warning{
 	color:#c09853;
+}
+#response-frame{
+	width: 100%;
+	border:thin solid #aaa;
+	height: 300px;
+	display: none;
+}
+
+section.right-container{
+  margin:0 auto;
+  width:1000px;
+}
+[data-color='gray']{
+	color:#555;
 }
