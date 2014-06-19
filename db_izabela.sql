@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS tbl_usuarios (
 
 INSERT INTO tbl_usuarios (cod_usuario, matricula, cpf, nome, curso, tbl_niveis_cod_nivel) VALUES
 (1, '111111', '11111111111', 'Gustavo Carmo', '', 1),
-(13, '222222', '9405098659', 'Wallace de Souza', 'Programador em PHP', 2),
+(13, '111122', '11111111122', 'Wallace de Souza', 'Programador em PHP', 2),
 (14, '333333', '9405098659', 'Richard da Silva', 'Desenvolvedor Web', 1);
 
 ALTER TABLE `tbl_avisos`
