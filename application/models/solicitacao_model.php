@@ -40,7 +40,14 @@ class Solicitacao_Model extends CI_Model{
 	{
 		$solicitacao = (object)$solicitacao;
 		
-		$qr = "INSERT INTO {$this->table} VALUES(NULL, ?, ?, 1, 1, ?)";
+		$qr = "INSERT INTO {$this->table}(cod_solicitacao,
+										  foto,
+										  email,
+										  via,
+										  tbl_status_cod_status,
+										  tbl_modelos_cod_modelo,
+										  tbl_usuarios_cod_usuario)
+			  VALUES(NULL, ?, ?, 1, 1, 1, ?)";
 		$bind = array($solicitacao->foto, '', (int)$this->session->userdata('cod_usuario'));
 
 		return $this->db->query($qr, $bind);

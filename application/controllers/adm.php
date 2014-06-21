@@ -98,9 +98,8 @@ class Adm extends WG_Controller{
             $filter = filter_input_array(INPUT_GET, $filter_options);
             $viewData['filter_name'] = $filter_name;
             $viewData['search_keyword'] = $filter['valor'];
-
             $viewData['search_results'] = $this->Solicitacao_Model
-                                                ->likeSearchWithUser($filter_name,$filter['valor']);
+                                                ->likeSearchWithUser($filter_name, $filter['valor']);
         }
 
 

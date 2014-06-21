@@ -146,9 +146,10 @@ class Home extends WG_Controller {
             $_FILES['userfile']['name'] = strtolower($_FILES['userfile']['name']);
 
             if(!$this->upload->do_upload('userfile')) {
-               $viewData['message'] = 'Selecione uma imagem válida!';   
-
-               var_dump($this->upload->display_errors());
+               $nameFile = $this->input->post('webcam-upload');
+                $solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
+                $this->Solicitacao_Model->save($solicitacao);
+                redirect('home/acompanhar');
             } else {
                 $nameFile = $this->session->userdata('matricula').'.'.pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
                 $solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
@@ -159,14 +160,41 @@ class Home extends WG_Controller {
                 $aviso['remetente'] = 'Grupo TMT';
                 $aviso['mensagem'] = 'A sua solicitação de carteira estudantil foi enviada com sucesso! Aguarde pela aprovação de sua foto.';
                 $aviso['usuario'] = $this->Usuario_Model->select($this->session->userdata('cod_usuario'));
-                $this->Aviso_Model->save($aviso);
+                //$this->Aviso_Model->save($aviso);
 
                 redirect('home/acompanhar');
                 exit;
             }
+        } elseif($this->input->post('webcam-upload')) {
+            $nameFile = $this->input->post('webcam-upload');
+            $solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
+            $this->Solicitacao_Model->save($solicitacao);
         }
 
         $this->output->render('home/enviar_foto', $viewData);
+    }
+
+    public function upload_webcam_image()
+    {
+        if ($this->input->post('type') == 'pixel') {
+            $im = imagecreatetruecolor(320, 240);
+
+            foreach (explode("|", $this->input->post('image')) as $y => $csv) {
+                foreach (explode(";", $csv) as $x => $color) {
+                    imagesetpixel($im, $x, $y, $color);
+                }
+            }
+        } else {
+            $im = imagecreatefrompng($this->input->post('image'));
+        }
+
+        $authID = $this->session->userdata('matricula');
+        $imageFormatName = FCPATH . "/static/imagens/" . $authID . ".png";
+
+        $imageName = sprintf($imageFormatName, '');
+
+        imagepng($im, $imageName);
+        imagedestroy($im);
     }
     
     public function aviso($cod)
