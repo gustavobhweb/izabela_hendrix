@@ -51,10 +51,8 @@
                     <div class='line' style='margin:10px 0 0 0'></div>
                     <div class='menu'>
                         <ul>
-                            <li><a href='<?=base_url("home/inicial")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
-                            <li><a href='<?=base_url("home/avisos")?>'><img src='<?=base_url("static/img/icon-avisos.png")?>' /> Avisos</a></li>
-                            <li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar minhas solicitações</a></li>
-                            <li> <a href="<?=base_url('home/carga_aluno')?>">Envio de Carga</a></li>
+                            <li><a href='<?=base_url("adm_izabela")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
+                            <li><a href='<?=base_url("adm_izabela/pesquisar_alunos")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Pesquisar Aluno</a></li>
                         </ul>
                     </div><!--menu-->
                 </div>

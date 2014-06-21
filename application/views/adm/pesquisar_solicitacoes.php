@@ -34,6 +34,7 @@
 			<table style="width:100%" class='wm-table'>
 				<thead>
 					<tr>
+						<th>Foto</th>
 						<th>Nome</th>
 						<th>Matrícula</th>
 						<th>CPF</th>
@@ -43,6 +44,12 @@
 				<tbody>
 					<?php foreach($search_results as $result): ?>
 						<tr>
+							<td style="position:relative;">
+								<img class='img-preview' height="70" width="60" src="<?=base_url("/static/imagens/{$result['foto']}");?>"/>
+								<div class='img-show'>
+									<div class='img-show--close'>&times;</div>
+								</div>
+							</td>
 							<td><?=$result['nome']?></td>
 							<td><?=$result['matricula']?></td>
 							<td><?=$result['cpf']?></td>
