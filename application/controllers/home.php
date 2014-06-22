@@ -4,7 +4,7 @@
 class Home extends WG_Controller {
 
     public $viewVars = array();
-    public $allowedActions = ['login', 'sair'];
+    public $allowedActions = ['login', 'sair', 'cadastrar'];
 
 
     public function index()
@@ -227,19 +227,35 @@ class Home extends WG_Controller {
     {
         $this->load->model('Usuario_Model');
 
-        $user = array();
-        $user['cpf'] = '11111111111';
-        $user['matricula'] = '111111';
-        $user['nome'] = 'Gustavo Carmo';
-        $user['nivel'] = 1;
-        $this->Usuario_Model->save($user);
+        // $user = array();
+        // $user['cpf'] = '11111111111';
+        // $user['matricula'] = '111111';
+        // $user['nome'] = 'Gustavo Carmo';
+        // $user['nivel'] = 1;
+        // $this->Usuario_Model->save($user);
 
-        $user1 = array();
-        $user1['cpf'] = '11111111122';
-        $user1['matricula'] = '111122';
-        $user1['nome'] = 'Gustavo Carmo';
-        $user1['nivel'] = 2;
-        $this->Usuario_Model->save($user1);
+        // $user1 = array();
+        // $user1['cpf'] = '11111111122';
+        // $user1['matricula'] = '111122';
+        // $user1['nome'] = 'Gustavo Carmo';
+        // $user1['nivel'] = 2;
+        // $this->Usuario_Model->save($user1);
+
+        $user2 = [
+            'cpf' => '11111111133',
+            'matricula' => '222222',
+            'nome' => 'Wallace de souza',
+            'tbl_niveis_cod_nivel' => 3,
+            'curso' => 'Programador PHP'
+        ];
+
+        $this->Usuario_Model->save($user2);
+
+    }
+
+    public function carga_aluno()
+    {
+        $this->output->render('home/carga_aluno');
     }
     
 }

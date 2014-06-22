@@ -56,11 +56,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href='<?=base_url("adm/pesquisar")?>'>
-                                    <img src='<?=base_url("static/img/icon-avisos.png")?>' /> Pesquisa
-                                </a>
-                            </li>
-                            <li>
                                 <a href='<?=base_url("adm/pesquisar_solicitacoes")?>'>
                                     <img src='<?=base_url("static/img/icon-acomp.png")?>' />
                                     Pesquisar Solicitacoes

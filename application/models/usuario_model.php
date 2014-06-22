@@ -66,18 +66,27 @@ class Usuario_Model extends CI_Model{
 
 	public function save($usuario)
 	{
-		$usuario = (object)$usuario;
-		if(isset($usuario->cod_usuario))
-		{
-			$qr = 'UPDATE tbl_usuarios SET matricula = ?, cpf = ?, nome = ?, tbl_niveis_cod_nivel = ? WHERE cod_usuario = ?';
-			$bind = array($usario->matricula, $usuario->cpf, $usuario->nome, $usuario->cod_usuario, $usuario->nivel);
+		$pk = $this->primaryKey;
+		$exists = array_key_exists($pk, $usuario)
+				&& $this->db->where([$pk => $usuario[$pk]])
+						->get()
+						->num_rows;
+
+		if (array_key_exists('nivel', $usuario)) {
+			$usuario['tbl_niveis_cod_nivel'] = $usuario['nivel'];
+			unset($usuario['nivel']);
 		}
-		else
-		{
-			$qr = 'INSERT INTO tbl_usuarios VALUES(NULL, ?, ?, ?, ?)';
-			$bind = array($usuario->matricula, $usuario->cpf, $usuario->nome, (int)$usuario->nivel);
+
+		if (!$exists) {
+			$this->db->insert($this->table, $usuario);
+		} else {
+			$this->db->update(
+				$this->table,
+				$usuario,
+				[$pk => $usuario[$pk]]
+			);
 		}
-		return $this->db->query($qr, $bind);
+
 	}
 
 	public function delete($args)
