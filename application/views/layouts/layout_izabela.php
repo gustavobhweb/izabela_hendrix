@@ -66,10 +66,9 @@
             <div class='clear'></div>
 
             <div class='menu-usuario' style="width: 480px;">
-                <div id="descricao-nome-curso">
+                <!-- <div id="descricao-nome-curso">
                     <div><?=$user->nome?></div>
-                    <div style="font-size:15px">Curso: Analista de sistemas PHP</div>
-                </div>
+                </div> -->
 
                 <div style="width:175px;float:right">
                     <a style='text-decoration:none' href='<?=base_url("home/inicial")?>'><div class='pagina-inicial'>

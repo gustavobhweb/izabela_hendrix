@@ -228,19 +228,19 @@ class Home extends WG_Controller {
     {
         $this->load->model('Usuario_Model');
 
-        // $user = array();
-        // $user['cpf'] = '11111111111';
-        // $user['matricula'] = '111111';
-        // $user['nome'] = 'Gustavo Carmo';
-        // $user['nivel'] = 1;
-        // $this->Usuario_Model->save($user);
+        $user = array();
+        $user['cpf'] = '11111111111';
+        $user['matricula'] = '111111';
+        $user['nome'] = 'Gustavo Carmo';
+        $user['nivel'] = 1;
+        $this->Usuario_Model->save($user);
 
-        // $user1 = array();
-        // $user1['cpf'] = '11111111122';
-        // $user1['matricula'] = '111122';
-        // $user1['nome'] = 'Gustavo Carmo';
-        // $user1['nivel'] = 2;
-        // $this->Usuario_Model->save($user1);
+        $user1 = array();
+        $user1['cpf'] = '11111111122';
+        $user1['matricula'] = '111122';
+        $user1['nome'] = 'Gustavo Carmo';
+        $user1['nivel'] = 2;
+        $this->Usuario_Model->save($user1);
 
         $user2 = [
             'cpf' => '11111111133',
@@ -252,11 +252,5 @@ class Home extends WG_Controller {
 
         $this->Usuario_Model->save($user2);
 
-    }
-
-    public function carga_aluno()
-    {
-        $this->output->render('home/carga_aluno');
-    }
-    
+    }    
 }
