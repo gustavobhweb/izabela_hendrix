@@ -1,6 +1,6 @@
 *{margin:0;padding:0}
 body{
-	font-family: Arial;
+    font-family: Arial;
 }
 .login{width:620px;margin:0 auto}
 .logo-izabela{float:left;margin:10px 0 0 50px}
@@ -83,24 +83,24 @@ body{
 .menu-usuario .minha-conta img{float:right;margin:5px 10px 0 0;}
 .menu-usuario .minha-conta p{font:13px Arial;font-weight:bold;color:black;text-decoration:none;float:right;margin:0 5px 0 0}
 .menu-usuario .sair-link{
-	background: #eeeeee;
-	text-align: left;
-	font-style:italic;
-	font-weight: bold;
-	margin:0 0 0 0;
-	font-family:Arial;
-	font-size: 14px;
-	text-decoration:none;color:black;float:right;width:160px;cursor:pointer;padding:7px 10px 7px 0;display:none}
+    background: #eeeeee;
+    text-align: left;
+    font-style:italic;
+    font-weight: bold;
+    margin:0 0 0 0;
+    font-family:Arial;
+    font-size: 14px;
+    text-decoration:none;color:black;float:right;width:160px;cursor:pointer;padding:7px 10px 7px 0;display:none}
 .menu-usuario .sair-link:hover{
-	background:#dddddd;
+    background:#dddddd;
 }
 .menu-usuario .sair-icone{
-	background: url('../img/source.png') no-repeat -38px -6px;
-	width: 22px;
-	height: 22px;
-	display: inline-block;
-	float: left;
-	margin: -5px 0;
+    background: url('../img/source.png') no-repeat -38px -6px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    float: left;
+    margin: -5px 0;
 }
 
 .item-solics{background:url(../img/linear-table-2.png);height:106px;border:1px solid #aaaaaa;border-left:9px solid #0965AF;cursor:pointer;margin:0 0 10px 0;}
@@ -124,22 +124,22 @@ body{
 .btn-take-photo:hover{opacity:.8}
 .btn-file-photo:hover{opacity:.8}
 #descricao-nome-curso{
-	width:240px;
-	color:#0865AE;
-	font-size:20px;font-weight:bold;
-	text-align:right;
-	float:left;
-	font-family: Arial, sans-serif;
+    width:240px;
+    color:#0865AE;
+    font-size:20px;font-weight:bold;
+    text-align:right;
+    float:left;
+    font-family: Arial, sans-serif;
 }
 
 #box-edit-mail-of-solicitation{
-	display: none;
+    display: none;
 }
 #btn-edit-mail-of-solicitation{
-	font:20px arial;cursor:pointer;color:#ffffff;font-weight:bold;margin:11px 0 0 0;
+    font:20px arial;cursor:pointer;color:#ffffff;font-weight:bold;margin:11px 0 0 0;
 }
 #change-mail-of-solicitation{
-	width: 135px;
+    width: 135px;
 }
 
 .aviso{width:70%;float:left;margin:100px 0 0 0;background:#eee;padding:20px;font:20px Calibri;border-radius:10px;box-shadow:0 0 10px #333333}
@@ -148,94 +148,94 @@ body{
 .aviso-msg{background:#fff;padding:5px;float:left;width:95.5%;margin:10px 0 0 0}
 
 .wm-table{
-	border-collapse: collapse;
-	box-shadow: 0 0 10px black;
-	font-size: 12px;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px black;
+    font-size: 12px;
 }
 .wm-table td, .wm-table th{
-	border:1px solid #cccccc;
+    border:1px solid #cccccc;
 }
 .wm-table thead th{
-	background-image: linear-gradient(to bottom, #dddddd, #eeeeee);
-	color:#222222;
-	padding:10px;
+    background-image: linear-gradient(to bottom, #dddddd, #eeeeee);
+    color:#222222;
+    padding:10px;
 }
 .wm-table tbody td{
-	-webkit-transition: background 0.6s linear 0.3s;
-	transition: background 0.6s linear 0.3s;
-	text-align: center;
-	vertical-align: middle;
-	padding: 10px;
+    -webkit-transition: background 0.6s linear 0.3s;
+    transition: background 0.6s linear 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
 }
 .wm-table tbody tr:hover td{
-	background: lightsteelblue;
+    background: lightsteelblue;
 
 }
 .wm-table tbody tr:nth-child(odd) {
-	background: #E2E4FF;
+    background: #E2E4FF;
 }
 
 .wm-input{
-	display: inline-block;
-	margin-bottom: 0;
-	vertical-align: middle;
-	border:thin solid #ccc;
-	font-size: 14px;
-	padding:4px 6px;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    border:thin solid #ccc;
+    font-size: 14px;
+    padding:4px 6px;
 }
 .wm-input:hover, .wm-input:focus, .wm-btn:focus, .wm-btn:hover{
-	-webkit-transition: box-shadow .3s linear .2s;
-	transition: box-shadow .3s linear .2s;
-	box-shadow: 0 0 5px steelblue;
+    -webkit-transition: box-shadow .3s linear .2s;
+    transition: box-shadow .3s linear .2s;
+    box-shadow: 0 0 5px steelblue;
 }
 .wm-input.input-large{
-	width: 250px;
+    width: 250px;
 }
 .wm-btn{
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 14px;
-	line-height: 20px;
-	cursor: pointer;
-	margin-bottom: 0;
-	padding: 4px 12px;
-	text-align: center;
-	background-color: #f5f5f5;
-	border:thin solid #ccc;
-	color:#555;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    background-color: #f5f5f5;
+    border:thin solid #ccc;
+    color:#555;
 }
 .wm-btn.wm-btn-blue{
-	background-color: #049;
-	background-image: linear-gradient(to bottom,#2C8AFF, #049);
-	color:white;
-	border:thin solid steelblue;
+    background-color: #049;
+    background-image: linear-gradient(to bottom,#2C8AFF, #049);
+    color:white;
+    border:thin solid steelblue;
 }
 .wm-btn.wm-btn-blue:disabled{
-	background:#2C8AFF;
+    background:#2C8AFF;
 }
 .wm-btn, .wm-input{
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-ms-box-sizing:border-box;
-	box-sizing:border-box;
-	outline: none;
-	height: 34px;
-	border-radius: 4px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    box-sizing:border-box;
+    outline: none;
+    height: 34px;
+    border-radius: 4px;
 }
 .wm-title{
-	margin-bottom: 10px;
-	margin-top: 10px;
-	font-weight: normal;
-	font-family: 'Calibri', 'Trebuchet MS';
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: normal;
+    font-family: 'Calibri', 'Trebuchet MS';
 }
 .wm-text-warning{
-	color:#c09853;
+    color:#c09853;
 }
 #response-frame{
-	width: 100%;
-	border:thin solid #aaa;
-	height: 300px;
-	display: none;
+    width: 100%;
+    border:thin solid #aaa;
+    height: 300px;
+    display: none;
 }
 
 section.right-container{
@@ -243,33 +243,33 @@ section.right-container{
   width:1000px;
 }
 [data-color='gray']{
-	color:#555;
+    color:#555;
 }
 
 div.img-show{
-	top:50px;
-	left:120px;
-	display:none;
-	height:300px;
-	width:300px;
-	position:absolute;
-	border-radius:5px;
-	box-shadow: 0 0 20px black;
+    top:50px;
+    left:120px;
+    display:none;
+    height:300px;
+    width:300px;
+    position:absolute;
+    border-radius:5px;
+    box-shadow: 0 0 20px black;
 }
 div.img-show--close{
-	cursor: pointer;
-	content:'×';
-	display:block;
-	height:20px;
-	width:20px;
-	background:rgba(204, 0, 0, 0.65);
-	right:0;
-	position:absolute;
-	border-radius:360px;
-	line-height:20px;
-	font-size:14px;
-	font-weight:bold;
-	font-family:"Trebuchet MS";
-	color:white;
-	box-shadow:0 0 10px black;
+    cursor: pointer;
+    content:'×';
+    display:block;
+    height:20px;
+    width:20px;
+    background:rgba(204, 0, 0, 0.65);
+    right:0;
+    position:absolute;
+    border-radius:360px;
+    line-height:20px;
+    font-size:14px;
+    font-weight:bold;
+    font-family:"Trebuchet MS";
+    color:white;
+    box-shadow:0 0 10px black;
 }
