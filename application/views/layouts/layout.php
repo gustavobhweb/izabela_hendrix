@@ -54,7 +54,6 @@
                             <li><a href='<?=base_url("home/inicial")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
                             <li><a href='<?=base_url("home/avisos")?>'><img src='<?=base_url("static/img/icon-avisos.png")?>' /> Avisos</a></li>
                             <li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar minhas solicitações</a></li>
-                            <li> <a href="<?=base_url('home/carga_aluno')?>">Envio de Carga</a></li>
                         </ul>
                     </div><!--menu-->
                 </div>

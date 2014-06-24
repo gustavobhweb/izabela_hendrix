@@ -5,11 +5,12 @@
 	</div>
 </a><!--solics-->
 <div style='float:left;margin:20px 0 0 20px'>
-	<h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
-
+	
 	<?php if(empty($avisos)): ?>
-		<div class='j-alert-error'>Nenhum aviso foi encontrado.</div>
+		<!-- <div class='j-alert-error'>Nenhum aviso foi encontrado.</div> -->
 	<?php else:?>
+		<h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
+		
 		<div style='margin:10px 0 0 0'>
 			<div class='head-item' style='width:100px'>Status</div>
 			<div class='head-item' style='width:180px'>Assunto</div>
