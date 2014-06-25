@@ -6,8 +6,13 @@ class Adm_Izabela extends WG_Controller
 
 	public function index()
 	{
-		$this->output->render('adm_Izabela/index');
+		$this->output->render('adm_Izabela/relatorios');
 	}
+
+    public function enviar_carga()
+    {
+        $this->output->render('adm_Izabela/index');
+    }
 
     
 	/**

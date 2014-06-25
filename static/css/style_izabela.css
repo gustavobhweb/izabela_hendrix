@@ -109,8 +109,9 @@ body{
 .j-alert-error{padding:10px;width:700px;background:#eee;font:12px arial;color:#333333;margin:10px 0 0 0;}
 
 .btn-conf-iza{float:right;background:#0061B2;padding:2px 15px;height:38px;border:none;font:16px Arial;color:#ffffff;border-bottom:6px solid #0A3D9B;cursor:pointer;margin:0 0 0 10px}
-.btn-cancel-iza{float:right;background:#FF0000;padding:2px 15px;height:38px;border:none;font:16px Arial;color:#ffffff;border-bottom:6px solid #A40000;cursor:pointer}
+.btn-cancel-iza{float:right;outline:none;background:#FF0000;padding:2px 15px;height:38px;border:none;font:16px Arial;color:#ffffff;border-bottom:6px solid #A40000;cursor:pointer}
 .btn-conf-iza:hover{opacity:.8}
+.btn-conf-iza:active{opacity: 1}
 .btn-cancel-iza:hover{opacity:.8}
 
 .modal-photo{width:100%;height:100%;position:fixed;z-index:2;background:rgba(0,0,0,.7);display:none;left:0;top:0;right:0;bottom: 0;}

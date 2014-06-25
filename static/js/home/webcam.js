@@ -39,6 +39,7 @@ $(document).ready(function(){
 					$.post(window.url+"/home/upload_webcam_image/", {type: "data", image: canvas.toDataURL("image/png")});
 					pos = 0;
 				}
+
 			};
 
 		} else {
@@ -52,6 +53,7 @@ $(document).ready(function(){
 					$.post(window.url+"/home/upload_webcam_image/", {type: "pixel", image: image.join('|')});
 					pos = 0;
 				}
+
 			};
 		}
 
@@ -67,17 +69,26 @@ $(document).ready(function(){
 					onSave: window.saveCB,
 					onCapture: function() {
 						webcam.save();
-						$('.userPhoto').attr('src', window.url+"/static/imagens/"+window.namePhoto);
+						//$('.userPhoto').attr('src', window.url+"/static/imagens/"+window.namePhoto);
 					},
 					debug: function() {},
 					onLoad: function() {
+						var a = 0;
 						$('#takephoto').click(function(){
-							window.namePhoto = $(this).attr('data-id') + '.png';
+							if (a<1) {
+								a++;
+								$(this).click();
+							} else {
+								a = 0;
+							}
+							var datetimenow = new Date().getTime();
+							window.namePhoto = $(this).attr('data-id') + '.png?time='+datetimenow;
 							webcam.capture();
+							$('.userPhoto').attr('src', window.url+"/static/imagens/"+window.namePhoto);
 						});
 					}
 				});
-			});
+			});	
 		});
 
 	});
