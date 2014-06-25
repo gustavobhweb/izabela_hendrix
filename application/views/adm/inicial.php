@@ -1,4 +1,4 @@
-<table class='tbl-aprovacoes' style="margin:30px 0 0 30px">
+<table class='wm-table' style="margin:30px 0 0 30px">
 	<!-- <thead>
 		<tr>
 			<th>Foto</th>
@@ -8,7 +8,8 @@
 	<tbody>
 		<?php foreach($fotos as $foto){?>
 		<tr>
-			<td><img onclick='openImage($(this))' src='<?=base_url("static/imagens/".$foto->foto)?>' width='76' height='100' /></td>
+			<td style="position:relative"><img onmouseout="$('.imagesHover').hide();" onmouseover='openHoverImage("<?=$foto->cod_solicitacao?>")' onclick='openImage($(this))' src='<?=base_url("static/imagens/".$foto->foto)?>' width='48' height='70' />
+			<img class='imagesHover' id='foto-<?=$foto->cod_solicitacao?>' onclick='openImage($(this))' style='position:absolute;background:#fff;box-shadow:0 0 4px #000;padding:10px;display:none' width="220" height="300" src='<?=base_url("static/imagens/".$foto->foto)?>' /></td>
 			<td><button style='margin:0px 0 0 6px' class='btn-cancel-iza bt-n' data-id='<?=$foto->cod_solicitacao?>' data-pessoa='<?=$foto->tbl_usuarios_cod_usuario?>'>REPROVAR</button></td>
 			<td><button style='margin:0px 0 0 6px' class='btn-conf-iza bt-y' data-id='<?=$foto->cod_solicitacao?>' data-pessoa='<?=$foto->tbl_usuarios_cod_usuario?>'>APROVAR</button></td>
 		</tr>
@@ -24,5 +25,11 @@ function openImage(obj)
 	var src = obj.attr('src');
 	$('#imageShow').find('img').attr('src', src);
 	$('#imageShow').fadeIn();
+}
+function openHoverImage(id)
+{
+	id = '#foto-'+id;
+	$(id).show();
+	console.log(id);
 }
 </script>

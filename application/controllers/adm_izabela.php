@@ -44,7 +44,7 @@ class Adm_Izabela extends WG_Controller
         $data = filter_input_array(INPUT_POST, $filter_options);
         
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $vars['post_data'] = $data;
 
@@ -61,20 +61,15 @@ class Adm_Izabela extends WG_Controller
 
                 } else {
                     $vars['post_status'] = 'A matrícula requisitada já existe no sistema.';
-
                 }
-
                 
             } else {
                 $vars['post_status'] = 'Alguns campos apresentam dados inválidos.';
             }
         }
 
-
-
-
-
         $this->output->render('adm_izabela/cadastrar_aluno', $vars);
+
     }
 
     

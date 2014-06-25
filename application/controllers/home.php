@@ -16,7 +16,7 @@ class Home extends WG_Controller {
     public function login()
     {
         $this->layout = 'login';
-        
+        $viewData = array();
         $this->load->model('Usuario_Model');
 
         if($this->input->post('txt_cpf')) {
@@ -26,13 +26,14 @@ class Home extends WG_Controller {
             $user['matricula'] = $this->input->post('txt_matricula');
 
             if($this->Usuario_Model->verify($user)) {
-                $user = $this->Usuario_Model->select($user);
-                $this->session->set_userdata($user);
+                $this->session->set_userdata($this->Usuario_Model->select($user));
                 redirect('home/inicial');
+            } else {
+                $viewData['error'] = 'CPF ou matrícula estão incorretos.';
             }
         }
         
-        $this->output->render('home/login');
+        $this->output->render('home/login', $viewData);
     }
 
     public function inicial()
