@@ -69,7 +69,9 @@
             <div class='menu-usuario' style="width: 480px;">
                 <div id="descricao-nome-curso">
                     <div><?=$user->nome?></div>
-                    <div style="font-size:15px">Curso: Analista de sistemas PHP</div>
+                    <?php if(!empty($user->curso)): ?>
+                        <div style="font-size:15px">Curso: <?=$user->curso?></div>
+                    <?php endif ?>
                 </div>
 
                 <div style="width:175px;float:right">
