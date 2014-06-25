@@ -185,8 +185,13 @@ body{
 }
 .wm-input:hover, .wm-input:focus, .wm-btn:focus, .wm-btn:hover{
     -webkit-transition: box-shadow .3s linear .2s;
+    -moz-transition: box-shadow .3s linear .2s;
+    -ms-transition: box-shadow .3s linear .2s;
     transition: box-shadow .3s linear .2s;
     box-shadow: 0 0 5px steelblue;
+}
+.wm-input:invalid:focus{
+    box-shadow: 0 0 5px #f00;   
 }
 .wm-input.input-large{
     width: 250px;
@@ -272,4 +277,8 @@ div.img-show--close{
     font-family:"Trebuchet MS";
     color:white;
     box-shadow:0 0 10px black;
+}
+#form-cadastrar-aluno{
+    margin:0 auto;
+    width: 500px;
 }

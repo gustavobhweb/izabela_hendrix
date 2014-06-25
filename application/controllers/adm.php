@@ -1,8 +1,7 @@
 <?php
 
-class Adm extends WG_Controller{
-
-
+class Adm extends WG_Controller
+{
     public $layout = 'layout_admin';
 
     public function __construct()
