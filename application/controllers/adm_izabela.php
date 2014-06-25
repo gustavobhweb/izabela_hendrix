@@ -7,7 +7,7 @@ class Adm_Izabela extends WG_Controller
 
     public function index()
     {
-       $this->output->render('adm_Izabela/relatorios');
+       $this->output->render('adm_izabela/relatorios');
     }
 
     /**
@@ -15,7 +15,7 @@ class Adm_Izabela extends WG_Controller
     */
 	public function carga_aluno()
 	{
-		$this->output->render('adm_Izabela/carga_aluno');
+		$this->output->render('adm_izabela/carga_aluno');
 	}
 
     /**
