@@ -74,7 +74,7 @@
                 <img src='<?=base_url("static/img/carteira.png")?>' style='margin:-6px 0 0 0' />
             </div>
             <div class='item-line-aviso' style='width:100px'>
-                <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>Liberado</p>
+                <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>-</p>
             </div>
             <div class='item-line-aviso' style='border:none' style='width:100px'><button style='margin:24px 0 0 0' class='btn-conf-iza' onclick='document.location.href="<?=base_url('home/acompanhar')?>"'>CONTINUAR ></button></div>
             <div class='clearG'></div>
