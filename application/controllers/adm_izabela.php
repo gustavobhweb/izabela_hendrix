@@ -34,7 +34,7 @@ class Adm_Izabela extends WG_Controller
                 'filter' => FILTER_CALLBACK,
                 'options' => function($cpf){
                     $is_valid = preg_match('/\d{3}\.\d{3}\.\d{3}-\d{2}/', $cpf);
-                    return $is_valid ? $cpf : $data;
+                    return $is_valid ? preg_replace('/[^0-9]/', '', $cpf) : $data;
                 }
             ],
             'matricula' => ['filter' => FILTER_VALIDATE_INT],
@@ -51,6 +51,7 @@ class Adm_Izabela extends WG_Controller
             if (is_array($data) && !in_array(false, $data)) {
 
                 $data['nivel'] = 1;
+                
 
                 $exists = $this->Usuario_Model->findByMatricula($data['matricula']);
 
