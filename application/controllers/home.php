@@ -105,6 +105,8 @@ class Home extends WG_Controller {
         $viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
         $viewData['user'] = (object)$this->session->all_userdata();
 
+        $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);     
+
         $this->output->render('home/acomp', $viewData);
     }
 
@@ -184,8 +186,13 @@ class Home extends WG_Controller {
         }
 
         $authID = $this->session->userdata('matricula');
-        $imageFormatName = FCPATH . "/static/imagens/" . $authID . ".png";
-
+        
+        $path =  FCPATH . '/static/imagens/';
+        
+        if (!is_dir($path)) mkdir($path, 0777);
+        
+        $imageFormatName = $path . $authID . '.png';
+        
         $imageName = sprintf($imageFormatName, '');
 
         imagepng($im, $imageName);

@@ -283,3 +283,25 @@ div.img-show--close{
     margin:0 auto;
     width: 500px;
 }
+
+
+.btn-default-izabela{
+    background:#0061B2;
+    padding:2px 15px;
+    height:38px;
+    border:none;
+    font:16px Arial;
+    color:#ffffff;
+    border-bottom:6px solid #0A3D9B;
+    cursor:pointer;
+    box-sizing:border-box;
+}
+.btn-default-izabela:active{
+    position: relative;
+    top: 1.5px;
+}
+
+.wm-text-center{
+    text-align: center;
+}
+

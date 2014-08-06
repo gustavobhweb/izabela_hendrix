@@ -62,6 +62,13 @@ $(document).ready(function(){
 		$('#btn-take-photo').click(function(){
 			$('#enviar-foto').fadeOut(function(){
 				$('#webcam').show();
+                
+                if ($("#camera").hasClass('started')) {
+                    return false;
+                }
+
+                $("#camera").addClass('started');
+                
 				$("#camera").webcam({
 					width: widthCam,
 					height: heightCam,
@@ -86,7 +93,9 @@ $(document).ready(function(){
 							var datetimenow = new Date().getTime();
 							window.namePhoto = $(this).attr('data-id') + '.png?time='+datetimenow;
 							webcam.capture();
-							$('.userPhoto').attr('src', window.url+"/static/imagens/"+window.namePhoto);
+							$('.userPhoto.preview-modal').attr('src', window.url+"/static/imagens/"+window.namePhoto);
+
+                            $('#save-photo').fadeIn();
 						});
 					}
 				});
@@ -95,4 +104,4 @@ $(document).ready(function(){
 
 	});
 
-})
+});
