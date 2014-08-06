@@ -1,5 +1,5 @@
 <a href='<?=base_url("home/acompanhar")?>'><div class='solicsHovered'>
-<div class='num' style='float:right;margin:16px 15px 0 10px'>0</div>
+<div class='num' style='float:right;margin:16px 15px 0 10px'><?=$solicitacoesNum?></div>
 <h1>Acompanhar minhas solicitações</h1>
 </div></a><!--solics-->
 

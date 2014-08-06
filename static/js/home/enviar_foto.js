@@ -6,11 +6,28 @@ function refreshImg(_this)
    	$('.modal-photo').fadeOut();
 }
 
-$(document).ready(function(){
+$(function(){
 	$('.btn-img-pessoa').click(function(){
 		$('.modal-photo').fadeIn();
 	});
 	$('.btn-close-box').click(function(){
 		$('.modal-photo').fadeOut();
 	});
+
+	$('#save-photo').click(function(){
+
+        var src = $('.userPhoto.preview-modal').attr('src');
+
+        $('.modal-photo').fadeOut(400, function(){
+        	$('.userPhoto.after-choice').attr('src', src);
+        	$(':hidden[name=tmp_image]').val(src);
+        });
+    });
+
+    $('#return-modal-menu').click(function(){
+    	$('#webcam').fadeOut(400, function(){
+    		$('#enviar-foto').fadeIn();
+    	})
+
+    });
 });

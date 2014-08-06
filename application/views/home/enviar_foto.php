@@ -7,7 +7,10 @@
         <div class='content-modal-photo'>
             <div style='float:left;padding:20px 40px;border-right:1px solid #aaa;margin:30px 0 0 0'>
                 <p style='font:12px arial;font-weight:bold;font-style:italic;color:#005FB2;margin:0 0 10px 4px'>Nenhuma foto cadastrada</p>
-                <img class='userPhoto' width='155' height='155' src='<?=base_url("static/img/user.png")?>' />
+                <img class='userPhoto preview-modal' width='155' height='155' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
+                <div class="wm-text-center">
+                    <button id="save-photo"  type="submit" style="display:none" name="btn-submit" class="btn-default-izabela">Salvar</button>
+                </div>
             </div>
             <div id='enviar-foto' style='float:left;width:430px;margin:50px 0 0 50px'>
                 <p style='font:13px arial;margin:0 0 10px 0'>Selecione o tipo de envio da foto de sua preferência:</p>
@@ -18,6 +21,7 @@
             <div id='webcam' style='display:none'>
                 <div id='camera' style='margin:30px 0 0 45px;float:left'></div>
                 <button class='btn-conf-iza' id='takephoto' data-id="<?=$user->matricula?>" style='float:left;margin:30px 0 0 10px'>Tirar foto</button>
+                <button class='btn-cancel-iza' id='return-modal-menu' style='float:left;margin:10px 0 0 10px'>Voltar</button>
             </div>
             <div class='clear'></div>
         </div><!--content-modal-photo-->
@@ -34,7 +38,7 @@
         <div style='width:100%;float:left'>
             <div class='box-img-pessoa' style='float:left'>
                 <p>Nenhuma foto cadastrada</p>
-                <img class='userPhoto' width='155' height='155' src='<?=base_url("static/img/user.png")?>' />
+                <img class='userPhoto after-choice' width='155' height='155' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
                 <button class='btn-img-pessoa'>Enviar foto</button>
             </div><!--box-img-pessoa-->
 
@@ -58,6 +62,7 @@
                     <input type='hidden' name='webcam-upload' value='<?=$user->matricula.".png"?>' />
                     <button type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
                     <button type='button' onclick='document.location.href="<?=base_url('home/inicial')?>"' class='btn-cancel-iza'>CANCELAR</button>
+                    <input type="hidden" name='tmp_image' value="<?=$this->input->post('tmp_image')?>" />
                 </form>
             </div>
         </div>
@@ -67,10 +72,21 @@
 <div class='clearfix'></div>
 <?php $this->script(array('home/enviar_foto', 
                           'home/jquery.webcam',
-                          'home/webcam'), false) ?>
+                          'home/webcam',
+                          'wm-modal'), false) ?>
 
-<?php 
-    if(isset($message)){
-        echo '<script type="text/javascript">alert("'.$message.'")</script>';
-    };
-?>
+<?php $this->style(array('wm-modal'), false) ?>
+
+<?= $this->element('common-alert') ?>
+
+<?php  if (isset($message)): ?>
+    <script>
+    var text = <?=json_encode($message)?>
+
+    $(function(){
+        var alert = new wmDialog(text);
+        alert.btnCancelEnabled = false;
+        alert.open();
+    });
+    </script>
+<?php endif ?>
