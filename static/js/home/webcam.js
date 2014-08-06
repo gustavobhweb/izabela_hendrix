@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	window.widthCam = 300;
+	window.heightCam = 457;
 	pathArray = window.location.href.split( '/' );
 	protocol = pathArray[0];
 	host = pathArray[2];
@@ -11,21 +13,21 @@ $(document).ready(function(){
 		var pos = 0, ctx = null, image = [];
 
 		var canvas = document.createElement("canvas");
-		canvas.setAttribute('width', 320);
-		canvas.setAttribute('height', 240);
+		canvas.setAttribute('width', widthCam);
+		canvas.setAttribute('height', heightCam);
 		
 		if (canvas.toDataURL) {
 
 			ctx = canvas.getContext("2d");
 			
-			image = ctx.getImageData(0, 0, 320, 240);
+			image = ctx.getImageData(0, 0, widthCam, heightCam);
 		
 			window.saveCB = function(data) {
 				
 				var col = data.split(";");
 				var img = image;
 
-				for(var i = 0; i < 320; i++) {
+				for(var i = 0; i < widthCam; i++) {
 					var tmp = parseInt(col[i]);
 					img.data[pos + 0] = (tmp >> 16) & 0xff;
 					img.data[pos + 1] = (tmp >> 8) & 0xff;
@@ -34,7 +36,7 @@ $(document).ready(function(){
 					pos+= 4;
 				}
 
-				if (pos >= 4 * 320 * 240) {
+				if (pos >= 4 * widthCam * heightCam) {
 					ctx.putImageData(img, 0, 0);
 					$.post(window.url+"/home/upload_webcam_image/", {type: "data", image: canvas.toDataURL("image/png")});
 					pos = 0;
@@ -47,9 +49,9 @@ $(document).ready(function(){
 			window.saveCB = function(data) {
 				image.push(data);
 				
-				pos+= 4 * 320;
+				pos+= 4 * widthCam;
 				
-				if (pos >= 4 * 320 * 240) {
+				if (pos >= 4 * widthCam * heightCam) {
 					$.post(window.url+"/home/upload_webcam_image/", {type: "pixel", image: image.join('|')});
 					pos = 0;
 				}
@@ -61,10 +63,10 @@ $(document).ready(function(){
 			$('#enviar-foto').fadeOut(function(){
 				$('#webcam').show();
 				$("#camera").webcam({
-					width: 320,
-					height: 240,
+					width: widthCam,
+					height: heightCam,
 					mode: "callback",
-					swffile: window.url+"/static/js/home/jscam.swf",
+					swffile: window.url+"/static/js/home/jscam.swf?6665465zsçlodfsljdhf",
 					onTick: function() {},
 					onSave: window.saveCB,
 					onCapture: function() {

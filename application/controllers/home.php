@@ -81,12 +81,6 @@ class Home extends WG_Controller {
         $this->load->model('Usuario_Model');
         $this->load->model('Solicitacao_Model');
 
-        if(!$this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true))
-        {
-            redirect('home/enviar_foto');
-        }
-
-
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -178,7 +172,7 @@ class Home extends WG_Controller {
     public function upload_webcam_image()
     {
         if ($this->input->post('type') == 'pixel') {
-            $im = imagecreatetruecolor(320, 240);
+            $im = imagecreatetruecolor(300, 487);
 
             foreach (explode("|", $this->input->post('image')) as $y => $csv) {
                 foreach (explode(";", $csv) as $x => $color) {

@@ -3,6 +3,14 @@
 <h1>Acompanhar minhas solicitações</h1>
 </div></a><!--solics-->
 
+<?php if (!$solicitacoes) {?>
+<div class='j-alert-error' style="float:left;margin:25px 0 0 15px">
+    Nenhuma solicitação foi enviada. 
+    <a href='<?=base_url("home/enviar_foto")?>'>
+        <button class="btn-conf-iza">Enviar solicitação</button>
+    </a>
+</div>
+<?php } else {?>
 <div class='situacao-box'>
 
 <h1>Situação</h1>
@@ -49,6 +57,7 @@
 <?php }?>
 
 </div><!--situacao-box-->
+<?php }?>
 
 <?php
 

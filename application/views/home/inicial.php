@@ -6,9 +6,7 @@
 </a><!--solics-->
 <div style='float:left;margin:20px 0 0 20px'>
     
-    <?php if(empty($avisos)): ?>
-        <!-- <div class='j-alert-error'>Nenhum aviso foi encontrado.</div> -->
-    <?php else:?>
+    <?php if(!empty($avisos)): ?>
         <h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
         
         <div style='margin:10px 0 0 0'>
