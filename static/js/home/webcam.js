@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-	window.widthCam = 300;
-	window.heightCam = 457;
+	window.widthCam = 320;
+	window.heightCam = 240;
 	pathArray = window.location.href.split( '/' );
 	protocol = pathArray[0];
 	host = pathArray[2];

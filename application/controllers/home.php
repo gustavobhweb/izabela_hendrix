@@ -174,7 +174,7 @@ class Home extends WG_Controller {
     public function upload_webcam_image()
     {
         if ($this->input->post('type') == 'pixel') {
-            $im = imagecreatetruecolor(300, 487);
+            $im = imagecreatetruecolor(320, 240);
 
             foreach (explode("|", $this->input->post('image')) as $y => $csv) {
                 foreach (explode(";", $csv) as $x => $color) {
