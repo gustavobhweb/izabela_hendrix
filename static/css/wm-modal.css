@@ -27,11 +27,11 @@
     margin:100px auto;
 }
 
-#wm-alert .wm-modal-head{
+.wm-modal-box .wm-modal-head{
     background: #049;
     height: 50px;
 }
-#wm-alert .wm-modal-head .wm-modal-title{
+.wm-modal-box .wm-modal-head .wm-modal-title{
     text-align: center;
     padding: 10px;
     color:gold;
@@ -42,7 +42,7 @@
     margin-top:10px;
     text-align: center;
 }
-#wm-alert .wm-modal-close{
+.wm-modal-close{
     float: right;
     color:rgba(0,0,0,.5);
     font-weight: bold;
