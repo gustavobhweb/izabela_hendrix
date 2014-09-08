@@ -115,15 +115,17 @@ body{
 .btn-cancel-iza:hover{opacity:.8}
 
 .modal-photo{width:100%;height:100%;position:fixed;z-index:2;background:rgba(0,0,0,.7);display:none;left:0;top:0;right:0;bottom: 0;}
-.box-photo{width:764px;height:auto;background:white;border-radius:.8em;margin:8% auto;padding:10px 0 25px 0;}
+.box-photo{width:550px;height:auto;background:white;border-radius:.8em;margin:8% auto;padding:10px 0 25px 0;}
 .btn-close-box{width:25px;height:25px;border:none;background:url(../img/btn-close-box.png) no-repeat;cursor:pointer;outline:none;float:right;margin:5px}
 .btn-close-box:hover{opacity:.8}
-.header-modal-photo{width:724px;margin:30px auto;padding:10px 0;text-align:center;color:white;font:22px Arial;font-weight:lighter;background:#0965AF}
-.content-modal-photo{width:724px;border:1px solid #b5b5b5;margin:20px auto 0 auto;background:#EEEEEF;padding:0 0 30px 0}
+.header-modal-photo{width:500px;margin:30px auto;padding:10px 0;text-align:center;color:white;font:22px Arial;font-weight:lighter;background:#0965AF}
+.content-modal-photo{width:500px;border:1px solid #b5b5b5;margin:20px auto 0 auto;background:#EEEEEF;padding:0 0 30px 0}
 .btn-take-photo{height:76px;width:406px;background:url(../img/btn-photo.png) no-repeat;border:none;margin:0;cursor:pointer;outline:none}
 .btn-file-photo{height:76px;width:406px;background:url(../img/btn-photo.png) no-repeat;background-position:0 -76px;border:none;margin:0;cursor:pointer;outline:none}
+.btn-fb-photo{height:76px;width:406px;background:url(../img/btn-photo.png) no-repeat;background-position:0 -152px;border:none;margin:0;cursor:pointer;outline:none}
 .btn-take-photo:hover{opacity:.8}
 .btn-file-photo:hover{opacity:.8}
+.btn-fb-photo:hover{opacity:.8}
 #descricao-nome-curso{
     width:240px;
     color:#0865AE;
@@ -192,7 +194,7 @@ body{
     box-shadow: 0 0 5px steelblue;
 }
 .wm-input:invalid:focus{
-    box-shadow: 0 0 5px #f00;   
+    box-shadow: 0 0 5px #f00;
 }
 .wm-input.input-large{
     width: 250px;

@@ -1,107 +1,13 @@
-$(document).ready(function(){
+$(function(){
 
-	window.widthCam = 320;
-	window.heightCam = 240;
-	pathArray = window.location.href.split( '/' );
-	protocol = pathArray[0];
-	host = pathArray[2];
-	window.url = protocol + '//' + host;
-	window.url = window.url + '/izabela_hendrix';
+	new ImgSelect( $('#imgselect_container') );
 
-	$(function() {
-
-		var pos = 0, ctx = null, image = [];
-
-		var canvas = document.createElement("canvas");
-		canvas.setAttribute('width', widthCam);
-		canvas.setAttribute('height', heightCam);
-		
-		if (canvas.toDataURL) {
-
-			ctx = canvas.getContext("2d");
-			
-			image = ctx.getImageData(0, 0, widthCam, heightCam);
-		
-			window.saveCB = function(data) {
-				
-				var col = data.split(";");
-				var img = image;
-
-				for(var i = 0; i < widthCam; i++) {
-					var tmp = parseInt(col[i]);
-					img.data[pos + 0] = (tmp >> 16) & 0xff;
-					img.data[pos + 1] = (tmp >> 8) & 0xff;
-					img.data[pos + 2] = tmp & 0xff;
-					img.data[pos + 3] = 0xff;
-					pos+= 4;
-				}
-
-				if (pos >= 4 * widthCam * heightCam) {
-					ctx.putImageData(img, 0, 0);
-					$.post(window.url+"/home/upload_webcam_image/", {type: "data", image: canvas.toDataURL("image/png")});
-					pos = 0;
-				}
-
-			};
-
-		} else {
-
-			window.saveCB = function(data) {
-				image.push(data);
-				
-				pos+= 4 * widthCam;
-				
-				if (pos >= 4 * widthCam * heightCam) {
-					$.post(window.url+"/home/upload_webcam_image/", {type: "pixel", image: image.join('|')});
-					pos = 0;
-				}
-
-			};
-		}
-
-		$('#btn-take-photo').click(function(){
-			$('#enviar-foto').fadeOut(function(){
-				$('#webcam').show();
-                
-                if ($("#camera").hasClass('started')) {
-                    return false;
-                }
-
-                $("#camera").addClass('started');
-                
-				$("#camera").webcam({
-					width: widthCam,
-					height: heightCam,
-					mode: "callback",
-					swffile: window.url+"/static/js/home/jscam.swf?6665465zsçlodfsljdhf",
-					onTick: function() {},
-					onSave: window.saveCB,
-					onCapture: function() {
-						webcam.save();
-						//$('.userPhoto').attr('src', window.url+"/static/imagens/"+window.namePhoto);
-					},
-					debug: function() {},
-					onLoad: function() {
-						var a = 0;
-						$('#takephoto').click(function(){
-							if (a<1) {
-								a++;
-								$(this).click();
-							} else {
-								a = 0;
-							}
-							var datetimenow = new Date().getTime();
-							window.namePhoto = $(this).attr('data-id') + '.png?time='+datetimenow;
-							webcam.capture();
-							$('.userPhoto.preview-modal').attr('src', window.url+"/static/imagens/"+window.namePhoto);
-
-                            $('#save-photo').fadeIn();
-						});
-					}
-				});
-			});	
+	$('#btn-take-photo').click(function(){
+		$('#enviar-foto').fadeOut(function(){
+			$('#webcam').show(0, function(){
+				$('.imgs-webcam').click();
+			});
 		});
-
 	});
 
 });
