@@ -58,12 +58,12 @@
                     especificações abaixo.</p>
                 </div><!--alert-send-image-->
                 <img src='<?=base_url("static/img/especifica.png")?>' />
-                <form method='post' enctype='multipart/form-data' style='width:780px;margin:5px 0 0 0;float:left'>
+                <form id="form-cadastrar-solicitacao" method='post' enctype='multipart/form-data' style='width:780px;margin:5px 0 0 0;float:left'>
                     <input type='file' onchange='refreshImg(this)' name='userfile' id='userfile' style='display:none' />
                     <div style='float:left;width:300px'>
                         <input type='checkbox' name='ckb' id='ckb' />
                         <label for='ckb' style='font:13px Arial'>Eu me <b>responsabilizo</b> pela
-                        <b>veracidade</b> desta foto e concordo com os <b><u>termo de uso</u></b> do sistema</label>
+                        <b>veracidade</b> desta foto e concordo com o <b><u>termo de uso</u></b> do sistema</label>
                     </div>
                     <input type='hidden' name='webcam-upload' value='<?=$user->matricula.".png"?>' />
                     <button type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
@@ -76,12 +76,20 @@
     <div class='clear'></div>
 </div><!--content-box-->
 <div class='clearfix'></div>
-<?php $this->script(array('home/enviar_foto',
-                          'home/jquery.webcam',
-                          'home/webcam',
-                          'wm-modal'), false) ?>
+<?php 
 
-<?php $this->style(array('wm-modal'), false) ?>
+    $this->script(
+        [
+            'home/enviar_foto',
+            'home/jquery.webcam',
+            'home/webcam',
+            'wm-modal'
+        ], 
+        false
+    );
+?>
+
+<?php $this->style(['wm-modal'], false) ?>
 
 <?= $this->element('common-alert') ?>
 

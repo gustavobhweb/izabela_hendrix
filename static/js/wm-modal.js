@@ -1,4 +1,4 @@
-function wmDialog(text)
+function wmDialog(text, options)
 {
 
     var $modal = $('#wm-alert').closest('.wm-modal').clone();
@@ -12,9 +12,15 @@ function wmDialog(text)
     this.width = null;
     this.isHTML = false;
     this.btnCancelEnabled = true;
+    this.title = 'Alerta';
 
     this.btnCancel;
     this.btnConfirm;
+
+
+    $.extend(this, options)
+
+    $container.find('.wm-modal-title').html(this.title);
 
     $confirm.click(function(){
         if ($.isFunction(this.onConfirm)) {
@@ -41,10 +47,13 @@ function wmDialog(text)
         }
 
         if (!this.isHTML) {
-            $body.text(text).fadeIn(500, callback);
+            $body.text(text);
         } else {
-            $body.html(text).fadeIn(500, callback);
+            $body.html(text);
         }
+
+        $body.fadeIn(500, callback);
+
 
         $container.height(this.height).width(this.width);
 

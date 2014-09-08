@@ -273,4 +273,29 @@ class Home extends WG_Controller {
         imagepng($im, $dir . $filename);
     }
 
+    public function upload_facebook_photo()
+    {
+        
+        $this->load->library('JsonResponse');
+
+        $ds = DIRECTORY_SEPARATOR;
+        $matricula = $this->session->userdata('matricula');
+        $dir = "static{$ds}imagens{$ds}{$matricula}{$ds}";
+        $filename = 'temp.png';
+        $fullpath = $dir .  $filename;
+
+        $idfacebook = $this->input->post('idfacebook');
+        $fbImage = 'https://graph.facebook.com/'.$idfacebook.'/picture?type=large';
+
+        is_dir($dir) ?: mkdir($dir);
+
+        file_put_contents($fullpath, file_get_contents($fbImage));
+
+        exit(
+            new JsonResponse(
+                compact('fullpath', 'idfacebook')
+            )
+        );
+    }
+
 }

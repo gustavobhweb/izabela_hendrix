@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://izabela/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
