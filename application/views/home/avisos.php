@@ -6,7 +6,7 @@
 
 <div style='float:left;margin:20px 0 0 20px;width:90%'>
 
-    <?php if($avisosNum<=0){?>
+    <?php if(!$avisos){?>
     <div class='j-alert-error'>Nenhum aviso foi encontrado.</div>
     <?php }else{?>
     <div style='margin:10px 0 0 0'>

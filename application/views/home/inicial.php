@@ -6,9 +6,7 @@
 </a><!--solics-->
 <div style='float:left;margin:20px 0 0 20px'>
     
-    <?php if(empty($avisos)): ?>
-        <!-- <div class='j-alert-error'>Nenhum aviso foi encontrado.</div> -->
-    <?php else:?>
+    <?php if(!empty($avisos)): ?>
         <h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
         
         <div style='margin:10px 0 0 0'>
@@ -63,7 +61,7 @@
         <div class='clearG'></div>
     </div><br>
 
-        <a href='<?=base_url("home/acompanhar")?>'><div class='item-solics'>
+        <a href='<?=base_url("home/enviar_foto")?>'><div class='item-solics'>
             <div class='item-line-aviso' style='width:180px'>
                 <p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;width:180px'>Carteira de identidade acadêmica</p>
             </div>
@@ -74,7 +72,9 @@
                 <img src='<?=base_url("static/img/carteira.png")?>' style='margin:-6px 0 0 0' />
             </div>
             <div class='item-line-aviso' style='width:100px'>
-                <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>Liberado</p>
+                <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>
+                    <?= $solicitacoesNum ? "Solicitado" : "Liberado" ?>
+                </p>
             </div>
             <div class='item-line-aviso' style='border:none' style='width:100px'><button style='margin:24px 0 0 0' class='btn-conf-iza' onclick='document.location.href="<?=base_url('home/acompanhar')?>"'>CONTINUAR ></button></div>
             <div class='clearG'></div>

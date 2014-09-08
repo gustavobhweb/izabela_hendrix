@@ -81,12 +81,6 @@ class Home extends WG_Controller {
         $this->load->model('Usuario_Model');
         $this->load->model('Solicitacao_Model');
 
-        if(!$this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true))
-        {
-            redirect('home/enviar_foto');
-        }
-
-
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
