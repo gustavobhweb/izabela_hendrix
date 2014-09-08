@@ -44,7 +44,7 @@
         <div style='width:100%;float:left'>
             <div class='box-img-pessoa' style='float:left'>
                 <p>Nenhuma foto cadastrada</p>
-                <img class='userPhoto after-choice' width='155' height='155' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
+                <img class='userPhoto after-choice' width='161' height='215' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
                 <button class='btn-img-pessoa'>Enviar foto</button>
             </div><!--box-img-pessoa-->
 
@@ -84,6 +84,10 @@
 <?php $this->style(array('wm-modal'), false) ?>
 
 <?= $this->element('common-alert') ?>
+
+<script type="text/javascript">
+window.iduser = <?=$user->matricula?>
+</script>
 
 <?php  if (isset($message)): ?>
 <script>

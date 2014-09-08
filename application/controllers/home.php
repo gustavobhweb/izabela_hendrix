@@ -126,7 +126,6 @@ class Home extends WG_Controller {
         $viewData = array();
         $viewData['user'] = (object)$this->session->all_userdata();
 
-
         $DS = DIRECTORY_SEPARATOR;
         $configs =  array(
           'upload_path'     => FCPATH . "static{$DS}imagens",
@@ -256,21 +255,26 @@ class Home extends WG_Controller {
 
     public function snapwebcam()
     {
+        header('Content-Type: application/json');
         $matricula = $this->session->userdata('matricula');
 
         $dir = 'static/imagens/' . $matricula . '/';
         if (!is_dir($dir)) mkdir($dir, 0777);
         $filename = 'temp.png';
-        $fullurl = $dir.$filename;
+        $fullurl = $dir . $filename;
 
-        list($width, $height) = getimagesize($fullurl);
+        $imgstr = base64_decode($this->input->post('file'));
+        list($width, $height) = getimagesizefromstring($imgstr);
 
-        $im = imagecreatefromstring(base64_decode($this->input->post('file')));
+        $dest = imagecreatetruecolor(161, 215);
+        $im = imagecreatefromstring($imgstr);
 
-        $dest = imagecreatetruecolor(width, height);
-        // imagecopyresampled($dest, $im, dst_x, dst_y, src_x, src_y, dst_w, dst_h, src_w, src_h);
+        $nw = (215 * $width) / $height;
 
-        imagepng($im, $dir . $filename);
+        imagecopyresampled($dest, $im, 0, 0, 138, 0, 161, 215, $width - $nw, $height);
+
+        imagepng($dest, $fullurl);
+        echo json_encode(true);
     }
 
 }
