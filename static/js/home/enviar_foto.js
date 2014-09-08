@@ -11,6 +11,7 @@ $(function(){
 		$('.modal-photo').fadeIn();
 	});
 	$('.btn-close-box').click(function(){
+        $('.return-modal-menu').click();
 		$('.modal-photo').fadeOut();
 	});
 
@@ -24,10 +25,9 @@ $(function(){
         });
     });
 
-    $('#return-modal-menu').click(function(){
-    	$('#webcam').fadeOut(400, function(){
-    		$('#enviar-foto').fadeIn();
-    	})
-
+    $(document).on('click', '.return-modal-menu', function(){
+        $('#webcam').fadeOut(400, function(){
+            $('#enviar-foto').fadeIn();
+        });
     });
 });

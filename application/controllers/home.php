@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 class Home extends WG_Controller {
@@ -32,7 +32,7 @@ class Home extends WG_Controller {
                 $viewData['error'] = 'CPF ou matrícula estão incorretos.';
             }
         }
-        
+
         $this->output->render('home/login', $viewData);
     }
 
@@ -55,8 +55,8 @@ class Home extends WG_Controller {
             $viewData['solicitacoes'][$k]->status = $this->Solicitacao_Model->selectNameStatus($viewData['solicitacoes'][$k]->tbl_status_cod_status);
         }
 
-        $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);     
-        
+        $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);
+
         $this->output->render('home/inicial', $viewData);
     }
 
@@ -105,7 +105,7 @@ class Home extends WG_Controller {
         $viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
         $viewData['user'] = (object)$this->session->all_userdata();
 
-        $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);     
+        $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);
 
         $this->output->render('home/acomp', $viewData);
     }
@@ -125,7 +125,7 @@ class Home extends WG_Controller {
 
         $viewData = array();
         $viewData['user'] = (object)$this->session->all_userdata();
-        
+
 
         $DS = DIRECTORY_SEPARATOR;
         $configs =  array(
@@ -186,19 +186,19 @@ class Home extends WG_Controller {
         }
 
         $authID = $this->session->userdata('matricula');
-        
+
         $path =  FCPATH . '/static/imagens/';
-        
+
         if (!is_dir($path)) mkdir($path, 0777);
-        
+
         $imageFormatName = $path . $authID . '.png';
-        
+
         $imageName = sprintf($imageFormatName, '');
 
         imagepng($im, $imageName);
         imagedestroy($im);
     }
-    
+
     public function aviso($cod)
     {
         $this->load->model('Usuario_Model');
@@ -207,7 +207,7 @@ class Home extends WG_Controller {
         $this->Usuario_Model->authenticate();
 
         $viewData = array();
-        
+
         $viewData['aviso'] = $this->Aviso_Model->find($cod);
 
         $this->Aviso_Model->update(
@@ -252,6 +252,25 @@ class Home extends WG_Controller {
         ];
 
         $this->Usuario_Model->save($user2);
+    }
 
-    }    
+    public function snapwebcam()
+    {
+        $matricula = $this->session->userdata('matricula');
+
+        $dir = 'static/imagens/' . $matricula . '/';
+        if (!is_dir($dir)) mkdir($dir, 0777);
+        $filename = 'temp.png';
+        $fullurl = $dir.$filename;
+
+        list($width, $height) = getimagesize($fullurl);
+
+        $im = imagecreatefromstring(base64_decode($this->input->post('file')));
+
+        $dest = imagecreatetruecolor(width, height);
+        // imagecopyresampled($dest, $im, dst_x, dst_y, src_x, src_y, dst_w, dst_h, src_w, src_h);
+
+        imagepng($im, $dir . $filename);
+    }
+
 }

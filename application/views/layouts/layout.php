@@ -5,16 +5,19 @@
         <?php
 
             echo $this->script(array(
-                    'jquery-1.10.2.min',
-                    'jquery.mask.min'
+                    'jquery-1.11.0.min',
+                    'jquery.mask.min',
+                    'jquery.Jcrop.min',
+                    'imgSelect.min'
                 ));
 
             echo $this->fetch('scripts');
 
             echo $this->style(array(
-                    'style_izabela'
+                    'style_izabela',
+                    'imgSelect'
                 ));
-            
+
             echo $this->fetch('styles');
         ?>
         <script type="text/javascript">
