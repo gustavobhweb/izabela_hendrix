@@ -2,7 +2,7 @@ function refreshImg(_this)
 {
     var imageFile = _this.files[0];
     var url = window.URL.createObjectURL(imageFile);
-   	$('.userPhoto').attr('src', url);
+   	$('.userPhoto').attr({'src': url, 'data-selected': 'true'});
    	$('.modal-photo').fadeOut();
 }
 
@@ -39,11 +39,33 @@ $(function(){
     $('#form-cadastrar-solicitacao').submit(function(e){
         e.preventDefault();
 
+
+        if (!$('#ckb').is(':checked')) {
+            new wmDialog('Você deve concordar deve os termos', {
+                height:230,
+                width: 330,
+                btnCancelEnabled: false
+            }).open();
+
+            return;
+        }
+
+        if ($('.userPhoto').attr('data-selected') == 'false') {
+            new wmDialog('Você deve selecionar a foto', {
+                height:230,
+                width: 330,
+                btnCancelEnabled: false
+            }).open();
+            return;
+        }
+
         var input = $('<input/>', {
             class: "wm-input input-large",
             placeholder: "Digite o seu e-mail antes de enviar a foto"
 
         });
+
+
 
         var dialog = new wmDialog(input, {
             isHTML: true, 
