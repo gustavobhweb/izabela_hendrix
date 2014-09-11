@@ -66,9 +66,10 @@
                         <b>veracidade</b> desta foto e concordo com o <b><u>termo de uso</u></b> do sistema</label>
                     </div>
                     <input type='hidden' name='webcam-upload' value='<?=$user->matricula.".png"?>' />
-                    <button type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
+                    <button id="submit-solicitacao" type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
                     <button type='button' onclick='document.location.href="<?=base_url('home/inicial')?>"' class='btn-cancel-iza'>CANCELAR</button>
                     <input type="hidden" name='tmp_image' value="<?=$this->input->post('tmp_image')?>" />
+                    <input type="hidden" name='email' id="hidden-email" />
                 </form>
             </div>
         </div>

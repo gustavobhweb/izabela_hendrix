@@ -21,7 +21,7 @@ $(function(){
         var src = $('.userPhoto.preview-modal').attr('src');
 
         $('.modal-photo').fadeOut(400, function(){
-        	$('.userPhoto.after-choice').attr('src', src);
+        	$('.userPhoto').attr({'src': src, 'data-selected' : 'true'});
         	$(':hidden[name=tmp_image]').val(src);
         });
     });
@@ -36,8 +36,11 @@ $(function(){
         $.getScript('/static/js/fb.js');
     });
 
-    $('#form-cadastrar-solicitacao').submit(function(e){
+
+    $('#submit-solicitacao').click(function(e){
         e.preventDefault();
+
+        var $form = $('#form-cadastrar-solicitacao');
 
 
         if (!$('#ckb').is(':checked')) {
@@ -47,7 +50,7 @@ $(function(){
                 btnCancelEnabled: false
             }).open();
 
-            return;
+            return false;
         }
 
         if ($('.userPhoto').attr('data-selected') == 'false') {
@@ -56,23 +59,33 @@ $(function(){
                 width: 330,
                 btnCancelEnabled: false
             }).open();
-            return;
+
+            return false;
         }
 
-        var input = $('<input/>', {
-            class: "wm-input input-large",
-            placeholder: "Digite o seu e-mail antes de enviar a foto"
-
-        });
+        var html = '<small>Insira seu <b>e-mail válido</b> para realizar o acompanhamento da entrega da sua\
+                    solicitação de carteira de identificação acadêmica.</small><br><br>'
+            html += '<input type="email" id="confirm-send-with-mail" placeholder="seulogin@site.com" class="wm-input input-large" >';
 
 
-
-        var dialog = new wmDialog(input, {
+        var dialog = new wmDialog(html, {
             isHTML: true, 
             width: 350,
             height: 240,
             btnCancelEnabled: false,
-            title: 'Insira o seu e-mail'
+            title: 'Insira o seu e-mail',
+            onConfirm: function(btn) {
+                var $input = $('#confirm-send-with-mail');
+                var $email = $("#hidden-email");
+                var value = $input.val();
+
+                if (value && $input.is(':valid')) {
+                    $email.val(value);
+                    $form.submit();
+                } else {
+                    $input.focus();
+                }
+            }
         });
 
 

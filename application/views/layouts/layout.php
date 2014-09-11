@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset='utf-8'>
+        <script src="/home/js_info?varname=_INFO_"></script>
+        <script>_INFO_ = _INFO_ || {};</script>
         <?php
 
             echo $this->script(array(
@@ -21,20 +23,26 @@
             echo $this->fetch('styles');
         ?>
         <script type="text/javascript">
-        $(document).ready(function(){
+        $(function(){
             var sair = 0;
             $('.minha-conta').click(function(){
-                if(sair)
-                {
+                if(sair) {
                     sair = 0;
                     $('.sair-link').fadeOut();
-                }
-                else
-                {
+                } else {
                     sair = 1;
                     $('.sair-link').fadeIn();
                 }
             });
+
+            if(!_INFO_.numero_solicitacoes){
+                
+                $('.contador.solicitacoes').hide();
+            } else {    
+                $('.contador.solicitacoes').html(_INFO_.numero_solicitacoes);
+            }
+
+
         });
         </script>
 
@@ -56,7 +64,7 @@
                         <ul>
                             <li><a href='<?=base_url("home/inicial")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
                             <li><a href='<?=base_url("home/avisos")?>'><img src='<?=base_url("static/img/icon-avisos.png")?>' /> Avisos</a></li>
-                            <li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar minhas solicitações</a></li>
+                            <li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar solicitações <span class="contador solicitacoes"></span></a></li>
                         </ul>
                     </div><!--menu-->
                 </div>

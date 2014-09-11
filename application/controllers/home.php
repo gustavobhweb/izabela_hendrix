@@ -302,4 +302,22 @@ class Home extends WG_Controller {
         );
     }
 
+    public function js_info()
+    {
+        $this->load->library('JsonResponse');
+        $this->load->model('Solicitacao_Model');
+
+        $cod_usuario = $this->session->userdata('cod_usuario');
+        $numero_solicitacoes = $this->Solicitacao_Model->select($cod_usuario, true);
+
+
+        exit(
+            sprintf(
+                'var %s = %s',
+                $this->input->get('varname') ?: '_GLOBAL_',
+                new JsonResponse(get_defined_vars())
+            )
+        );
+    }
+
 }
