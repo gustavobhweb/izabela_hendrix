@@ -14,7 +14,7 @@
             echo $this->style(array(
                     'style_izabela'
                 ));
-            
+
             echo $this->fetch('styles');
         ?>
         <script type="text/javascript">

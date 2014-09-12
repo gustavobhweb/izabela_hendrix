@@ -13,22 +13,30 @@
             </div>
 
             <div id='webcam' style='display:none'>
-
                 <div id="imgselect_container">
                     <button type="button" class="btn btn-success imgs-webcam" style="display:none">Webcam</button> <!-- .imgs-webcam -->
 
-                    <div style="position:relative;width:287px;height:215px;margin:0 auto">
+                    <div style="position:relative;width:287px;height:215px;margin:20px auto">
                         <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
                         <div style="position:absolute;background:#EEEEEF;left:0;top:0;width:69px;height:215px"></div>
                         <div style="position:absolute;background:#EEEEEF;right:0;top:0;width:69px;height:215px"></div>
                     </div>
 
-                    <div style="width:100%;float:left;margin: 10px 0 0 0;position:relative;z-index:999999">
+                    <div style="margin: 20px auto;position:relative;z-index:999999;width:180px">
                         <button class="btn-conf-iza imgs-capture btn-capture">Tirar foto</button>
                         <button class="btn-cancel-iza imgs-cancel btn-cancel-webcam return-modal-menu">Voltar</button>
                     </div>
                 </div>
-            </div>
+            </div><!-- #webcam -->
+
+            <div id='crop' style='display:none'>
+                <div class="jcrop">
+                    <div class="cropMain"></div>
+                    <div class="cropSlider"></div>
+                </div>
+                <button class="btn-cancel-iza return-modal-menu">Voltar</button>
+                <button class="btn-conf-iza btn-make-crop">Salvar</button>
+            </div><!-- #crop -->
             <div class='clear'></div>
         </div><!--content-modal-photo-->
     </div><!--box-photo-->
@@ -44,7 +52,7 @@
         <div style='width:100%;float:left'>
             <div class='box-img-pessoa' style='float:left'>
                 <p>Nenhuma foto cadastrada</p>
-                <img class='userPhoto after-choice' width='161' height='215' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
+                <img class='userPhoto after-choice' style='border-radius:10px' width='161' height='215' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
                 <button class='btn-img-pessoa'>Enviar foto</button>
             </div><!--box-img-pessoa-->
 
@@ -76,16 +84,15 @@
     <div class='clear'></div>
 </div><!--content-box-->
 <div class='clearfix'></div>
-<?php 
+<?php
 
-    $this->script(
-        [
+    $this->script([
             'home/enviar_foto',
             'home/jquery.webcam',
             'home/webcam',
             'wm-modal'
-        ], 
-        false
+    ],
+    false
     );
 ?>
 

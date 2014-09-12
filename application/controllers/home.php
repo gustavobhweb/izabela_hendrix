@@ -279,7 +279,7 @@ class Home extends WG_Controller {
 
     public function upload_facebook_photo()
     {
-        
+
         $this->load->library('JsonResponse');
 
         $ds = DIRECTORY_SEPARATOR;
@@ -300,6 +300,41 @@ class Home extends WG_Controller {
                 compact('fullpath', 'idfacebook')
             )
         );
+    }
+
+    public function cropimage()
+    {
+        header('Content-Type: application/json');
+
+        $imgstr = base64_decode($this->input->post('img'));
+
+        $ds = DIRECTORY_SEPARATOR;
+        $matricula = $this->session->userdata('matricula');
+        $dir = "static{$ds}imagens{$ds}{$matricula}{$ds}";
+        $filename = 'temp.png';
+        $fullpath = $dir .  $filename;
+
+        if (!is_dir($dir)) mkdir($dir);
+
+        list($width, $height) = getimagesizefromstring($imgstr);
+
+        $dest = imagecreatetruecolor(161, 215);
+        $im = imagecreatefromstring($imgstr);
+
+        $x = $this->input->get('x');
+        $y = $this->input->get('y');
+        $w = $this->input->get('w');
+        $h = $this->input->get('h');
+
+        $nh = 215;
+        $nw = ($nh * $width) / $height;
+
+        //imagecopyresampled($dest, $im, 0, 0, $x - 6, $y, 161, 215, $w + 12, 215);
+        imagecopyresampled($dest, $im, 0, 0, $x, $y, 161, 215, $w+12, $h);
+
+        imagepng($dest, $fullpath);
+
+        echo json_encode(['url' => base_url($fullpath)]);
     }
 
 }

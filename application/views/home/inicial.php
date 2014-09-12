@@ -5,10 +5,10 @@
     </div>
 </a><!--solics-->
 <div style='float:left;margin:20px 0 0 20px'>
-    
+
     <?php if(!empty($avisos)): ?>
         <h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
-        
+
         <div style='margin:10px 0 0 0'>
             <div class='head-item' style='width:100px'>Status</div>
             <div class='head-item' style='width:180px'>Assunto</div>
@@ -56,7 +56,7 @@
         <div class='head-item' style='width:180px'>Produto</div>
         <div class='head-item' style='width:80px'>Modelo</div>
         <div class='head-item' style='width:240px'>Imagem</div>
-        <div class='head-item' style='width:100px'>Status do modelo</div>
+        <div class='head-item' style='width:100px'>Situação</div>
         <div class='head-item' style='width:100px'>Selecionar</div>
         <div class='clearG'></div>
     </div><br>
