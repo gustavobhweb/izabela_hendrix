@@ -5,7 +5,7 @@
 
 <?php if (!$solicitacoes) {?>
 <div class='j-alert-error' style="float:left;margin:25px 0 0 15px">
-    Nenhuma solicitação foi enviada. 
+    Nenhuma solicitação foi enviada.
     <a href='<?=base_url("home/enviar_foto")?>'>
         <button class="btn-conf-iza">Enviar solicitação</button>
     </a>
@@ -23,12 +23,10 @@
 
     <div style='float:left'>
         <div style='float:left;margin:30px 0 0 30px'>
-            <div style='width:300px;height:189px;background:url(<?=base_url("static/img/frente-carteira.png")?>) no-repeat;float:left'>
-
-                <img src='<?=base_url("static/imagens/".$solicitacao->foto)?>' width='78' height='102' style='float:right;margin:8px 10px 0 0;border-radius:.3em' />
-
+            <div style='width:300px;height:192px;background:url(<?=base_url("static/img/frente-carteira_" . $user->tbl_modelos_cod_modelo . ".png")?>) no-repeat;float:left'>
+                <img src='<?=base_url("static/imagens/" . $solicitacao->foto)?>' width='82' height='110' style='float:right;margin:12px 14px 0 0;border-radius:.3em' />
             </div>
-            <img src='<?=base_url("static/img/verso-carteira.png")?>' style='float:left;margin:0 0 0 15px' />
+            <img src='<?=base_url("static/img/verso-carteira_" . $user->tbl_modelos_cod_modelo . ".png")?>' width='300' height='192' style='float:left;margin:0 0 0 15px' />
 
             <div style='border-left:1px solid #aaaaaa;background:#0061B2;margin:0px 0 0 0;float:left;margin:0 0 0 30px;padding:20px 8px'>
                 <img src='<?=base_url("static/img/alert.png")?>' style='float:left' />

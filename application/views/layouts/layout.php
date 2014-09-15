@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset='utf-8'>
+        <script src="/home/js_info?varname=_INFO_"></script>
+        <script>_INFO_ = _INFO_ || {};</script>
         <?php
 
             echo $this->script(array(
@@ -24,23 +26,28 @@
             echo $this->fetch('styles');
         ?>
         <script type="text/javascript">
-        $(document).ready(function(){
+        $(function(){
             var sair = 0;
             $('.minha-conta').click(function(){
-                if(sair)
-                {
+                if(sair) {
                     sair = 0;
                     $('.sair-link').fadeOut();
-                }
-                else
-                {
+                } else {
                     sair = 1;
                     $('.sair-link').fadeIn();
                 }
             });
+
+            if(!_INFO_.numero_solicitacoes){
+
+                $('.contador.solicitacoes').hide();
+            } else {
+                $('.contador.solicitacoes').html(_INFO_.numero_solicitacoes);
+            }
+
         });
         </script>
-
+        <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png"/>
         <title>Izabela Hendrix</title>
     </head>
     <body>
@@ -54,15 +61,16 @@
                 </a>
                 <div style='width:220px;float:left;margin:30px 0 0 40px'>
                     <h1 style='font:22px Arial;color:#0865AE'>Olá, <?=$user->nome?>!</h1>
-                    <p style='font:13px Arial;color:#777777'>Nivel Aluno</p>
+                    <p style='font:13px Arial;color:#777777'>Nível aluno (<?=$user->modelo?>)</p>
                     <div class='line' style='margin:10px 0 0 0'></div>
                     <div class='menu'>
                         <ul>
                             <li><a href='<?=base_url("home/inicial")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
                             <li><a href='<?=base_url("home/avisos")?>'><img src='<?=base_url("static/img/icon-avisos.png")?>' /> Avisos</a></li>
-                            <li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar minhas solicitações</a></li>
+                            <li><a href='<?=base_url("home/acompanhar")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Acompanhar solicitações <span class="contador solicitacoes"></span></a></li>
                         </ul>
                     </div><!--menu-->
+                    <img src='<?=base_url("static/img/carteira_" . $user->tbl_modelos_cod_modelo . ".png")?>' style='margin:20px 0 0 0' width='220' />
                 </div>
             </div><!--left-menu-box-->
 

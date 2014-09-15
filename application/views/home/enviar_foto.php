@@ -30,10 +30,7 @@
             </div><!-- #webcam -->
 
             <div id='crop' style='display:none'>
-                <div class="jcrop">
-                    <div class="cropMain"></div>
-                    <div class="cropSlider"></div>
-                </div>
+                <div class="jcrop"></div>
                 <button class="btn-cancel-iza return-modal-menu">Voltar</button>
                 <button class="btn-conf-iza btn-make-crop">Salvar</button>
             </div><!-- #crop -->
@@ -52,7 +49,7 @@
         <div style='width:100%;float:left'>
             <div class='box-img-pessoa' style='float:left'>
                 <p>Nenhuma foto cadastrada</p>
-                <img class='userPhoto after-choice' style='border-radius:10px' width='161' height='215' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
+                <img data-selected='false' class='userPhoto after-choice' width='161' height='215' src='<?= ($tmp_image = $this->input->post('tmp_image')) ? $tmp_image : base_url("static/img/user.png")?>' />
                 <button class='btn-img-pessoa'>Enviar foto</button>
             </div><!--box-img-pessoa-->
 
@@ -67,16 +64,18 @@
                 </div><!--alert-send-image-->
                 <img src='<?=base_url("static/img/especifica.png")?>' />
                 <form id="form-cadastrar-solicitacao" method='post' enctype='multipart/form-data' style='width:780px;margin:5px 0 0 0;float:left'>
-                    <input type='file' onchange='refreshImg(this)' name='userfile' id='userfile' style='display:none' />
+                    <input type='file' onchange='refreshImg($(this))' name='userfile' id='userfile' style='display:none' />
                     <div style='float:left;width:300px'>
                         <input type='checkbox' name='ckb' id='ckb' />
                         <label for='ckb' style='font:13px Arial'>Eu me <b>responsabilizo</b> pela
                         <b>veracidade</b> desta foto e concordo com o <b><u>termo de uso</u></b> do sistema</label>
                     </div>
                     <input type='hidden' name='webcam-upload' value='<?=$user->matricula.".png"?>' />
-                    <button type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
+                    <button id="submit-solicitacao" type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
                     <button type='button' onclick='document.location.href="<?=base_url('home/inicial')?>"' class='btn-cancel-iza'>CANCELAR</button>
                     <input type="hidden" name='tmp_image' value="<?=$this->input->post('tmp_image')?>" />
+                    <input type="hidden" name='email' id="hidden-email" />
+                    <input type="hidden" name="sended" value="sended" />
                 </form>
             </div>
         </div>
@@ -103,15 +102,3 @@
 <script type="text/javascript">
 window.iduser = <?=$user->matricula?>
 </script>
-
-<?php  if (isset($message)): ?>
-<script>
-var text = <?=json_encode($message)?>
-
-$(function(){
-    var alert = new wmDialog(text);
-    alert.btnCancelEnabled = false;
-    alert.open();
-});
-</script>
-<?php endif ?>

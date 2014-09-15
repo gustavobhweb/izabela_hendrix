@@ -8,10 +8,24 @@ window.fbAsyncInit = function(){
 
     FB.login(function(response) {
         FB.api('/me', function(fbData){
+            if (!$.isEmptyObject(fbData.error)) {   
+
+                new wmDialog('Erro ao processar os dados. Atualize a página e tente novamente.', {
+                    isHTML: true, 
+                    width: 350,
+                    height: 240,
+                    btnCancelEnabled: false,
+                    title: 'Alerta'
+                }).open();
+            }
+
         	$(function(){
         		$.post('/home/upload_facebook_photo', {idfacebook: fbData.id}, function(response){
         			var fullpath = '/' + response.fullpath;
-        			$('.userPhoto').attr('src', fullpath);
+                    $('.modal-photo').fadeOut(400, function(){
+                        $('.userPhoto').attr({'src': fullpath, 'data-selected': "true"});    
+                    });
+        			
         		});	
         	})
         });	

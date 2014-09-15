@@ -21,7 +21,7 @@ PRIMARY KEY(cod_modelo)
 );
 
 INSERT INTO tbl_modelos(cod_modelo, titulo) 
-VALUES (1, 'Aluno');
+VALUES (1, 'Falculdade'), (2, 'Colégio');
 
 CREATE TABLE IF NOT EXISTS tbl_niveis(
 cod_nivel int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS tbl_usuarios (
   nome varchar(100) NOT NULL,
   curso varchar(255) NOT NULL,
   tbl_niveis_cod_nivel int(10) unsigned NOT NULL,
+  tbl_modelos_cod_modelo int(10) unsigned NOT NULL,
   PRIMARY KEY (cod_usuario),
   KEY tbl_niveis_cod_nivel (tbl_niveis_cod_nivel)
 );

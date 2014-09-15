@@ -1,4 +1,4 @@
-    *{margin:0;padding:0}
+*{margin:0;padding:0}
 body{
     font-family: Arial;
 }
@@ -30,7 +30,7 @@ body{
 .left-menu-box .logo-tmt-box{margin:20px 0 0 40px;float:left;}
 .left-menu-box .logo-izabela-box{margin:20px 0 0 40px;float:left;}
 
-.solics{width:429px;height:73px;border-right:1px dotted #aaaaaa;padding:10px 0 0 0;float:left;margin:20px 0 0 20px}
+.solics{width:429px;height:73px;padding:10px 0 0 0;float:left;margin:20px 0 0 20px}
 .solics:hover{background: url(../img/solics.png)}
 .solics:hover h1{color:#fff;}
 .solics h1{float:right;margin:10px 0 0 0;font:26px arial;color:#005FB2;font-weight: bolf}
@@ -129,7 +129,7 @@ body{
 .btn-file-photo:hover{opacity:.8}
 .btn-fb-photo:hover{opacity:.8}
 #descricao-nome-curso{
-    width:240px;
+    width:270px;
     color:#0865AE;
     font-size:20px;font-weight:bold;
     text-align:right;
@@ -309,3 +309,12 @@ div.img-show--close{
     text-align: center;
 }
 
+.contador{
+    background: red;
+    padding: 5px;
+    border-radius:5px;
+    color:white;
+    font-weight: bold;
+    font-size: 10px;
+    float: right;
+}

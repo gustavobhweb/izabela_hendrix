@@ -1,6 +1,6 @@
 function wmDialog(text, options)
 {
-
+    options = options || {};
     var $modal = $('#wm-alert').closest('.wm-modal').clone();
     var $body = $modal.find('.wm-modal-body');
     var $container = $modal.find('#wm-alert');
@@ -23,8 +23,8 @@ function wmDialog(text, options)
     $container.find('.wm-modal-title').html(this.title);
 
     $confirm.click(function(){
-        if ($.isFunction(this.onConfirm)) {
-            this.onConfirm(this);
+        if ($.isFunction(options.onConfirm)) {
+            options.onConfirm(this);
         } else {
             $modal.fadeOut();
         }

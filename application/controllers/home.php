@@ -53,6 +53,7 @@ class Home extends WG_Controller {
 
         foreach ($viewData['solicitacoes'] as $k => $v) {
             $viewData['solicitacoes'][$k]->status = $this->Solicitacao_Model->selectNameStatus($viewData['solicitacoes'][$k]->tbl_status_cod_status);
+            $viewData['solicitacoes'][$k]->modelo = $this->Solicitacao_Model->selectNameModelo($viewData['solicitacoes'][$k]->tbl_modelos_cod_modelo);
         }
 
         $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);
@@ -126,45 +127,31 @@ class Home extends WG_Controller {
         $viewData = array();
         $viewData['user'] = (object)$this->session->all_userdata();
 
-        $DS = DIRECTORY_SEPARATOR;
-        $configs =  array(
-          'upload_path'     => FCPATH . "static{$DS}imagens",
-          'allowed_types'   => 'jpg|png|jpeg',
-          'overwrite'       => true,
-          'file_name'       => $this->session->userdata('matricula')
-        );
-
-        $this->load->library('upload', $configs);
-
         if($_POST && !$this->input->post('ckb')) {
             $viewData['message'] = 'Aceite os termos de uso!';
-        } elseif(isset($_FILES['userfile'])) {
-            $_FILES['userfile']['name'] = strtolower($_FILES['userfile']['name']);
+        } elseif($this->input->post('sended')) {
 
-            if(!$this->upload->do_upload('userfile')) {
-               $nameFile = $this->input->post('webcam-upload');
-                $solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
-                $this->Solicitacao_Model->save($solicitacao);
-                redirect('home/acompanhar');
-            } else {
-                $nameFile = $this->session->userdata('matricula').'.'.pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
-                $solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
-                $this->Solicitacao_Model->save($solicitacao);
+            $ds = DIRECTORY_SEPARATOR;
+            $tempFile = FCPATH . "{$ds}static{$ds}imagens{$ds}" . $viewData['user']->matricula . "{$ds}temp.png";
+            $nameFile = md5(microtime()) . '.png';
+            $newName = FCPATH . "{$ds}static{$ds}imagens{$ds}" . $viewData['user']->matricula . "{$ds}" . $nameFile;
+            rename($tempFile, $newName);
 
-                $aviso = array();
-                $aviso['assunto'] = 'Solicitação realizada';
-                $aviso['remetente'] = 'Grupo TMT';
-                $aviso['mensagem'] = 'A sua solicitação de carteira estudantil foi enviada com sucesso! Aguarde pela aprovação de sua foto.';
-                $aviso['usuario'] = $this->Usuario_Model->select($this->session->userdata('cod_usuario'));
-                //$this->Aviso_Model->save($aviso);
-
-                redirect('home/acompanhar');
-                exit;
-            }
-        } elseif($this->input->post('webcam-upload')) {
-            $nameFile = $this->input->post('webcam-upload');
-            $solicitacao = array('foto' => $nameFile, 'email' => $this->input->post('email'));
+            $solicitacao = array(
+                'foto' => $viewData['user']->matricula . '/' . $nameFile,
+                'email' => $this->input->post('email'),
+                'tbl_modelos_cod_modelo' => $viewData['user']->tbl_modelos_cod_modelo
+            );
             $this->Solicitacao_Model->save($solicitacao);
+
+            $aviso = array();
+            $aviso['assunto'] = 'Solicitação realizada';
+            $aviso['remetente'] = 'Grupo TMT';
+            $aviso['mensagem'] = 'A sua solicitação de carteira estudantil foi enviada com sucesso! Aguarde pela aprovação de sua foto.';
+            $aviso['usuario'] = $this->Usuario_Model->select($this->session->userdata('cod_usuario'));
+
+            redirect('home/acompanhar');
+            exit;
         }
 
         $this->output->render('home/enviar_foto', $viewData);
@@ -233,6 +220,8 @@ class Home extends WG_Controller {
         $user['matricula'] = '111111';
         $user['nome'] = 'Gustavo Carmo';
         $user['nivel'] = 1;
+        $user['curso'] = 'Engenharia da computação';
+        $user['tbl_modelos_cod_modelo'] = 1;
         $this->Usuario_Model->save($user);
 
         $user1 = array();
@@ -329,12 +318,28 @@ class Home extends WG_Controller {
         $nh = 215;
         $nw = ($nh * $width) / $height;
 
-        //imagecopyresampled($dest, $im, 0, 0, $x - 6, $y, 161, 215, $w + 12, 215);
         imagecopyresampled($dest, $im, 0, 0, $x, $y, 161, 215, $w+12, $h);
 
         imagepng($dest, $fullpath);
 
         echo json_encode(['url' => base_url($fullpath)]);
+    }
+
+    public function js_info()
+    {
+        $this->load->library('JsonResponse');
+        $this->load->model('Solicitacao_Model');
+
+        $cod_usuario = $this->session->userdata('cod_usuario');
+        $numero_solicitacoes = $this->Solicitacao_Model->select($cod_usuario, true);
+
+        exit(
+            sprintf(
+                'var %s = %s',
+                $this->input->get('varname') ?: '_GLOBAL_',
+                new JsonResponse(get_defined_vars())
+            )
+        );
     }
 
 }

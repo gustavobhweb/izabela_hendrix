@@ -36,8 +36,7 @@
         </div>
         <div class='item-line-aviso' style='width:180px'>
             <p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0;width:180px;font-style:italic'><?php
-                if(strlen($aviso->mensagem) > 30)
-                {
+                if (mb_strlen($aviso->mensagem, 'utf-8') > 30) {
                     $aviso->mensagem = substr($aviso->mensagem, 0, 30).'...';
                 }
                 echo $aviso->mensagem;

@@ -69,11 +69,11 @@
                 <p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0'>Aluno</p>
             </div>
             <div class='item-line-aviso' style='width:240px'>
-                <img src='<?=base_url("static/img/carteira.png")?>' style='margin:-6px 0 0 0' />
+                <img src='<?=base_url("static/img/carteira_" . $user->tbl_modelos_cod_modelo . ".png")?>' style='margin:-6px 0 0 0' />
             </div>
             <div class='item-line-aviso' style='width:100px'>
-                <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:30px 0 0 0;font-style:italic'>
-                    <?= $solicitacoesNum ? "Solicitado" : "Liberado" ?>
+                <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:20px 0 0 0;font-style:italic'>
+                    <?= $solicitacoesNum ? "Sua solicitação já foi enviada." : "Liberado" ?>
                 </p>
             </div>
             <div class='item-line-aviso' style='border:none' style='width:100px'><button style='margin:24px 0 0 0' class='btn-conf-iza' onclick='document.location.href="<?=base_url('home/acompanhar')?>"'>CONTINUAR ></button></div>
