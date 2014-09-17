@@ -1,4 +1,7 @@
 <div class='modal-photo'>
+    <div id="avisopermitir" style="width:100%;display:none;height:52px;background:#1558A7;position:fixed;top:0px;left:0">
+        <img style="float:left; margin:4px 0 0 279px" src="<?=base_url('static/img/permitirwebcam.png')?>" />
+    </div>
     <div class='box-photo'>
         <div class='btn-close-box'></div>
         <div class='header-modal-photo'>
@@ -13,7 +16,8 @@
             </div>
 
             <div id='webcam' style='display:none'>
-                <div id="imgselect_container">
+                <div id="waitcam" style="width:374px;height:347px;background:url(<?=base_url('static/img/waitcam.jpg')?>);margin:0 auto"></div>
+                <div id="imgselect_container" style="display:none">
                     <button type="button" class="btn btn-success imgs-webcam" style="display:none">Webcam</button> <!-- .imgs-webcam -->
 
                     <div style="position:relative;width:287px;height:215px;margin:20px auto">
@@ -26,7 +30,7 @@
                         <button class="btn-conf-iza imgs-capture btn-capture">Tirar foto</button>
                         <button class="btn-cancel-iza imgs-cancel btn-cancel-webcam return-modal-menu">Voltar</button>
                     </div>
-                </div>
+                </div><!-- #imgselect_container -->
             </div><!-- #webcam -->
 
             <div id='crop' style='display:none'>

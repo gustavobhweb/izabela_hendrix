@@ -39,7 +39,6 @@
             });
 
             if(!_INFO_.numero_solicitacoes){
-
                 $('.contador.solicitacoes').hide();
             } else {
                 $('.contador.solicitacoes').html(_INFO_.numero_solicitacoes);
