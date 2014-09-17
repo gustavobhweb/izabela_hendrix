@@ -1,3 +1,5 @@
+var i =0;
+var reader = new window.FileReader();
 function refreshImg(_this)
 {
     var ext = _this.val().split('.').slice(-1)[0];
@@ -10,12 +12,12 @@ function refreshImg(_this)
             var url = window.URL.createObjectURL(imageFile);
 
             $('.jcrop').html('<div class="cropMain"></div><div class="cropSlider"></div>');
-            one = new CROP();
+            var one = new CROP();
             one.init('.jcrop');
             one.loadImg(url);
-
+            var reader = new window.FileReader();
             $('.btn-make-crop').click(function(){
-                var reader = new window.FileReader();
+                if (typeof(imageFile) == 'undefined' || imageFile == null) imageFile = _this.prop('files')[0];
                 reader.readAsDataURL(imageFile);
                 reader.onloadend = function() {
                     var base64data = reader.result;
@@ -41,6 +43,7 @@ function refreshImg(_this)
                             alert('Problemas na conexão!');
                         }
                     });
+                    imageFile = null;
                 }
             });
         });
@@ -78,23 +81,11 @@ $(function(){
     });
 
     $(document).on('click', '.return-modal-menu', function(){
-        $('#webcam').fadeOut(400, function(){
-            $('#enviar-foto').fadeIn();
-        });
-        $('#crop').fadeOut(400, function(){
+        $('#webcam, #crop').fadeOut(0, function(){
             $('#enviar-foto').fadeIn();
         });
     });
-<<<<<<< HEAD
-    
-=======
 
-    $('.btn-fb-photo').click(function(){
-        $.getScript('/static/js/fb.js');
-    });
-
-
->>>>>>> 32adf42d9725f6664ea2802002ff62f55847144c
     $('#submit-solicitacao').click(function(e){
         e.preventDefault();
 
