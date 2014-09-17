@@ -9,7 +9,7 @@ class Solicitacao_Model extends CI_Model{
         'foreignKey' => 'tbl_usuarios_cod_usuario',
         'primaryKey' => 'cod_usuario'
     ];
-    
+
     public function select($args, $num = null)
     {
         if(is_null($args))
@@ -54,7 +54,7 @@ class Solicitacao_Model extends CI_Model{
     public function save($solicitacao)
     {
         $solicitacao = (object)$solicitacao;
-        
+
         $qr = "INSERT INTO {$this->table}(cod_solicitacao,
                                           foto,
                                           email,
@@ -71,6 +71,13 @@ class Solicitacao_Model extends CI_Model{
     public function selectNameStatus($cod)
     {
         $qr = 'SELECT titulo FROM tbl_status WHERE cod_status = ?';
+        $bind = array($cod);
+        return $this->db->query($qr, $bind)->row()->titulo;
+    }
+
+    public function selectNameModelo($cod)
+    {
+        $qr = 'SELECT titulo FROM tbl_modelos WHERE cod_modelo = ?';
         $bind = array($cod);
         return $this->db->query($qr, $bind)->row()->titulo;
     }
@@ -93,7 +100,7 @@ class Solicitacao_Model extends CI_Model{
     private function _whitUser()
     {
         $fk = $this->tableUser['foreignKey'];
-        $user = $this->tableUser['name'];       
+        $user = $this->tableUser['name'];
         $pk = $this->tableUser['primaryKey'];
 
         $query = "SELECT * FROM {$this->table} as s
@@ -117,7 +124,7 @@ class Solicitacao_Model extends CI_Model{
         $query = $this->_whitUser();
         $query .= "WHERE {$fieldname} = '{$value}'";
 
-        return $this->db->query($query)->result_array();    
+        return $this->db->query($query)->result_array();
     }
 
 }

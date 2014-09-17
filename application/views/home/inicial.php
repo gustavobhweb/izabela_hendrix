@@ -5,10 +5,10 @@
     </div>
 </a><!--solics-->
 <div style='float:left;margin:20px 0 0 20px'>
-    
+
     <?php if(!empty($avisos)): ?>
         <h2 style='margin:20px 0 0 0;font:26px Arial;color:black'>Avisos</h2>
-        
+
         <div style='margin:10px 0 0 0'>
             <div class='head-item' style='width:100px'>Status</div>
             <div class='head-item' style='width:180px'>Assunto</div>
@@ -56,7 +56,7 @@
         <div class='head-item' style='width:180px'>Produto</div>
         <div class='head-item' style='width:80px'>Modelo</div>
         <div class='head-item' style='width:240px'>Imagem</div>
-        <div class='head-item' style='width:100px'>Status do modelo</div>
+        <div class='head-item' style='width:100px'>Situação</div>
         <div class='head-item' style='width:100px'>Selecionar</div>
         <div class='clearG'></div>
     </div><br>
@@ -69,7 +69,7 @@
                 <p style='font:14px Arial;color:black;font-weight:bold;margin:30px 0 0 0'>Aluno</p>
             </div>
             <div class='item-line-aviso' style='width:240px'>
-                <img src='<?=base_url("static/img/carteira.png")?>' style='margin:-6px 0 0 0' />
+                <img src='<?=base_url("static/img/carteira_" . $user->tbl_modelos_cod_modelo . ".png")?>' style='margin:-6px 0 0 0' />
             </div>
             <div class='item-line-aviso' style='width:100px'>
                 <p style='font:14px Arial;color:#0060B2;font-weight:bold;margin:20px 0 0 0;font-style:italic'>

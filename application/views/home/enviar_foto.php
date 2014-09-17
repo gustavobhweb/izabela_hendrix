@@ -13,22 +13,27 @@
             </div>
 
             <div id='webcam' style='display:none'>
-
                 <div id="imgselect_container">
                     <button type="button" class="btn btn-success imgs-webcam" style="display:none">Webcam</button> <!-- .imgs-webcam -->
 
-                    <div style="position:relative;width:287px;height:215px;margin:0 auto">
+                    <div style="position:relative;width:287px;height:215px;margin:20px auto">
                         <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
                         <div style="position:absolute;background:#EEEEEF;left:0;top:0;width:69px;height:215px"></div>
                         <div style="position:absolute;background:#EEEEEF;right:0;top:0;width:69px;height:215px"></div>
                     </div>
 
-                    <div style="width:100%;float:left;margin: 10px 0 0 0;position:relative;z-index:999999">
+                    <div style="margin: 20px auto;position:relative;z-index:999999;width:180px">
                         <button class="btn-conf-iza imgs-capture btn-capture">Tirar foto</button>
                         <button class="btn-cancel-iza imgs-cancel btn-cancel-webcam return-modal-menu">Voltar</button>
                     </div>
                 </div>
-            </div>
+            </div><!-- #webcam -->
+
+            <div id='crop' style='display:none'>
+                <div class="jcrop"></div>
+                <button class="btn-cancel-iza return-modal-menu">Voltar</button>
+                <button class="btn-conf-iza btn-make-crop">Salvar</button>
+            </div><!-- #crop -->
             <div class='clear'></div>
         </div><!--content-modal-photo-->
     </div><!--box-photo-->
@@ -59,7 +64,7 @@
                 </div><!--alert-send-image-->
                 <img src='<?=base_url("static/img/especifica.png")?>' />
                 <form id="form-cadastrar-solicitacao" method='post' enctype='multipart/form-data' style='width:780px;margin:5px 0 0 0;float:left'>
-                    <input type='file' onchange='refreshImg(this)' name='userfile' id='userfile' style='display:none' />
+                    <input type='file' onchange='refreshImg($(this))' name='userfile' id='userfile' style='display:none' />
                     <div style='float:left;width:300px'>
                         <input type='checkbox' name='ckb' id='ckb' />
                         <label for='ckb' style='font:13px Arial'>Eu me <b>responsabilizo</b> pela
@@ -70,6 +75,7 @@
                     <button type='button' onclick='document.location.href="<?=base_url('home/inicial')?>"' class='btn-cancel-iza'>CANCELAR</button>
                     <input type="hidden" name='tmp_image' value="<?=$this->input->post('tmp_image')?>" />
                     <input type="hidden" name='email' id="hidden-email" />
+                    <input type="hidden" name="sended" value="sended" />
                 </form>
             </div>
         </div>
@@ -77,8 +83,9 @@
     <div class='clear'></div>
 </div><!--content-box-->
 <div class='clearfix'></div>
-<?php 
+<?php
 
+<<<<<<< HEAD
     $this->script(
         [
             'fb',
@@ -86,8 +93,8 @@
             'home/jquery.webcam',
             'home/webcam',
             'wm-modal'
-        ], 
-        false
+    ],
+    false
     );
 ?>
 

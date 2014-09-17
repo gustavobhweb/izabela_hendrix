@@ -28,6 +28,11 @@ class WG_Controller extends CI_Controller
     {
         parent::__construct();
         $this->viewVars['user'] = (object) $this->session->all_userdata();
+        if (isset($this->viewVars['user']->tbl_modelos_cod_modelo)) {
+            $qr = 'SELECT * FROM tbl_modelos WHERE cod_modelo = ?';
+            $bind = array($this->viewVars['user']->tbl_modelos_cod_modelo);
+            $this->viewVars['user']->modelo = $this->db->query($qr, $bind)->row()->titulo;
+        }
     }
 
     /**
@@ -35,11 +40,11 @@ class WG_Controller extends CI_Controller
         * @param int $role_id = nível do usuário
     */
     protected function _isAutorized($role_id)
-    {   
+    {
         if (!isset($this->autorized[$role_id])) {
             return false;
         } else {
-            $autorizedControllers = $this->autorized[$role_id]; 
+            $autorizedControllers = $this->autorized[$role_id];
             return in_array($this->_name(), $autorizedControllers, true);
         }
     }
@@ -83,7 +88,7 @@ class WG_Controller extends CI_Controller
     /**
         * Faz a verificação pra ver se o método é aceitável no controller atual
         * As definições são declaradas em Controller::$allowedActions
-        *@param string $method 
+        *@param string $method
     */
 
     protected function _isAllowedMethod($method)
@@ -109,7 +114,7 @@ class WG_Controller extends CI_Controller
     }
 
     public function beforeAction($method = '')
-    {   
+    {
         $role_id = $this->session->userdata('tbl_niveis_cod_nivel');
 
         $isLoginPage = $this->_isLoginPage($method);
