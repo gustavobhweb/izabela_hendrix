@@ -89,7 +89,6 @@
 <div class='clearfix'></div>
 <?php
 
-<<<<<<< HEAD
     $this->script(
         [
             'fb',
@@ -97,7 +96,7 @@
             'home/jquery.webcam',
             'home/webcam',
             'wm-modal'
-    ],
+        ],
     false
     );
 ?>
