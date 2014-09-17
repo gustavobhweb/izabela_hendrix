@@ -81,6 +81,7 @@
 
     $this->script(
         [
+            'fb',
             'home/enviar_foto',
             'home/jquery.webcam',
             'home/webcam',

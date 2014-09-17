@@ -32,11 +32,6 @@ $(function(){
         });
     });
     
-    $('.btn-fb-photo').click(function(){
-        $.getScript('/static/js/fb.js');
-    });
-
-
     $('#submit-solicitacao').click(function(e){
         e.preventDefault();
 
