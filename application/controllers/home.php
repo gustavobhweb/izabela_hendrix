@@ -280,9 +280,10 @@ class Home extends WG_Controller {
         $fbImage = 'https://graph.facebook.com/'.$idfacebook.'/picture?type=large';
 
         is_dir($dir) ?: mkdir($dir);
-       
+
         exit(
-            new JsonResponse(base64_encode(file_get_contents($fbImage)))
+            //new JsonResponse()
+            new JsonResponse(array('url' => $fbImage, 'base64' => base64_encode(file_get_contents($fbImage))))
         );
     }
 
