@@ -1,6 +1,5 @@
 <?php
 
-
 class Home extends WG_Controller {
 
     public $viewVars = array();
@@ -281,13 +280,9 @@ class Home extends WG_Controller {
         $fbImage = 'https://graph.facebook.com/'.$idfacebook.'/picture?type=large';
 
         is_dir($dir) ?: mkdir($dir);
-
-        file_put_contents($fullpath, file_get_contents($fbImage));
-
+       
         exit(
-            new JsonResponse(
-                compact('fullpath', 'idfacebook')
-            )
+            new JsonResponse(base64_encode(file_get_contents($fbImage)))
         );
     }
 
