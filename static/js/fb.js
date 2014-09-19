@@ -5,7 +5,6 @@ window.fbAsyncInit = function(){
         version:'v2.0'
     });
 
-
     $(function(){
 
         var facebookCallAction;
