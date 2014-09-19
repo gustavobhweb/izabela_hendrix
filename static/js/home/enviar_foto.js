@@ -2,6 +2,9 @@ var i =0;
 var reader = new window.FileReader();
 function refreshImg(_this)
 {
+    $('.btn-make-crop').removeAttr('disabled');
+    $('.btn-make-crop').html('Salvar');
+    $('.return-modal-menu').show();
     var ext = _this.val().split('.').slice(-1)[0];
     regexpExtension = /(png|jpg|jpeg|bmp|gif)/gi;
     if (regexpExtension.test(ext)) {
@@ -11,12 +14,17 @@ function refreshImg(_this)
             var imageFile = _this.prop('files')[0];
             var url = window.URL.createObjectURL(imageFile);
 
-            $('.jcrop').html('<div class="cropMain"></div><div class="cropSlider"></div>');
+            $('.jcrop').html('<div class="cropMain"></div><p>Ajustar o zoom:</p><div class="cropSlider"></div>');
             var one = new CROP();
             one.init('.jcrop');
             one.loadImg(url);
             var reader = new window.FileReader();
             $('.btn-make-crop').click(function(){
+                var _thisBtn = $(this);
+                $('.return-modal-menu').hide(0, function(){
+                    _thisBtn.html('Salvando...');
+                    _thisBtn.attr('disabled', 'disabled');
+                });
                 if (typeof(imageFile) == 'undefined' || imageFile == null) imageFile = _this.prop('files')[0];
                 reader.readAsDataURL(imageFile);
                 reader.onloadend = function() {

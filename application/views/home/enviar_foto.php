@@ -33,10 +33,10 @@
                 </div><!-- #imgselect_container -->
             </div><!-- #webcam -->
 
-            <div id='crop' style='display:none'>
+            <div id='crop' style='display:none;text-align:center;margin:20px auto 0 auto;width:320px;'>
                 <div class="jcrop"></div>
-                <button class="btn-cancel-iza return-modal-menu">Voltar</button>
-                <button class="btn-conf-iza btn-make-crop">Salvar</button>
+                <button class="btn-cancel-iza return-modal-menu" style="float:none">Voltar</button>
+                <button class="btn-conf-iza btn-make-crop" style="float:none">Salvar</button>
             </div><!-- #crop -->
             <div class='clear'></div>
         </div><!--content-modal-photo-->
