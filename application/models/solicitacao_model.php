@@ -12,25 +12,19 @@ class Solicitacao_Model extends CI_Model{
 
     public function select($args, $num = null)
     {
-        if(is_null($args))
-        {
+        if (is_null($args)) {
             if($num) {
                 return $this->db->query("SELECT * FROM {$this->table}")->num_rows();
             } else {
                 return $this->db->query("SELECT * FROM {$this->table}")->result();
             }
-        }
-        else
-        {
+        } else {
             $args = (int)$args;
             $qr = "SELECT * FROM {$this->table} WHERE tbl_usuarios_cod_usuario = ?";
             $bind = array($args);
-            if($num)
-            {
+            if ($num) {
                 return $this->db->query($qr, $bind)->num_rows();
-            }
-            else
-            {
+            } else {
                 return $this->db->query($qr, $bind)->result();
             }
         }
@@ -38,7 +32,7 @@ class Solicitacao_Model extends CI_Model{
 
     public function ___save(array $data)
     {
-        $pk_value = $data[$this->tableUser['primaryKey']]   ;
+        $pk_value = $data[$this->tableUser['primaryKey']];
         $fk_name = $this->tableUser['foreignKey'];
         $exists = $this->db->get_where($this->table, [$fk_name => $pk_value])->num_rows;
 

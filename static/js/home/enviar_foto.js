@@ -30,18 +30,20 @@ function refreshImg(_this)
                 reader.onloadend = function() {
                     var base64data = reader.result;
                     base64data = base64data.replace(/data:image\/.+;base64,/, '');
+
                     $.ajax({
                         url: '/home/cropimage/?' + $.param(coordinates(one)),
                         type: 'POST',
                         data: {
-                            img: base64data
+                            img: base64data,
+                            ext: ext
                         },
                         success: function(data) {
                             $('.modal-photo').fadeOut(500, function(){
                                 $('#crop').hide();
                                 $('#enviar-foto').show();
                                 $('.userPhoto.after-choice').attr({
-                                    'src': data.url,
+                                    'src': data.url + '?' + new Date().getTime(),
                                     'data-selected': 'true'
                                 });
                             });
@@ -71,6 +73,7 @@ $(function(){
     });
 	$('.btn-img-pessoa').click(function(){
 		$('.modal-photo').fadeIn();
+        $('#avisopermitir').hide();
 	});
 
 	$('.btn-close-box').click(function(){
@@ -83,7 +86,10 @@ $(function(){
         var src = $('.userPhoto.preview-modal').attr('src');
 
         $('.modal-photo').fadeOut(400, function(){
-        	$('.userPhoto').attr({'src': src, 'data-selected' : 'true'});
+        	$('.userPhoto').attr({
+                'src': src + '?' + new Date().getTime(),
+                'data-selected' : 'true'
+            });
         	$(':hidden[name=tmp_image]').val(src);
         });
     });

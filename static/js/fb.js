@@ -51,7 +51,7 @@ window.fbAsyncInit = function(){
                                         $('#crop').hide();
                                         $('#enviar-foto').show();
                                         $('.userPhoto.after-choice').attr({
-                                            'src': data.url,
+                                            'src': data.url + '?' + new Date().getTime(),
                                             'data-selected': 'true'
                                         });
                                     });

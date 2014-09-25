@@ -21,7 +21,6 @@ class Adm_Izabela extends WG_Controller
     /**
         * Formulário de Cadastro de alunos
     */
-
     public function cadastrar_aluno()
     {
         $vars = [];
@@ -42,7 +41,7 @@ class Adm_Izabela extends WG_Controller
         ];
 
         $data = filter_input_array(INPUT_POST, $filter_options);
-        
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -51,7 +50,7 @@ class Adm_Izabela extends WG_Controller
             if (is_array($data) && !in_array(false, $data)) {
 
                 $data['nivel'] = 1;
-                
+
 
                 $exists = $this->Usuario_Model->findByMatricula($data['matricula']);
 
@@ -63,7 +62,7 @@ class Adm_Izabela extends WG_Controller
                 } else {
                     $vars['post_status'] = 'A matrícula requisitada já existe no sistema.';
                 }
-                
+
             } else {
                 $vars['post_status'] = 'Alguns campos apresentam dados inválidos.';
             }
@@ -73,7 +72,7 @@ class Adm_Izabela extends WG_Controller
 
     }
 
-    
+
 	/**
         * Pesquisa de alunos do usuário Administrador do Izabela Hendrix
         * @author Wallace de Souza Vizerra
