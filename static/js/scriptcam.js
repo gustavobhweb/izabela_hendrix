@@ -1,14 +1,3 @@
-//   _____           _       _   _____
-//  /  ___|         (_)     | | /  __ \
-//  \ `--.  ___ _ __ _ _ __ | |_| /  \/
-//   `--. \/ __| '__| | '_ \| __| |    / _` | '_ ` _ \
-//  /\__/ / (__| |  | | |_) | |_| \__/\ (_| | | | | | |
-//  \____/ \___|_|  |_| .__/ \__|\____/\__,_|_| |_| |_|
-//                  | |
-//  Version 1.5.6   |_| (c) Tele-Line Videotex Services
-
-// Use jscompress.com to compress this file
-
 ;(function($) {
 	$.fn.scriptcam=function(options) {
 		// merge passed options with default values
@@ -97,7 +86,7 @@
 			for (var key in opts) {
 				opts[key] = encodeURIComponent(opts[key]);
 			};
-			swfobject.embedSWF(decodeURIComponent(data.path)+'scriptcam.swf', opts.id, newWidth, newHeight, '11.6', false, opts, params);
+			swfobject.embedSWF(decodeURIComponent(data.path)+'scriptcam.swf?9845454454', opts.id, newWidth, newHeight, '11.6', false, opts, params);
 		});
 	};
 	

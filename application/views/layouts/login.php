@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <?php
         	echo $this->script(array(
         			'jquery-1.10.2.min',
