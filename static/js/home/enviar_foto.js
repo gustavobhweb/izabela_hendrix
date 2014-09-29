@@ -82,7 +82,6 @@ $(function(){
 	});
 
 	$('#save-photo').click(function(){
-
         var src = $('.userPhoto.preview-modal').attr('src');
 
         $('.modal-photo').fadeOut(400, function(){
@@ -95,7 +94,7 @@ $(function(){
     });
 
     $(document).on('click', '.return-modal-menu', function(){
-        $('#webcam, #crop').fadeOut(0, function(){
+        $('#webcam, #crop, #flashcam').fadeOut(0, function(){
             $('#enviar-foto').fadeIn();
         });
     });

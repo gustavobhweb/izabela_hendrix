@@ -33,6 +33,14 @@
                 </div><!-- #imgselect_container -->
             </div><!-- #webcam -->
 
+            <div id='flashcam' style='display:none;text-align:center;padding:30px 0 0 0'>
+                <div id='flashbox'></div>
+                <div id="btns-flash" style="margin: 20px auto;position:relative;z-index:999999;width:180px;display:none">
+                    <button class="btn-conf-iza btn-capture-flash">Tirar foto</button>
+                    <button class="btn-cancel-iza return-modal-menu">Voltar</button>
+                </div>
+            </div><!-- #flashcam -->
+
             <div id='crop' style='display:none;text-align:center;margin:20px auto 0 auto;width:320px;'>
                 <div class="jcrop"></div>
                 <button class="btn-cancel-iza return-modal-menu" style="float:none">Voltar</button>

@@ -2,9 +2,7 @@
 <html>
     <head>
         <meta charset='utf-8'>
-        <!--[if lt IE 9]>
-        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <script src="/home/js_info?varname=_INFO_"></script>
         <script>_INFO_ = _INFO_ || {};</script>
         <?php
@@ -28,6 +26,8 @@
 
             echo $this->fetch('styles');
         ?>
+        <script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+        <script language="JavaScript" src="/static/js/scriptcam.js"></script>
         <script type="text/javascript">
         $(function(){
             var sair = 0;

@@ -48,7 +48,7 @@ class Home extends WG_Controller {
         $viewData = array();
         $viewData['avisos'] = $this->Aviso_Model->select($cod_usuario);
         $viewData['avisosNum'] = count($viewData['avisos']);
-        $viewData['solicitacoes'] = $this->Solicitacao_Model->select($cod_usuario);
+        $viewData['solicitacoes'] = $this   ->Solicitacao_Model->select($cod_usuario);
 
         foreach ($viewData['solicitacoes'] as $k => $v) {
             $viewData['solicitacoes'][$k]->status = $this->Solicitacao_Model->selectNameStatus($viewData['solicitacoes'][$k]->tbl_status_cod_status);
@@ -254,12 +254,18 @@ class Home extends WG_Controller {
         $imgstr = base64_decode($this->input->post('file'));
         list($width, $height) = getimagesizefromstring($imgstr);
 
-        $dest = imagecreatetruecolor(161, 215);
+        $newW = 180;
+        $newH = 240;
+
+        $dest = imagecreatetruecolor($newW, $newH);
         $im = imagecreatefromstring($imgstr);
+        $nw = ($newH * $width) / $height;
 
-        $nw = (215 * $width) / $height;
-
-        imagecopyresampled($dest, $im, 0, 0, 138, 0, 161, 215, $width - $nw, $height);
+        if ($this->input->post('flash')) {
+            imagecopyresampled($dest, $im, 0, 0, 70, 0, $nw, $newH, $nw, $newH);
+        } else {
+            imagecopyresampled($dest, $im, 0, 0, 138, 0, $nw, $newH, $width, $height);
+        }
 
         imagepng($dest, $fullurl);
         echo json_encode(true);
