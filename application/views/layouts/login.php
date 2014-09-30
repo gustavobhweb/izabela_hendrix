@@ -19,7 +19,7 @@
         ?>
         <title>Izabela Hendrix</title>
     </head>
-    <body>
+    <body style="width: 100%;min-width:100%;max-width:100%">
         <div class='login'>
 
             <div class='header-login'>

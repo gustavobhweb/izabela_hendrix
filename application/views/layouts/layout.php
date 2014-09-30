@@ -77,35 +77,34 @@
             </div><!--left-menu-box-->
 
             <div class='main-content'>
+                    <div class='menu-usuario' style="width: 480px;">
+                    <div id="descricao-nome-curso">
+                        <div><?=$user->nome?></div>
+                        <?php if(!empty($user->curso)): ?>
+                            <div style="font-size:15px">Curso: <?=$user->curso?></div>
+                        <?php endif ?>
+                    </div>
+
+                    <div style="width:175px;float:right">
+                        <a style='text-decoration:none' href='<?=base_url("home/inicial")?>'><div class='pagina-inicial'>
+                            <p>Página inicial</p>
+                            <img src='<?=base_url("static/img/home-blue.png")?>' />
+                        </div></a>
+                        <div class='minha-conta'>
+                            <img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
+                            <p><?=$user->nome?></p>
+                        </div><!--minha-conta-->
+
+                        <a class='sair-link' href='<?=base_url("home/sair")?>'>
+                            <span class="sair-icone"></span>
+                            <span style='margin:5px'>Sair</span>
+                        </a>
+                    </div>
+                </div><!--menu-usuario-->
                 <?=$this->fetch('content')?>
             </div><!--main-content-->
 
             <div class='clear'></div>
-
-            <div class='menu-usuario' style="width: 480px;">
-                <div id="descricao-nome-curso">
-                    <div><?=$user->nome?></div>
-                    <?php if(!empty($user->curso)): ?>
-                        <div style="font-size:15px">Curso: <?=$user->curso?></div>
-                    <?php endif ?>
-                </div>
-
-                <div style="width:175px;float:right">
-                    <a style='text-decoration:none' href='<?=base_url("home/inicial")?>'><div class='pagina-inicial'>
-                        <p>Página inicial</p>
-                        <img src='<?=base_url("static/img/home-blue.png")?>' />
-                    </div></a>
-                    <div class='minha-conta'>
-                        <img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
-                        <p><?=$user->nome?></p>
-                    </div><!--minha-conta-->
-
-                    <a class='sair-link' href='<?=base_url("home/sair")?>'>
-                        <span class="sair-icone"></span>
-                        <span style='margin:5px'>Sair</span>
-                    </a>
-                </div>
-            </div><!--menu-usuario-->
 
         </div><!--content-box-->
 
