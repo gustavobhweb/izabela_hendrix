@@ -1,6 +1,8 @@
 *{margin:0;padding:0;zoom: 0}
 body{
     font-family: Arial;
+    min-width: 1345px;
+    zoom: 0;
 }
 .login{width:620px;margin:0 auto}
 .logo-izabela{margin:10px 0 0 0}
@@ -74,7 +76,7 @@ body{
 .alert-send-image img{float:left}
 .alert-send-image p{font:12px Arial;color:white;width:90%;float:left;margin:0 0 0 20px;}
 
-.menu-usuario{position:absolute;top:15px;right:0;width:175px}
+.menu-usuario{float:right;width:175px;margin:30px 30px 0 0;}
 .menu-usuario .pagina-inicial{float:right;width:170px;padding:7px 0;border-bottom:1px solid #aaaaaa;}
 .menu-usuario .pagina-inicial:hover{background:#eeeeee;}
 .menu-usuario .pagina-inicial img{float:right;}
