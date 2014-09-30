@@ -77,7 +77,7 @@
             </div><!--left-menu-box-->
 
             <div class='main-content'>
-                    <div class='menu-usuario' style="width: 480px;">
+                <div class='menu-usuario' style="width: 480px;height: 90px;">
                     <div id="descricao-nome-curso">
                         <div><?=$user->nome?></div>
                         <?php if(!empty($user->curso)): ?>

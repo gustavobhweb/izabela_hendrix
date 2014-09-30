@@ -11,7 +11,7 @@
             <input type='text' id='txt_cpf' name='txt_cpf' value="<?=$this->input->post('txt_cpf') ?>" />
             <p style='float:left;width:100%;margin:10px 0 0 0'>Matrícula</p>
             <input type='text' id='txt_matricula' name='txt_matricula' value="" />
-            <button class='btn-login' type='submit'>CONTINUAR ></button>
+            <button class='btn-login' type='submit'>ENTRAR ></button>
             <h5 style='float:left;width:auto;text-align:left;margin:7px 0 0 0'><input type='checkbox' name='ckb_manter' /> Mantenha-me conectado</h5>
         </form>
         <div class='clear'></div>

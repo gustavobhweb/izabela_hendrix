@@ -52,7 +52,6 @@
 </div><!--modal-photo-->
 
 <div class='content-box'>
-    <div class='main-content'>
         <a href='<?=base_url("home/enviar_foto")?>'>
             <div class='solicsHovered' style='width:150px;background-position:-60px 0'>
                 <h1 style='margin-right:13px'>Enviar foto</h1>
@@ -91,7 +90,6 @@
                 </form>
             </div>
         </div>
-    </div><!--main-content-->
     <div class='clear'></div>
 </div><!--content-box-->
 <div class='clearfix'></div>
