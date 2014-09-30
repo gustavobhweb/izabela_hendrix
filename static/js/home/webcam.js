@@ -7,7 +7,7 @@ $(function(){
 
 	$('#btn-take-photo').click(function(){
 		$('#enviar-foto').fadeOut(function(){
-			if (!getUserMedia) {
+			if (getUserMedia) {
 				$('#webcam').show(0, function(){
 					$('.imgs-webcam').click();
 	                $('#imgselect_container').fadeOut();
@@ -33,7 +33,7 @@ $(function(){
 			}
 		});
 	});
-
+ 
 	$('.btn-capture-flash').on('click', function(){
 		$.ajax({
 			url: '/home/snapwebcam',
