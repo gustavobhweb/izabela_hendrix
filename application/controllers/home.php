@@ -442,4 +442,60 @@ class Home extends WG_Controller {
     return $res;
     }
 
+    public function atualizarCaptcha()
+    {
+        header('Content-Type: application/json');
+
+        $response = false;
+
+        if (isset($_SESSION['random_number'], $_POST['capcha_text'])) {
+           $response = $_SESSION['random_number'] == $_POST['capcha_text'];
+        }
+
+        echo json_encode($response);
+    }
+
+    public function getCaptcha()
+    {
+        $word_1 = '';
+        $word_2 = '';
+            
+        for ($i = 0; $i < 4; $i++) {
+            $word_1 .= chr(rand(97, 122));
+        }
+
+        for ($i = 0; $i < 4; $i++) {
+            $word_2 .= chr(rand(97, 122));
+        }
+        
+        $this->session->set_userdata(array(
+            'random_number' => $word_1.' '.$word_2
+        ));
+
+        $dir = FCPATH.'/static/recaptcha/fonts/';
+        $image = imagecreatetruecolor(172, 50);
+
+        $font = "recaptchaFont.ttf";
+        $color = imagecolorallocate($image, 0, 0, 0);
+        $white = imagecolorallocate($image, 255, 255, 255);
+        imagefilledrectangle($image, 0, 0, 709, 99, $white);
+        imagettftext($image, 25, 0, 5, 35, $color, $dir.$font, $this->session->userdata('random_number'));
+            
+        header("Content-type: image/png");
+        imagepng($image);
+    }
+
+    public function verifyCaptcha()
+    {
+        header('Content-type: application/json');
+        $captcha = $this->session->userdata('random_number');
+        $text = $this->input->post('text');
+
+        echo json_encode(array(
+            'status' => ($captcha == $text),
+            'session' => $captcha,
+            'user' => $text
+        ));
+    }
+
 }
