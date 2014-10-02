@@ -21,6 +21,9 @@ function wmDialog(text, options)
     $.extend(this, options)
 
     $container.find('.wm-modal-title').html(this.title);
+    $modal.find('.wm-modal-box').draggable({
+        handle: '.wm-modal-title'
+    });
 
     $confirm.click(function(){
         if ($.isFunction(options.onConfirm)) {
