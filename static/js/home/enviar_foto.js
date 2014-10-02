@@ -115,16 +115,7 @@ $(function(){
         e.preventDefault();
 
         var $form = $('#form-cadastrar-solicitacao');
-        if (!$('#ckb').is(':checked')) {
-            new wmDialog('Você deve concordar deve os termos', {
-                height:230,
-                width: 330,
-                btnCancelEnabled: false
-            }).open();
-
-            return false;
-        }
-
+        
         if ($('.userPhoto').attr('data-selected') == 'false') {
             new wmDialog('Você deve selecionar a foto', {
                 height:230,
@@ -148,18 +139,21 @@ $(function(){
                         html += '<label><strong style="float:left; margin-left:10px; font-size:11px;">Digite o código acima:</strong></label>';
                         html += '<input name="captcha-code" type="text" id="captcha-code" style="height:27px !important;" autocomplete="off">';
                     html += '</div>';
-                    
                     html += '<div class="captcha-action" style="width:10px !important; float:left;">';
                         html += '<img src="/static/recaptcha/refresh.jpg"  alt="" id="captcha-refresh" />';
                     html += '</div>';
                 html += '</div>';
                 html += '<div style="clear:both"></div>';
             html += '</div>';
+            html += '<div style="float:left;width:300px;margin:0 0 12px 0">';
+                html += '<input type="checkbox" name="ckb" id="ckb" />';
+                html += '<label for="ckb" style="font:13px Arial"> Eu me <b>responsabilizo</b> pela <b>veracidade</b> desta foto e concordo com o <b><u>termo de uso</u></b> do sistema</label>';
+            html += '</div>';
 
         var dialog = new wmDialog(html, {
             isHTML: true,
             width: 350,
-            height: 390,
+            height: 445,
             title: 'Insira o seu e-mail',
             onConfirm: function(btn) {
                 var $input = $('#confirm-send-with-mail');
@@ -170,6 +164,12 @@ $(function(){
 
                 if (value == '' || value == null) {
                     new wmDialog('Complete o campo e-mail para continuar!', {
+                        height:230,
+                        width: 330,
+                        btnCancelEnabled: false
+                    }).open();
+                } else if (!$('#ckb').is(':checked')) {
+                    new wmDialog('Você deve concordar deve os termos', {
                         height:230,
                         width: 330,
                         btnCancelEnabled: false
