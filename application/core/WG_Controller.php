@@ -28,11 +28,6 @@ class WG_Controller extends CI_Controller
     {
         parent::__construct();
         $this->viewVars['user'] = (object) $this->session->all_userdata();
-        if (isset($this->viewVars['user']->tbl_modelos_cod_modelo)) {
-            $qr = 'SELECT * FROM tbl_modelos WHERE cod_modelo = ?';
-            $bind = array($this->viewVars['user']->tbl_modelos_cod_modelo);
-            $this->viewVars['user']->modelo = $this->db->query($qr, $bind)->row()->titulo;
-        }
     }
 
     /**
