@@ -5,6 +5,15 @@ class Home extends WG_Controller {
     public $viewVars = array();
     public $allowedActions = ['login', 'sair', 'cadastrar'];
 
+    public function __construct()
+    {
+        parent::__construct();
+        if (isset($this->viewVars['user']->tbl_modelos_cod_modelo)) {
+            $qr = 'SELECT * FROM tbl_modelos WHERE cod_modelo = ?';
+            $bind = array($this->viewVars['user']->tbl_modelos_cod_modelo);
+            $this->viewVars['user']->modelo = $this->db->query($qr, $bind)->row()->titulo;
+        }
+    }
 
     public function index()
     {
@@ -125,10 +134,7 @@ class Home extends WG_Controller {
 
         $viewData = array();
         $viewData['user'] = (object)$this->session->all_userdata();
-
-        if($_POST && !$this->input->post('ckb')) {
-            $viewData['message'] = 'Aceite os termos de uso!';
-        } elseif($this->input->post('sended')) {
+        if($this->input->post('sended')) {
 
             $ds = DIRECTORY_SEPARATOR;
             $tempFile = FCPATH . "{$ds}static{$ds}imagens{$ds}" . $viewData['user']->matricula . "{$ds}temp.png";
@@ -139,7 +145,8 @@ class Home extends WG_Controller {
             $solicitacao = array(
                 'foto' => $viewData['user']->matricula . '/' . $nameFile,
                 'email' => $this->input->post('email'),
-                'tbl_modelos_cod_modelo' => $viewData['user']->tbl_modelos_cod_modelo
+                'tbl_modelos_cod_modelo' => $viewData['user']->tbl_modelos_cod_modelo,
+                'data' => date('Y-m-d H:i:s')
             );
             $this->Solicitacao_Model->save($solicitacao);
 
@@ -224,15 +231,15 @@ class Home extends WG_Controller {
         $this->Usuario_Model->save($user);
 
         $user1 = array();
-        $user1['cpf'] = '11111111122';
-        $user1['matricula'] = '111122';
+        $user1['cpf'] = '22222222222';
+        $user1['matricula'] = '222222';
         $user1['nome'] = 'Gustavo Carmo';
         $user1['nivel'] = 2;
         $this->Usuario_Model->save($user1);
 
         $user2 = [
-            'cpf' => '11111111133',
-            'matricula' => '222222',
+            'cpf' => '33333333333',
+            'matricula' => '333333',
             'nome' => 'Wallace de souza',
             'tbl_niveis_cod_nivel' => 3,
             'curso' => 'Programador PHP'
@@ -254,8 +261,8 @@ class Home extends WG_Controller {
         $imgstr = base64_decode($this->input->post('file'));
         list($width, $height) = getimagesizefromstring($imgstr);
 
-        $newW = 180;
-        $newH = 240;
+        $newW = 358;
+        $newH = 478;
 
         $dest = imagecreatetruecolor($newW, $newH);
         $im = imagecreatefromstring($imgstr);
@@ -309,7 +316,9 @@ class Home extends WG_Controller {
 
         list($width, $height) = getimagesizefromstring($imgstr);
 
-        $dest = imagecreatetruecolor(161, 215);
+        $widthVar = 358;
+        $heightVar = 478;
+        $dest = imagecreatetruecolor($widthVar, $heightVar);
 
         $im = null;
         $tempbmppngfile = md5(uniqid() . time()) . '.bmp';
@@ -330,7 +339,7 @@ class Home extends WG_Controller {
         $nh = 215;
         $nw = ($nh * $width) / $height;
 
-        imagecopyresampled($dest, $im, 0, 0, $x, $y, 161, 215, $w+12, $h);
+        imagecopyresampled($dest, $im, 0, 0, $x, $y, $widthVar, $heightVar, $w, $h);
 
         imagepng($dest, $fullpath);
 
