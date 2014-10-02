@@ -341,7 +341,8 @@ Recaptcha Style Captcha
     background:#F6F6F6;
     text-align:left;
     padding:3px;
-    margin: 10px auto;
+    margin: 10px 0 10px 34px;
+    float:left;
     height:94px;
 }
 #captcha-wrap .captcha-box{
