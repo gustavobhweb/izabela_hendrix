@@ -47,7 +47,7 @@
                 </a>
                 <div style='width:220px;float:left;margin:30px 0 0 40px'>
                     <h1 style='font:22px Arial;color:#0865AE'>Olá, <?=$user->nome?>!</h1>
-                    <p style='font:13px Arial;color:#777777'>Nivel Aluno</p>
+                    <p style='font:13px Arial;color:#777777'>Administrador Izabela Hendrix</p>
                     <div class='line' style='margin:10px 0 0 0'></div>
                     <div class='menu'>
                         <ul>
