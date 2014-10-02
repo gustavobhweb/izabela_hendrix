@@ -55,9 +55,15 @@ class Solicitacao_Model extends CI_Model{
                                           via,
                                           tbl_status_cod_status,
                                           tbl_modelos_cod_modelo,
-                                          tbl_usuarios_cod_usuario)
-              VALUES(NULL, ?, ?, 1, 1, 1, ?)";
-        $bind = array($solicitacao->foto, $solicitacao->email, (int)$this->session->userdata('cod_usuario'));
+                                          tbl_usuarios_cod_usuario,
+                                          dataSolicitacao)
+              VALUES(NULL, ?, ?, 1, 1, 1, ?, ?)";
+        $bind = array(
+            $solicitacao->foto, 
+            $solicitacao->email, 
+            (int)$this->session->userdata('cod_usuario'),
+            $solicitacao->data
+        );
 
         return $this->db->query($qr, $bind);
     }
