@@ -139,24 +139,27 @@ $(function(){
                     solicitação de carteira de identificação acadêmica.</small><br><br>'
             html += '<input type="email" id="confirm-send-with-mail" placeholder="Digite seu e-mail" class="wm-input input-large" >';
             html += '<input style="margin-top:8px" type="email" id="reconfirm-send-with-mail" placeholder="Confirme o e-mail" class="wm-input input-large" >';
-            html += '<div id="captcha-wrap">';
-                html += '<div class="captcha-box">';
-                    html += '<img src="/home/getCaptcha" alt="" id="captcha" style="width:100px; height: 30px; margin-top:3px;" />';
+            html += '<div style="width:100%">';
+                html += '<div id="captcha-wrap">';
+                    html += '<div class="captcha-box">';
+                        html += '<img src="/home/getCaptcha" alt="" id="captcha" style="width:100px; height: 30px; margin-top:3px;" />';
+                    html += '</div>';
+                    html += '<div class="text-box">';
+                        html += '<label><strong style="float:left; margin-left:10px; font-size:11px;">Digite o código acima:</strong></label>';
+                        html += '<input name="captcha-code" type="text" id="captcha-code" style="height:27px !important;" autocomplete="off">';
+                    html += '</div>';
+                    
+                    html += '<div class="captcha-action" style="width:10px !important; float:left;">';
+                        html += '<img src="/static/recaptcha/refresh.jpg"  alt="" id="captcha-refresh" />';
+                    html += '</div>';
                 html += '</div>';
-                html += '<div class="text-box">';
-                    html += '<label><strong style="float:left; margin-left:10px; font-size:11px;">Digite o código acima:</strong></label>';
-                    html += '<input name="captcha-code" type="text" id="captcha-code" style="height:27px !important;" autocomplete="off">';
-                html += '</div>';
-                html += '<div class="captcha-action" style="width:10px !important; float:left;">';
-                    html += '<img src="/static/recaptcha/refresh.jpg"  alt="" id="captcha-refresh" />';
-                html += '</div>';
+                html += '<div style="clear:both"></div>';
             html += '</div>';
 
         var dialog = new wmDialog(html, {
             isHTML: true,
             width: 350,
             height: 390,
-            btnCancelEnabled: false,
             title: 'Insira o seu e-mail',
             onConfirm: function(btn) {
                 var $input = $('#confirm-send-with-mail');
