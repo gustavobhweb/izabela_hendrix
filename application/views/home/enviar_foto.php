@@ -27,11 +27,15 @@
                     </div>
 
                     <div style="margin: 20px auto;position:relative;z-index:999999;width:180px">
-                        <button class="btn-conf-iza imgs-capture btn-capture">Tirar foto</button>
+                        <button class="btn-conf-iza imgs-capture btn-capture" onclick="onSnapClick()">Tirar foto</button>
                         <button class="btn-cancel-iza imgs-cancel btn-cancel-webcam return-modal-menu">Voltar</button>
                     </div>
                 </div><!-- #imgselect_container -->
             </div><!-- #webcam -->
+
+            <div class='loading' style='display:none;text-align:center;padding:30px 0 0 0'>
+                <img src='/static/img/loading.gif' width='60' />
+            </div><!-- .loading -->
 
             <div id='flashcam' style='display:none;text-align:center;padding:30px 0 0 0'>
                 <div id='flashbox'></div>
