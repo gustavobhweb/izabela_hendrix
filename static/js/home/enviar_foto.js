@@ -23,6 +23,9 @@ function refreshImg(_this)
             $('.btn-make-crop').click(function(){
                 var _thisBtn = $(this);
                 $('.return-modal-menu').hide(0, function(){
+                    $('#crop').fadeOut(0, function(){
+                        $('.loading').show();
+                    });
                     _thisBtn.html('Salvando...');
                     _thisBtn.attr('disabled', 'disabled');
                 });
@@ -41,6 +44,7 @@ function refreshImg(_this)
                         },
                         success: function(data) {
                             $('.modal-photo').fadeOut(500, function(){
+                                $('.loading').hide();
                                 $('#crop').hide();
                                 $('#enviar-foto').show();
                                 $('.userPhoto.after-choice').attr({
@@ -56,6 +60,7 @@ function refreshImg(_this)
                                 width: 330,
                                 btnCancelEnabled: false
                             }).open();
+                            $('.loading').hide();
                         }
                     });
                     imageFile = null;
@@ -193,6 +198,7 @@ $(function(){
                                     btnCancelEnabled: false
                                 }).open();
                                 get_captcha();
+                                $("#captcha-code").val('');
                             }
                         },
                         error: function(){
