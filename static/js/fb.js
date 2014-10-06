@@ -23,7 +23,9 @@ window.fbAsyncInit = function(){
                 }
 
                 $.post('/home/upload_facebook_photo', {idfacebook: fbData.id}, function(response){
+                    $('.loading').hide();
                     $('#enviar-foto').fadeOut(400, function(){
+                        $('.box-photo').animate({margin: '2% auto'});
                         $('#crop').fadeIn();
                         var url = response.url;
 
@@ -35,6 +37,9 @@ window.fbAsyncInit = function(){
                         $('.btn-make-crop').click(function(){
                             var _thisBtn = $(this);
                             $('.return-modal-menu').hide(0, function(){
+                                $('#crop').fadeOut(0, function(){
+                                    $('.loading').show();
+                                });
                                 _thisBtn.html('Salvando...');
                                 _thisBtn.attr('disabled', 'disabled');
                             });
@@ -48,6 +53,7 @@ window.fbAsyncInit = function(){
                                 },
                                 success: function(data) {
                                     $('.modal-photo').fadeOut(500, function(){
+                                        $('.loading').hide();
                                         $('#crop').hide();
                                         $('#enviar-foto').show();
                                         $('.userPhoto.after-choice').attr({
@@ -59,6 +65,7 @@ window.fbAsyncInit = function(){
                                 error: function()
                                 {
                                     alert('Problemas na conexão!');
+                                    $('.loading').hide();
                                 }
                             });
                             imageFile = null;
@@ -94,7 +101,6 @@ window.fbAsyncInit = function(){
 
                 facebookCallAction = function(e){
                     e.preventDefault();
-
                     FB.login(function(response) {
                         if (response.authResponse) {
                             me();
@@ -105,7 +111,15 @@ window.fbAsyncInit = function(){
 
             }
 
-            $(document).on('click', '.btn-fb-photo', facebookCallAction);
+            $(document).on('click', '.btn-fb-photo', function(e){
+                $('#enviar-foto').hide(0, function(){
+                    $('.loading').show();
+                })
+                $('.btn-make-crop').removeAttr('disabled');
+                $('.btn-make-crop').html('Salvar');
+                $('.return-modal-menu').show();
+                facebookCallAction(e);
+            });
         });
 
 
