@@ -273,7 +273,6 @@ class Home extends WG_Controller {
         } else {
             imagecopyresampled($dest, $im, 0, 0, 138, 0, $nw, $newH, $width, $height);
         }
-
         imagepng($dest, $fullurl);
         echo json_encode(true);
     }

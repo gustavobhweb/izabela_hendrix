@@ -126,4 +126,21 @@ class Adm_Izabela extends WG_Controller
         $this->output->render('adm_izabela/pesquisar_alunos', $viewData);
     }
 
+    public function ajaxGetDataGraph()
+    {
+        header('Content-Type: application/json');
+
+        $this->load->model('Solicitacao_Model');
+
+        $response = array(
+            'analise' => (int) $this->Solicitacao_Model->countStatus(1),
+            'fabricacao' => (int) $this->Solicitacao_Model->countStatus(2),
+            'conferencia' => (int) $this->Solicitacao_Model->countStatus(3),
+            'disponivel' => (int) $this->Solicitacao_Model->countStatus(4),
+            'entregue' => (int) $this->Solicitacao_Model->countStatus(5),
+        );
+
+        echo json_encode($response);
+    }
+
 }
