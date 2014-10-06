@@ -112,7 +112,7 @@ class Home extends WG_Controller {
         $this->Usuario_Model->authenticate();
 
         $viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
-        $viewData['user'] = (object)$this->session->all_userdata();
+        $viewData['user'] = (object) $this->session->all_userdata();
 
         $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);
 
@@ -485,9 +485,10 @@ class Home extends WG_Controller {
 
         $font = "recaptchaFont.ttf";
         $color = imagecolorallocate($image, 0, 0, 0);
+        //$white = imagecolorallocate($image, 255, 255, 255);
         $white = imagecolorallocate($image, 255, 255, 255);
-        imagefilledrectangle($image, 0, 0, 709, 99, $white);
-        imagettftext($image, 25, 0, 5, 35, $color, $dir.$font, $this->session->userdata('random_number'));
+        imagefilledrectangle($image, 0, 0, 172, 99, $white);
+        imagettftext($image, 22, 0, 5, 35, $color, $dir.$font, $this->session->userdata('random_number'));
             
         header("Content-type: image/png");
         imagepng($image);
