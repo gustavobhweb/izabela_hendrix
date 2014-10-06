@@ -35,7 +35,7 @@
                     <p style='font:12px arial;color:#ffffff'>e-mail cadastrado:</p>
                     <p style='font:12px arial;color:#ffffff;font-weight:bold'><?= !empty($solicitacao->email) ? $solicitacao->email : 'Nenhum' ?></p>
                     <div id="box-edit-mail-of-solicitation">
-                        <form method="post">
+                        <form id="frm-email-update" method="post">
                             <input name='email' class="wm-input" id="change-mail-of-solicitation" value="<?=$solicitacao->email?>" />
                             <input type='hidden' name="solicitacao" value="<?=$solicitacao->cod_solicitacao?>" />
                             <button class='wm-btn wm-btn-blue'>&raquo;</button>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <img src='<?=base_url("static/img/linha-tempo-".$solicitacao->tbl_status_cod_status.".png")?>' style='float:left;margin:30px 0 30px 39px' />
+        <img src='<?=base_url("static/img/linha-tempo-" . $solicitacao->tbl_status_cod_status . ".png")?>' style='float:left;margin:30px 0 30px 39px' />
     </div>
 
     <div class='clear'></div>
@@ -57,7 +57,10 @@
 </div><!--situacao-box-->
 <?php }?>
 
-<?php
+<?= $this->element('common-alert') ?>
 
+<?php
+    $this->script(['wm-modal'], false);
     $this->script(['home/acompanhar_solicitacao'], false);
+    $this->style(['wm-modal'], false);
 ?>
