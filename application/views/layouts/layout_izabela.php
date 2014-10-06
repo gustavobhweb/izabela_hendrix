@@ -62,32 +62,33 @@
             </div><!--left-menu-box-->
 
             <div class='main-content'>
+
+                <div class='menu-usuario' style="width: 480px;">
+                    <div id="descricao-nome-curso">
+                        <div><?=$user->nome?></div>
+                    </div>
+
+                    <div style="width:175px;float:right">
+                        <a style='text-decoration:none' href='<?=base_url("home/inicial")?>'><div class='pagina-inicial'>
+                            <p>Página inicial</p>
+                            <img src='<?=base_url("static/img/home-blue.png")?>' />
+                        </div></a>
+                        <div class='minha-conta'>
+                            <img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
+                            <p><?=$user->nome?></p>
+                        </div><!--minha-conta-->
+
+                        <a class='sair-link' href='<?=base_url("home/sair")?>'>
+                            <span class="sair-icone"></span>
+                            <span style='margin:5px'>Sair</span>
+                        </a>
+                    </div>
+                </div><!--menu-usuario-->
+
                 <?=$this->fetch('content') ?>
             </div><!--main-content-->
 
             <div class='clear'></div>
-
-            <div class='menu-usuario' style="width: 480px;">
-                <!-- <div id="descricao-nome-curso">
-                    <div><?=$user->nome?></div>
-                </div> -->
-
-                <div style="width:175px;float:right">
-                    <a style='text-decoration:none' href='<?=base_url("home/inicial")?>'><div class='pagina-inicial'>
-                        <p>Página inicial</p>
-                        <img src='<?=base_url("static/img/home-blue.png")?>' />
-                    </div></a>
-                    <div class='minha-conta'>
-                        <img src='<?=base_url("static/img/arrow-down.png")?>' class='arrow-icon' />
-                        <p><?=$user->nome?></p>
-                    </div><!--minha-conta-->
-
-                    <a class='sair-link' href='<?=base_url("home/sair")?>'>
-                        <span class="sair-icone"></span>
-                        <span style='margin:5px'>Sair</span>
-                    </a>
-                </div>
-            </div><!--menu-usuario-->
 
         </div><!--content-box-->
 
@@ -95,10 +96,10 @@
 
         <div class='footer'>
             <div style='float:left;margin:30px 0 0 15px;width:330px'>
-                <p style='font:13px arial;color:#ffffff'>Termos de Uso | Política de Privacidade</p>
-                <b style='font:11px arial;color:#ffffff;font-weight:bold'>© 2014 GrupoTMT.com.br. Todos os direitos reservados.</b>
+                <p style='font:13px arial;color:#888888'>Termos de Uso | Política de Privacidade</p>
+                <b style='font:11px arial;color:#888888;font-weight:bold'>© 2014 GrupoTMT.com.br. Todos os direitos reservados.</b>
             </div>
-            <img src='<?=base_url("static/img/footer.png")?>' />
+            <img src='<?=base_url("static/img/footer-login.png")?>' />
             <div class='clearfix'></div>
         </div><!--footer-->
 
