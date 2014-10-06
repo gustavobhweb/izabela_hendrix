@@ -215,7 +215,6 @@ $(function(){
             }
         });
 
-
         dialog.open();
         get_captcha();
         $('#captcha-refresh').on('click', function(){
@@ -223,3 +222,10 @@ $(function(){
         });
     });
 });
+
+function onSnapClick()
+{
+    $('#webcam').hide(0, function(){
+        $('.loading').fadeIn();
+    });
+}

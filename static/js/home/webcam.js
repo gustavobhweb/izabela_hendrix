@@ -1,6 +1,8 @@
 $(function(){
 
-	new ImgSelect( $('#imgselect_container') );
+	new ImgSelect( $('#imgselect_container'), {
+		url: '/home/snapwebcam'
+	} );
 
 	var getUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia || 
                             navigator.mozGetUserMedia || navigator.msGetUserMedia);
