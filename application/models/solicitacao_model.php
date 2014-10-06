@@ -127,4 +127,11 @@ class Solicitacao_Model extends CI_Model{
         return $this->db->query($query)->result_array();
     }
 
+    public function countStatus($cod_status)
+    {
+        $qr = 'SELECT COUNT(*) as count FROM tbl_solicitacoes WHERE tbl_status_cod_status = ?';
+        $bind = array($cod_status);
+        return $this->db->query($qr, $bind)->row()->count;
+    }
+
 }
