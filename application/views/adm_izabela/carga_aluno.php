@@ -1,4 +1,4 @@
-<a href='<?=base_url("home/acompanhar")?>'>
+<a href='<?=base_url("adm_izabela/carga_aluno")?>'>
     <div class='solics' style="width:190px">
         <h1 style='margin:5px'>Envio de Carga</h1>
     </div>
@@ -31,4 +31,4 @@
 
 </section>
 
-<?php $this->script(['upload/index'], false) ?> 
+<?php $this->script(['upload/index'], false) ?>
