@@ -34,7 +34,7 @@
             </div><!-- #webcam -->
 
             <div class='loading' style='display:none;text-align:center;padding:30px 0 0 0'>
-                <img src='/static/img/loading.gif' width='60' />
+                <img src='/static/img/loading.GIF' width='60' />
             </div><!-- .loading -->
 
             <div id='flashcam' style='display:none;text-align:center;padding:30px 0 0 0'>
