@@ -49,7 +49,7 @@
 
         });
         </script>
-        <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png"/>
+        <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png" />
         <title>Izabela Hendrix</title>
     </head>
     <body>

@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 	$pesquisar_admin.submit(function(){
 		var value = $keyword_input.val();
-		if (value == '') {
+		if (value == '' || value == null) {
 			alert('Informe um valor para efetuar a pesquisa.');
 			return false;
 		}

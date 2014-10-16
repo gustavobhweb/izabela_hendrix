@@ -17,6 +17,7 @@
 
             echo $this->fetch('styles');
         ?>
+        <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png"/>
         <script type="text/javascript">
         $(document).ready(function(){
             var sair = 0;
@@ -52,9 +53,10 @@
                     <div class='menu'>
                         <ul>
                             <li><a href='<?=base_url("adm_izabela")?>'><img src='<?=base_url("static/img/icon-home.png")?>' /> Página inicial</a></li>
-                            <li><a href='<?=base_url("adm_izabela/pesquisar_alunos")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Pesquisar Aluno</a></li>
+                            <li><a href='<?=base_url("adm_izabela/pesquisar_alunos")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Pesquisar Alunos</a></li>
                             <li><a href='<?=base_url("adm_izabela/cadastrar_aluno")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Cadastrar Aluno</a></li>
                             <li><a href='<?=base_url("adm_izabela/carga_aluno")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Envio de Carga de Alunos</a></li>
+                            <li><a href='<?=base_url("adm_izabela/cargas_enviadas")?>'><img src='<?=base_url("static/img/icon-acomp.png")?>' /> Cargas enviadas</a></li>
                         </ul>
                     </div><!--menu-->
                 </div>

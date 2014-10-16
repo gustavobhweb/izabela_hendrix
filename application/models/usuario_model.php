@@ -12,6 +12,13 @@ class Usuario_Model extends CI_Model{
         return $this->db->get_where($this->table, ['matricula' => $matricula])->row();
     }
 
+    public function findByCpf($cpf)
+    {
+    	$cpf = str_replace('.', '', $cpf);
+    	$cpf = str_replace('-', '', $cpf);
+
+        return $this->db->get_where($this->table, ['cpf' => $cpf])->row();
+    }
 
     public function search($tipo, $valor)
     {
@@ -81,7 +88,10 @@ class Usuario_Model extends CI_Model{
 
         if (array_key_exists('nivel', $usuario)) {
             $usuario['tbl_niveis_cod_nivel'] = $usuario['nivel'];
+            $usuario['tbl_modelos_cod_modelo'] = $usuario['modelo'];
+            $usuario['remessa'] = $this->remessa();
             unset($usuario['nivel']);
+            unset($usuario['modelo']);
         }
 
         if (!$exists) {
@@ -94,6 +104,17 @@ class Usuario_Model extends CI_Model{
             );
         }
 
+    }
+
+    public function remessa()
+    {
+        $qr = 'SELECT MAX(remessa) as remessa
+               FROM tbl_usuarios
+               LIMIT 1';
+        $bind = array();
+
+        $remessa = (int) ($this->db->query($qr, $bind)->row()->remessa) + 1;
+        return sprintf('%06s', $remessa);
     }
 
     public function delete($args)
@@ -125,6 +146,130 @@ class Usuario_Model extends CI_Model{
             } elseif($this->session->userdata('tbl_niveis_cod_nivel') == 2) {
                 redirect('adm/inicial');
             }
+        }
+    }
+
+    public function getAlunos($searchType, $value, $count = false, $paginate = false)
+    {
+    	$qrType = '';
+    	$bind = array();
+
+        if (!$paginate) {
+            $paginate = new stdClass;
+            $paginate->start = 0;
+            $paginate->limit = 100000000000;
+        }
+
+    	switch ($searchType) {
+    		default:
+    		case 'nome':
+    			$qrType = 'tbl_usuarios.nome LIKE ?';
+    			$bind = [ 
+                    '%' . $value . '%', 
+                    $paginate->start, 
+                    $paginate->limit 
+                ];
+    			break;
+    		case 'matricula':
+    			$qrType = 'tbl_usuarios.matricula = ?';
+    			$bind = [
+                    (int) $value,
+                    $paginate->start, 
+                    $paginate->limit 
+                ];
+    			break;
+    		case 'cpf':
+                $qrType = 'tbl_usuarios.cpf = ?';
+                $bind = [
+                    $value,
+                    $paginate->start,
+                    $paginate->limit
+                ];
+                break;
+            case 'remessa':
+                $qrType = 'tbl_usuarios.remessa = ?';
+                $bind = [
+                    $value,
+                    $paginate->start,
+                    $paginate->limit
+                ];
+                break;
+    	}
+
+    	$qr = 'SELECT tbl_usuarios.cod_usuario as cod_usuario,
+    		   	      tbl_usuarios.matricula as matricula,
+    		   	      tbl_usuarios.cpf as cpf,
+    		   	      tbl_usuarios.nome as nome,
+    		   	      tbl_usuarios.curso as curso,
+    		   	      tbl_niveis.titulo as nivel,
+    		   	      tbl_modelos.titulo as modelo,
+    		   	      tbl_status.titulo as status,
+    		   	      tbl_solicitacoes.foto as foto
+    		   	      FROM tbl_usuarios LEFT JOIN tbl_niveis
+    		   	      	ON tbl_niveis.cod_nivel = tbl_usuarios.tbl_niveis_cod_nivel
+    		   	      LEFT JOIN tbl_modelos 
+    		   	      	ON tbl_modelos.cod_modelo = tbl_usuarios.tbl_modelos_cod_modelo
+    		   	      LEFT JOIN tbl_solicitacoes
+    		   	      	ON tbl_solicitacoes.tbl_usuarios_cod_usuario = tbl_usuarios.cod_usuario
+    		   	      LEFT JOIN tbl_status 
+    		   	      	ON tbl_status.cod_status = tbl_solicitacoes.tbl_status_cod_status
+    		   	      WHERE tbl_niveis.cod_nivel = 1
+    		   	      AND ' . $qrType . '
+                      LIMIT ?, ?
+                      ';
+    	
+        if (!$count) {
+        	return $this->db->query($qr, $bind)->result();
+        } else {
+            return $this->db->query($qr, $bind)->num_rows();
+        }
+    }
+
+    public function getData($cod_usuario)
+    {
+    	$qr = 'SELECT tbl_usuarios.cod_usuario as cod_usuario,
+    		   	      tbl_usuarios.matricula as matricula,
+    		   	      tbl_usuarios.cpf as cpf,
+    		   	      tbl_usuarios.nome as nome,
+    		   	      tbl_usuarios.curso as curso,
+    		   	      tbl_niveis.titulo as nivel,
+    		   	      tbl_modelos.titulo as modelo,
+    		   	      tbl_status.titulo as status,
+    		   	      tbl_solicitacoes.foto as foto
+    		   	      FROM tbl_usuarios LEFT JOIN tbl_niveis
+    		   	      	ON tbl_niveis.cod_nivel = tbl_usuarios.tbl_niveis_cod_nivel
+    		   	      LEFT JOIN tbl_modelos 
+    		   	      	ON tbl_modelos.cod_modelo = tbl_usuarios.tbl_modelos_cod_modelo
+    		   	      LEFT JOIN tbl_solicitacoes
+    		   	      	ON tbl_solicitacoes.tbl_usuarios_cod_usuario = tbl_usuarios.cod_usuario
+    		   	      LEFT JOIN tbl_status 
+    		   	      	ON tbl_status.cod_status = tbl_solicitacoes.tbl_status_cod_status
+    		   	      WHERE tbl_usuarios.cod_usuario = ?';
+    	$bind = [$cod_usuario];
+
+    	return $this->db->query($qr, $bind)->row();
+    }
+
+    public function getRemessas($num = false, $paginate = false)
+    {
+        if (!$paginate) {
+            $paginate = new stdClass;
+            $paginate->start = 0;
+            $paginate->limit = 100000000000;
+        }
+
+        $qr = 'SELECT remessa, dataRemessa, COUNT(cod_usuario) as count
+               FROM tbl_usuarios 
+               WHERE tbl_niveis_cod_nivel = 1 
+               GROUP BY remessa
+               LIMIT ?, ?';
+
+        $bind = [$paginate->start, $paginate->limit];
+
+        if ($num) {
+            return $this->db->query($qr, $bind)->num_rows();
+        } else {
+            return $this->db->query($qr, $bind)->result();
         }
     }
 

@@ -134,4 +134,49 @@ class Solicitacao_Model extends CI_Model{
         return $this->db->query($qr, $bind)->row()->count;
     }
 
+    public function byStatus($cod_status, $num = false, $paginate = false)
+    {
+        $qr = 'SELECT tbl_solicitacoes.cod_solicitacao as cod_solicitacao,
+                      tbl_solicitacoes.foto as foto,
+                      tbl_solicitacoes.email as email,
+                      tbl_solicitacoes.via as via,
+                      tbl_solicitacoes.dataSolicitacao as dataSolicitacao,
+                      tbl_solicitacoes.dataFabricacao as dataFabricacao,
+                      tbl_solicitacoes.dataConferencia as dataConferencia,
+                      tbl_solicitacoes.dataDisponivel as dataDisponivel,
+                      tbl_solicitacoes.dataEntregue as dataEntregue,
+                      tbl_status.titulo as status,
+                      tbl_modelos.titulo as modelo,
+                      tbl_usuarios.nome as nome,
+                      tbl_usuarios.curso as curso,
+                      tbl_usuarios.matricula as matricula,
+                      tbl_usuarios.cpf as cpf,
+                      tbl_usuarios.cod_usuario as cod_usuario
+                      FROM tbl_solicitacoes JOIN tbl_status 
+                      ON tbl_status.cod_status = tbl_solicitacoes.tbl_status_cod_status
+                      JOIN tbl_modelos ON tbl_modelos.cod_modelo = tbl_solicitacoes.tbl_modelos_cod_modelo
+                      JOIN tbl_usuarios ON tbl_usuarios.cod_usuario = tbl_solicitacoes.tbl_usuarios_cod_usuario 
+                      WHERE tbl_solicitacoes.tbl_status_cod_status = ? 
+                      LIMIT ?, ?';
+
+        if (!$paginate) {
+            $paginate = new stdClass;
+            $paginate->start = 0;
+            $paginate->limit = 100000000000;
+        }
+
+
+        $bind = [
+            $cod_status, 
+            $paginate->start,  
+            $paginate->limit
+        ];
+
+        if (!$num) {
+            return $this->db->query($qr, $bind)->result();
+        } else {
+            return $this->db->query($qr, $bind)->num_rows();
+        }
+    }
+
 }

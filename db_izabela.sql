@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS tbl_usuarios (
   curso varchar(255) NOT NULL,
   tbl_niveis_cod_nivel int(10) unsigned NOT NULL,
   tbl_modelos_cod_modelo int(10) unsigned NOT NULL,
+  remessa int(6) unsigned zerofill not null,
   PRIMARY KEY (cod_usuario),
   KEY tbl_niveis_cod_nivel (tbl_niveis_cod_nivel)
 );

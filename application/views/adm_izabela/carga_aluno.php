@@ -1,6 +1,6 @@
 <a href='<?=base_url("adm_izabela/carga_aluno")?>'>
-    <div class='solics' style="width:190px">
-        <h1 style='margin:5px'>Envio de Carga</h1>
+    <div class='solicsHovered'>
+        <h1>Envio de Carga de Alunos</h1>
     </div>
 </a><!--solics-->
 <div class='clear'></div>
@@ -27,8 +27,19 @@
         </div>
     </form>
     <br/>
-    <iframe name="response_frame" frameborder="0" id="response-frame"></iframe>
+    <iframe name="response_frame" frameborder="0" seamless id="response-frame"></iframe>
 
 </section>
+<?= $this->element('common-alert') ?>
+<?php 
+    $this->style(array(
+        'jquery-ui',
+        'wm-modal'
+    ), false);
+    $this->script([
+        'jquery-ui',
+        'wm-modal',
+        'upload/index'
+    ], false);
 
-<?php $this->script(['upload/index'], false) ?>
+?>
