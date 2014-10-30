@@ -58,6 +58,7 @@
 							<th>Curso</th>
 							<th>Modelo</th>
 							<th>Status</th>
+							<th>Data da remessa</th>
 							<th>Mais informações</th>
 						</tr>
 					</thead>
@@ -71,6 +72,7 @@
 							<td><?=($aluno->curso) ? $aluno->curso : '-'?></td>
 							<td><?=($aluno->modelo) ? $aluno->modelo : '-'?></td>
 							<td><?=($aluno->status) ? $aluno->status : 'Aguardando solicitação'?></td>
+							<td><?=strftime("%d de %B de %Y", strtotime($aluno->dataRemessa));?></td>
 							<td><button data-id="<?=$aluno->cod_usuario?>" class='wm-btn wm-btn-blue btn-mais-info'><i class='glyphicon glyphicon-plus'></i></button></td>
 						</tr>
 						<?php }?>

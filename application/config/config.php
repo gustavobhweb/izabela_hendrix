@@ -360,3 +360,5 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+setlocale(LC_ALL, "pt-BR");

@@ -7,13 +7,14 @@
 <br>
 <section class="right-container">
     <div data-color='gray'>
-        Selecione o arquivo e clique em <b>Enviar Carga</b>.<br>
-        O <b>relatório da carga enviada</b> será exibido logo após o envio dos dados.<br>
+        Selecione o arquivo e clique em <b>Enviar Carga</b>.
     </div>
     <br/>
     <div>
         Os campos devem conter, respectivamente, as colunas:<br>
-        <b>Nome, Matrícula, CPF e Curso</b>
+        <b>nome, matricula, curso, cpf e modelo</b><br><br>
+        Os campos <b>matricula</b> e <b>cpf</b> devem conter <b>apenas números</b>.<br><br>
+        Para baixar o modelo do arquivo XLSX, <a href='<?=base_url("/static/modelo.xlsx")?>' class='iza-link'>clique aqui</a>.
     </div>
     <br/>
     <div>

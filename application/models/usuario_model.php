@@ -201,6 +201,7 @@ class Usuario_Model extends CI_Model{
     		   	      tbl_usuarios.cpf as cpf,
     		   	      tbl_usuarios.nome as nome,
     		   	      tbl_usuarios.curso as curso,
+                      tbl_usuarios.dataRemessa as dataRemessa,
     		   	      tbl_niveis.titulo as nivel,
     		   	      tbl_modelos.titulo as modelo,
     		   	      tbl_status.titulo as status,

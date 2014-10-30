@@ -1,6 +1,6 @@
 <a href='<?=base_url("adm_izabela/carga_aluno")?>'>
     <div class='solicsHovered'>
-        <h1>Cargas enviadas</h1>
+        <h1>Histórico de envio</h1>
     </div>
 </a><!--solics-->
 
@@ -24,7 +24,7 @@
         <thead>
             <tr>
                 <th>Remessa</th>
-                <th>Data/Hora</th>
+                <th>Data</th>
                 <th>Quantidade de registros</th>
                 <th>Ações</th>
             </tr>
@@ -33,7 +33,7 @@
             <?php foreach ($remessas as $remessa) {?>
             <tr>
                 <td><?=$remessa->remessa?></td>
-                <td><?=$remessa->dataRemessa?></td>
+                <td><?=strftime("%d de %B de %Y", strtotime($remessa->dataRemessa));?></td>
                 <td><?=$remessa->count?></td>
                 <td>
                     <a href='<?=base_url("adm_izabela/pesquisar_alunos?voltar=true&filtro=remessa&valor=" . $remessa->remessa)?>'>
