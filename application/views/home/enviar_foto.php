@@ -27,16 +27,28 @@
                     </div>
 
                     <div style="margin: 20px auto;position:relative;z-index:999999;width:180px">
-                        <button class="btn-conf-iza imgs-capture btn-capture">Tirar foto</button>
+                        <button class="btn-conf-iza imgs-capture btn-capture" onclick="onSnapClick()">Tirar foto</button>
                         <button class="btn-cancel-iza imgs-cancel btn-cancel-webcam return-modal-menu">Voltar</button>
                     </div>
                 </div><!-- #imgselect_container -->
             </div><!-- #webcam -->
 
-            <div id='crop' style='display:none'>
+            <div class='loading' style='display:none;text-align:center;padding:30px 0 0 0'>
+                <img src='/static/img/loading.GIF' width='60' />
+            </div><!-- .loading -->
+
+            <div id='flashcam' style='display:none;text-align:center;padding:30px 0 0 0'>
+                <div id='flashbox'></div>
+                <div id="btns-flash" style="margin: 20px auto;position:relative;z-index:999999;width:180px;display:none">
+                    <button class="btn-conf-iza btn-capture-flash">Tirar foto</button>
+                    <button class="btn-cancel-iza return-modal-menu">Voltar</button>
+                </div>
+            </div><!-- #flashcam -->
+
+            <div id='crop' style='display:none;text-align:center;margin:20px auto 0 auto;width:320px;'>
                 <div class="jcrop"></div>
-                <button class="btn-cancel-iza return-modal-menu">Voltar</button>
-                <button class="btn-conf-iza btn-make-crop">Salvar</button>
+                <button class="btn-cancel-iza return-modal-menu" style="float:none">Voltar</button>
+                <button class="btn-conf-iza btn-make-crop" style="float:none">Salvar</button>
             </div><!-- #crop -->
             <div class='clear'></div>
         </div><!--content-modal-photo-->
@@ -44,7 +56,6 @@
 </div><!--modal-photo-->
 
 <div class='content-box'>
-    <div class='main-content'>
         <a href='<?=base_url("home/enviar_foto")?>'>
             <div class='solicsHovered' style='width:150px;background-position:-60px 0'>
                 <h1 style='margin-right:13px'>Enviar foto</h1>
@@ -69,11 +80,6 @@
                 <img src='<?=base_url("static/img/especifica.png")?>' />
                 <form id="form-cadastrar-solicitacao" method='post' enctype='multipart/form-data' style='width:780px;margin:5px 0 0 0;float:left'>
                     <input type='file' onchange='refreshImg($(this))' name='userfile' id='userfile' style='display:none' />
-                    <div style='float:left;width:300px'>
-                        <input type='checkbox' name='ckb' id='ckb' />
-                        <label for='ckb' style='font:13px Arial'>Eu me <b>responsabilizo</b> pela
-                        <b>veracidade</b> desta foto e concordo com o <b><u>termo de uso</u></b> do sistema</label>
-                    </div>
                     <input type='hidden' name='webcam-upload' value='<?=$user->matricula.".png"?>' />
                     <button id="submit-solicitacao" type='submit' name='btn-submit' class='btn-conf-iza'>ENVIAR SOLICITAÇÃO DA CARTEIRA</button>
                     <button type='button' onclick='document.location.href="<?=base_url('home/inicial')?>"' class='btn-cancel-iza'>CANCELAR</button>
@@ -83,7 +89,6 @@
                 </form>
             </div>
         </div>
-    </div><!--main-content-->
     <div class='clear'></div>
 </div><!--content-box-->
 <div class='clearfix'></div>

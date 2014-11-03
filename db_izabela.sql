@@ -39,6 +39,11 @@ cod_solicitacao int(10) unsigned NOT NULL AUTO_INCREMENT,
 foto varchar(100) NOT NULL,
 email varchar(100) NOT NULL,
 via int(11) NOT NULL DEFAULT '1',
+dataSolicitacao DATETIME NOT NULL,
+dataFabricacao DATETIME NOT NULL,
+dataConferencia DATETIME NOT NULL,
+dataDisponivel DATETIME NOT NULL,
+dataEntregue DATETIME NOT NULL,
 tbl_status_cod_status int(10) unsigned NOT NULL,
 tbl_modelos_cod_modelo int(10) unsigned NOT NULL,
 tbl_usuarios_cod_usuario int(10) unsigned NOT NULL,
@@ -58,7 +63,8 @@ INSERT INTO tbl_status (cod_status, titulo) VALUES
 (1, 'Análise da foto'),
 (2, 'Fabricação'),
 (3, 'Conferência'),
-(4, 'Disponível para entrega');
+(4, 'Disponível para entrega'),
+(5, 'Entregue');
 
 CREATE TABLE IF NOT EXISTS tbl_usuarios (
   cod_usuario int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -68,6 +74,7 @@ CREATE TABLE IF NOT EXISTS tbl_usuarios (
   curso varchar(255) NOT NULL,
   tbl_niveis_cod_nivel int(10) unsigned NOT NULL,
   tbl_modelos_cod_modelo int(10) unsigned NOT NULL,
+  remessa int(6) unsigned zerofill not null,
   PRIMARY KEY (cod_usuario),
   KEY tbl_niveis_cod_nivel (tbl_niveis_cod_nivel)
 );

@@ -6,7 +6,12 @@ $(document).ready(function(){
 
 	$formXLS.submit(function(event) {
 		if ($xlsFile.val() == '') {
-			alert('Selecione um arquivo');
+			new wmDialog('Selecione um arquivo XLSX para enviar a carga.', {
+    				width: 320,
+    				height: 240,
+    				isHTML: true,
+    				title: 'Atenção'
+    			}).open();
 			return false;
 		}
 

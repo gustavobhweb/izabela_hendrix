@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <?php
         	echo $this->script(array(
         			'jquery-1.10.2.min',
@@ -18,7 +19,7 @@
         ?>
         <title>Izabela Hendrix</title>
     </head>
-    <body>
+    <body style="width: 100%;min-width:100%;max-width:100%">
         <div class='login'>
 
             <div class='header-login'>

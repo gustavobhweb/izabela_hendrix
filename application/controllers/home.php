@@ -4,7 +4,18 @@ class Home extends WG_Controller {
 
     public $viewVars = array();
     public $allowedActions = ['login', 'sair', 'cadastrar'];
-    
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        if (isset($this->viewVars['user']->tbl_modelos_cod_modelo)) {
+            $qr = 'SELECT * FROM tbl_modelos WHERE cod_modelo = ?';
+            $bind = array($this->viewVars['user']->tbl_modelos_cod_modelo);
+            $this->viewVars['user']->modelo = $this->db->query($qr, $bind)->row()->titulo;
+        }
+    }
+
 
     public function index()
     {
@@ -50,7 +61,7 @@ class Home extends WG_Controller {
         $viewData = array();
         $viewData['avisos'] = $this->Aviso_Model->select($cod_usuario);
         $viewData['avisosNum'] = count($viewData['avisos']);
-        $viewData['solicitacoes'] = $this->Solicitacao_Model->select($cod_usuario);
+        $viewData['solicitacoes'] = $this   ->Solicitacao_Model->select($cod_usuario);
 
         foreach ($viewData['solicitacoes'] as $k => $v) {
             $viewData['solicitacoes'][$k]->status = $this->Solicitacao_Model->selectNameStatus($viewData['solicitacoes'][$k]->tbl_status_cod_status);
@@ -105,7 +116,7 @@ class Home extends WG_Controller {
         $this->Usuario_Model->authenticate();
 
         $viewData['solicitacoes'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'));
-        $viewData['user'] = (object)$this->session->all_userdata();
+        $viewData['user'] = (object) $this->session->all_userdata();
 
         $viewData['solicitacoesNum'] = $this->Solicitacao_Model->select($this->session->userdata('cod_usuario'), true);
 
@@ -127,10 +138,7 @@ class Home extends WG_Controller {
 
         $viewData = array();
         $viewData['user'] = (object)$this->session->all_userdata();
-
-        if($_POST && !$this->input->post('ckb')) {
-            $viewData['message'] = 'Aceite os termos de uso!';
-        } elseif($this->input->post('sended')) {
+        if($this->input->post('sended')) {
 
             $ds = DIRECTORY_SEPARATOR;
             $tempFile = FCPATH . "{$ds}static{$ds}imagens{$ds}" . $viewData['user']->matricula . "{$ds}temp.png";
@@ -141,7 +149,8 @@ class Home extends WG_Controller {
             $solicitacao = array(
                 'foto' => $viewData['user']->matricula . '/' . $nameFile,
                 'email' => $this->input->post('email'),
-                'tbl_modelos_cod_modelo' => $viewData['user']->tbl_modelos_cod_modelo
+                'tbl_modelos_cod_modelo' => $viewData['user']->tbl_modelos_cod_modelo,
+                'data' => date('Y-m-d H:i:s')
             );
             $this->Solicitacao_Model->save($solicitacao);
 
@@ -226,15 +235,15 @@ class Home extends WG_Controller {
         $this->Usuario_Model->save($user);
 
         $user1 = array();
-        $user1['cpf'] = '11111111122';
-        $user1['matricula'] = '111122';
+        $user1['cpf'] = '22222222222';
+        $user1['matricula'] = '222222';
         $user1['nome'] = 'Gustavo Carmo';
         $user1['nivel'] = 2;
         $this->Usuario_Model->save($user1);
 
         $user2 = [
-            'cpf' => '11111111133',
-            'matricula' => '222222',
+            'cpf' => '33333333333',
+            'matricula' => '333333',
             'nome' => 'Wallace de souza',
             'tbl_niveis_cod_nivel' => 3,
             'curso' => 'Programador PHP'
@@ -256,13 +265,18 @@ class Home extends WG_Controller {
         $imgstr = base64_decode($this->input->post('file'));
         list($width, $height) = getimagesizefromstring($imgstr);
 
-        $dest = imagecreatetruecolor(161, 215);
+        $newW = 358;
+        $newH = 478;
+
+        $dest = imagecreatetruecolor($newW, $newH);
         $im = imagecreatefromstring($imgstr);
+        $nw = ($newH * $width) / $height;
 
-        $nw = (215 * $width) / $height;
-
-        imagecopyresampled($dest, $im, 0, 0, 138, 0, 161, 215, $width - $nw, $height);
-
+        if ($this->input->post('flash')) {
+            imagecopyresampled($dest, $im, 0, 0, 70, 0, $nw, $newH, $nw, $newH);
+        } else {
+            imagecopyresampled($dest, $im, 0, 0, 138, 0, $nw, $newH, $width, $height);
+        }
         imagepng($dest, $fullurl);
         echo json_encode(true);
     }
@@ -282,9 +296,9 @@ class Home extends WG_Controller {
         $fbImage = 'https://graph.facebook.com/'.$idfacebook.'/picture?type=large';
 
         is_dir($dir) ?: mkdir($dir);
-       
+
         exit(
-            new JsonResponse(base64_encode(file_get_contents($fbImage)))
+            new JsonResponse(array('url' => $fbImage, 'base64' => base64_encode(file_get_contents($fbImage))))
         );
     }
 
@@ -293,6 +307,7 @@ class Home extends WG_Controller {
         header('Content-Type: application/json');
 
         $imgstr = base64_decode($this->input->post('img'));
+        $ext = $this->input->post('ext');
 
         $ds = DIRECTORY_SEPARATOR;
         $matricula = $this->session->userdata('matricula');
@@ -304,8 +319,20 @@ class Home extends WG_Controller {
 
         list($width, $height) = getimagesizefromstring($imgstr);
 
-        $dest = imagecreatetruecolor(161, 215);
-        $im = imagecreatefromstring($imgstr);
+        $widthVar = 358;
+        $heightVar = 478;
+        $dest = imagecreatetruecolor($widthVar, $heightVar);
+
+        $im = null;
+        $tempbmppngfile = md5(uniqid() . time()) . '.bmp';
+        if (!is_dir(FCPATH . '/static/imagens/tempbmp/')) mkdir(FCPATH . '/static/imagens/tempbmp/');
+        if ($ext == 'bmp') {
+            file_put_contents(FCPATH . '/static/imagens/tempbmp/' . $tempbmppngfile, $imgstr);
+            $im = $this->imagecreatefrombmp(FCPATH . '/static/imagens/tempbmp/' . $tempbmppngfile);
+            @unlink(FCPATH . '/static/imagens/tempbmp/' . $tempbmppngfile);
+        } else {
+            $im = imagecreatefromstring($imgstr);
+        }
 
         $x = $this->input->get('x');
         $y = $this->input->get('y');
@@ -315,7 +342,7 @@ class Home extends WG_Controller {
         $nh = 215;
         $nw = ($nh * $width) / $height;
 
-        imagecopyresampled($dest, $im, 0, 0, $x, $y, 161, 215, $w+12, $h);
+        imagecopyresampled($dest, $im, 0, 0, $x, $y, $widthVar, $heightVar, $w, $h);
 
         imagepng($dest, $fullpath);
 
@@ -337,6 +364,151 @@ class Home extends WG_Controller {
                 new JsonResponse(get_defined_vars())
             )
         );
+    }
+
+    private function imagecreatefrombmp($filename)
+    {
+    //Ouverture du fichier en mode binaire
+       if (! $f1 = fopen($filename,"rb")) return FALSE;
+
+    //1 : Chargement des ent�tes FICHIER
+       $FILE = unpack("vfile_type/Vfile_size/Vreserved/Vbitmap_offset", fread($f1,14));
+       if ($FILE['file_type'] != 19778) return FALSE;
+
+    //2 : Chargement des ent�tes BMP
+       $BMP = unpack('Vheader_size/Vwidth/Vheight/vplanes/vbits_per_pixel'.
+                     '/Vcompression/Vsize_bitmap/Vhoriz_resolution'.
+                     '/Vvert_resolution/Vcolors_used/Vcolors_important', fread($f1,40));
+       $BMP['colors'] = pow(2,$BMP['bits_per_pixel']);
+       if ($BMP['size_bitmap'] == 0) $BMP['size_bitmap'] = $FILE['file_size'] - $FILE['bitmap_offset'];
+       $BMP['bytes_per_pixel'] = $BMP['bits_per_pixel']/8;
+       $BMP['bytes_per_pixel2'] = ceil($BMP['bytes_per_pixel']);
+       $BMP['decal'] = ($BMP['width']*$BMP['bytes_per_pixel']/4);
+       $BMP['decal'] -= floor($BMP['width']*$BMP['bytes_per_pixel']/4);
+       $BMP['decal'] = 4-(4*$BMP['decal']);
+       if ($BMP['decal'] == 4) $BMP['decal'] = 0;
+
+    //3 : Chargement des couleurs de la palette
+       $PALETTE = array();
+       if ($BMP['colors'] < 16777216)
+       {
+        $PALETTE = unpack('V'.$BMP['colors'], fread($f1,$BMP['colors']*4));
+       }
+
+    //4 : Cr�ation de l'image
+       $IMG = fread($f1,$BMP['size_bitmap']);
+       $VIDE = chr(0);
+
+       $res = imagecreatetruecolor($BMP['width'],$BMP['height']);
+       $P = 0;
+       $Y = $BMP['height']-1;
+       while ($Y >= 0)
+       {
+        $X=0;
+        while ($X < $BMP['width'])
+        {
+         if ($BMP['bits_per_pixel'] == 24)
+            $COLOR = unpack("V",substr($IMG,$P,3).$VIDE);
+         elseif ($BMP['bits_per_pixel'] == 16)
+         {
+            $COLOR = unpack("n",substr($IMG,$P,2));
+            $COLOR[1] = $PALETTE[$COLOR[1]+1];
+         }
+         elseif ($BMP['bits_per_pixel'] == 8)
+         {
+            $COLOR = unpack("n",$VIDE.substr($IMG,$P,1));
+            $COLOR[1] = $PALETTE[$COLOR[1]+1];
+         }
+         elseif ($BMP['bits_per_pixel'] == 4)
+         {
+            $COLOR = unpack("n",$VIDE.substr($IMG,floor($P),1));
+            if (($P*2)%2 == 0) $COLOR[1] = ($COLOR[1] >> 4) ; else $COLOR[1] = ($COLOR[1] & 0x0F);
+            $COLOR[1] = $PALETTE[$COLOR[1]+1];
+         }
+         elseif ($BMP['bits_per_pixel'] == 1)
+         {
+            $COLOR = unpack("n",$VIDE.substr($IMG,floor($P),1));
+            if     (($P*8)%8 == 0) $COLOR[1] =  $COLOR[1]        >>7;
+            elseif (($P*8)%8 == 1) $COLOR[1] = ($COLOR[1] & 0x40)>>6;
+            elseif (($P*8)%8 == 2) $COLOR[1] = ($COLOR[1] & 0x20)>>5;
+            elseif (($P*8)%8 == 3) $COLOR[1] = ($COLOR[1] & 0x10)>>4;
+            elseif (($P*8)%8 == 4) $COLOR[1] = ($COLOR[1] & 0x8)>>3;
+            elseif (($P*8)%8 == 5) $COLOR[1] = ($COLOR[1] & 0x4)>>2;
+            elseif (($P*8)%8 == 6) $COLOR[1] = ($COLOR[1] & 0x2)>>1;
+            elseif (($P*8)%8 == 7) $COLOR[1] = ($COLOR[1] & 0x1);
+            $COLOR[1] = $PALETTE[$COLOR[1]+1];
+         }
+         else
+            return FALSE;
+         imagesetpixel($res,$X,$Y,$COLOR[1]);
+         $X++;
+         $P += $BMP['bytes_per_pixel'];
+        }
+        $Y--;
+        $P+=$BMP['decal'];
+       }
+
+    //Fermeture du fichier
+       fclose($f1);
+
+    return $res;
+    }
+
+    public function atualizarCaptcha()
+    {
+        header('Content-Type: application/json');
+
+        $response = false;
+
+        if (isset($_SESSION['random_number'], $_POST['capcha_text'])) {
+           $response = $_SESSION['random_number'] == $_POST['capcha_text'];
+        }
+
+        echo json_encode($response);
+    }
+
+    public function getCaptcha()
+    {
+        $word_1 = '';
+        $word_2 = '';
+            
+        for ($i = 0; $i < 4; $i++) {
+            $word_1 .= chr(rand(97, 122));
+        }
+
+        for ($i = 0; $i < 4; $i++) {
+            $word_2 .= chr(rand(97, 122));
+        }
+        
+        $this->session->set_userdata(array(
+            'random_number' => $word_1.' '.$word_2
+        ));
+
+        $dir = FCPATH.'/static/recaptcha/fonts/';
+        $image = imagecreatetruecolor(172, 50);
+
+        $font = "recaptchaFont.ttf";
+        $color = imagecolorallocate($image, 0, 0, 0);
+        //$white = imagecolorallocate($image, 255, 255, 255);
+        $white = imagecolorallocate($image, 255, 255, 255);
+        imagefilledrectangle($image, 0, 0, 172, 99, $white);
+        imagettftext($image, 22, 0, 5, 35, $color, $dir.$font, $this->session->userdata('random_number'));
+            
+        header("Content-type: image/png");
+        imagepng($image);
+    }
+
+    public function verifyCaptcha()
+    {
+        header('Content-type: application/json');
+        $captcha = $this->session->userdata('random_number');
+        $text = $this->input->post('text');
+
+        echo json_encode(array(
+            'status' => ($captcha == $text),
+            'session' => $captcha,
+            'user' => $text
+        ));
     }
 
 }

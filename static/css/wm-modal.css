@@ -36,6 +36,7 @@
     text-align: center;
     padding: 10px;
     color:gold;
+    cursor: move;
 }
 #wm-alert .wm-modal-body{
     min-height: 55%;

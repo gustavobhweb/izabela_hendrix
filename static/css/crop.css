@@ -10,9 +10,15 @@
 /*---------------------------------------------------------*/
 
 .jcrop .cropMain {
-	width:225px;
-	height:300px;
+    width:245px;
+    height:300px;
     margin: 0 auto;
+}
+
+.jcrop p {
+    font:12px Arial;
+    color:black;
+    margin:10px 0 0 0;
 }
 
 .jcropRect .cropMain {

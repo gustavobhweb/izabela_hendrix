@@ -1,19 +1,20 @@
-<a href='<?=base_url("home/acompanhar")?>'>
-    <div class='solics' style="width:190px">
-        <h1 style='margin:5px'>Envio de Carga</h1>
+<a href='<?=base_url("adm_izabela/carga_aluno")?>'>
+    <div class='solicsHovered'>
+        <h1>Envio de Carga de Alunos</h1>
     </div>
 </a><!--solics-->
 <div class='clear'></div>
 <br>
 <section class="right-container">
     <div data-color='gray'>
-        Selecione o arquivo e clique em <b>Enviar Carga</b>.<br>
-        O <b>relatório da carga enviada</b> será exibido logo após o envio dos dados.<br>
+        Selecione o arquivo e clique em <b>Enviar Carga</b>.
     </div>
     <br/>
     <div>
         Os campos devem conter, respectivamente, as colunas:<br>
-        <b>Nome, Matrícula, CPF e Curso</b>
+        <b>nome, matricula, curso, cpf e modelo</b><br><br>
+        Os campos <b>matricula</b> e <b>cpf</b> devem conter <b>apenas números</b>.<br><br>
+        Para baixar o modelo do arquivo XLSX, <a href='<?=base_url("/static/modelo.xlsx")?>' class='iza-link'>clique aqui</a>.
     </div>
     <br/>
     <div>
@@ -27,8 +28,19 @@
         </div>
     </form>
     <br/>
-    <iframe name="response_frame" frameborder="0" id="response-frame"></iframe>
+    <iframe name="response_frame" frameborder="0" seamless id="response-frame"></iframe>
 
 </section>
+<?= $this->element('common-alert') ?>
+<?php 
+    $this->style(array(
+        'jquery-ui',
+        'wm-modal'
+    ), false);
+    $this->script([
+        'jquery-ui',
+        'wm-modal',
+        'upload/index'
+    ], false);
 
-<?php $this->script(['upload/index'], false) ?> 
+?>
