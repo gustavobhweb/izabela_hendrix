@@ -155,4 +155,3 @@ class WG_Output extends CI_Output {
     }   
 
 }
-     

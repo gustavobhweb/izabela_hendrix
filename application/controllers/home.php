@@ -4,7 +4,7 @@ class Home extends WG_Controller {
 
     public $viewVars = array();
     public $allowedActions = ['login', 'sair', 'cadastrar'];
-
+    
 
     public function index()
     {
@@ -14,6 +14,8 @@ class Home extends WG_Controller {
 
     public function login()
     {
+    
+    
         $this->layout = 'login';
         $viewData = array();
         $this->load->model('Usuario_Model');
